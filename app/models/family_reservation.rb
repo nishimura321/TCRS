@@ -1,0 +1,2 @@
+class FamilyReservation < ApplicationRecord
+end

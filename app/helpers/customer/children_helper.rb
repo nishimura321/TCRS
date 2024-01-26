@@ -1,0 +1,2 @@
+module Customer::ChildrenHelper
+end

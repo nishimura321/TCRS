@@ -1,0 +1,2 @@
+module Facility::CustomersHelper
+end

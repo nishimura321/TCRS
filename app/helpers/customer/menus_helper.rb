@@ -1,0 +1,2 @@
+module Customer::MenusHelper
+end

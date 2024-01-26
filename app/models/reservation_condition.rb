@@ -1,0 +1,2 @@
+class ReservationCondition < ApplicationRecord
+end
