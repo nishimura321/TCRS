@@ -1,4 +1,6 @@
 class Facility::MenusController < ApplicationController
+  before_action :authenticate_facility!
+
   def new
   end
 

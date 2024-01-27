@@ -1,4 +1,6 @@
 class Facility::ReservationsController < ApplicationController
+  before_action :authenticate_facility!
+
   def index
   end
 
