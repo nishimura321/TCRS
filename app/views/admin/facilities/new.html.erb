@@ -1,2 +1,27 @@
-<h1>Admin::Facilities#new</h1>
-<p>Find me in app/views/admin/facilities/new.html.erb</p>
+<h1>施設新規登録</h1>
+<%= form_with model: @facility, url: '/admin/facilities', method: :post do |f| %>
+<p>施設名</p>
+<%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "令和こども園" %>
+<p>フリガナ</p>
+<%= f.text_field :name_kana, autofocus: true, autocomplete: "name", placeholder: "レイワコドモエン" %>
+<p>郵便番号(ハイフンなし)</p>
+<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal-code", placeholder: "0000000" %>
+<p>住所</p>
+<%= f.text_field :address, autofocus: true, autocomplete: "address-line1", placeholder: "静岡県静岡市葵区追手町0-0" %>
+<p>電話番号(ハイフンなし)</p>
+<%= f.text_field :telephone_number, autofocus: true, autocomplete: "tel", placeholder: "0000000000" %>
+<p>メールアドレス</p>
+<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "reiwakodomoen@example.com" %>
+<p>HP</p>
+<p>営業日</p>
+<p>営業時間</p>
+<p>問い合わせ時間</p>
+<p>休園日</p>
+<p>保育時間</p>
+<p>受け入れ年齢</p>
+<p>給食の有無</p>
+<p>利用料金</p>
+<p>施設からのメッセージ</p>
+<p>パスワード</p>
+<p>パスワード(確認用)</p>
+<% end %>
