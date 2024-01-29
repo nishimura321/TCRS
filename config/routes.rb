@@ -9,8 +9,7 @@ Rails.application.routes.draw do
 
   # device施設用
   # URL /facility/sign_in ...
-  devise_for :facility, skip: [:passwords], controllers: {
-  registrations: "facility/registrations",
+  devise_for :facility, skip: [:registrations, :passwords], controllers: {
   sessions: 'facility/sessions'
   }
 
