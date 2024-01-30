@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   #施設用
   namespace :facility do
-    get '/' => 'homes#top'
+    get '/' => 'homes#top', as: 'top'
     resources :reservations, only: [:index, :show, :edit, :update, :destroy]
     get 'reservations/situation' => 'reservations#situation'
     resources :reservation_conditions, only: [:new, :create]
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :reservations, only: [:index, :show]
     resources :customers, only: [:index, :show]
-    resources :facilities, only: [:new, :create, :index, :show, :edit, :update]
+    resources :facilities
     get 'facilities/situation' => 'facilities#situation'
     get '/search' => 'searches#search'
   end

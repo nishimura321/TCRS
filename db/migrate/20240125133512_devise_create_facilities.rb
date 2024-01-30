@@ -28,6 +28,7 @@ class DeviseCreateFacilities < ActiveRecord::Migration[6.1]
       t.string "school_meal", null: false
       t.string "fee", null: false
       t.text "message", null: false
+      t.boolean "is_active", default: true, null: false
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

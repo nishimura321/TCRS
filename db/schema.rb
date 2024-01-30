@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
     t.string "hospital_name"
     t.string "hospital_telephone_number"
     t.text "memo"
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
     t.string "school_meal", null: false
     t.string "fee", null: false
     t.text "message", null: false
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_facilities_on_email", unique: true
@@ -130,6 +132,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
     t.string "telephone_number", null: false
     t.string "workplace"
     t.string "workplace_telephone_number"
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

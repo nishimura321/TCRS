@@ -1,43 +1,48 @@
 <div class="container mt-5">
   <div class="row">
     <div class="mx-auto">
-      <h3>施設新規登録</h3>
-    <%= form_with model: @facility, url: '/admin/facilities', method: :post do |f| %>
-      <%= f.label :name, "施設名" %><br>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "令和こども園" %><br>
-      <%= f.label :name_kana, "フリガナ" %><br>
-      <%= f.text_field :name_kana, autocomplete: "name_kana", placeholder: "レイワコドモエン" %><br>
-      <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><br>
-      <%= f.text_field :postal_code, autocomplete: "postal-code", placeholder: "0000000" %><br>
-      <%= f.label :address, "住所" %><br>
-      <%= f.text_field :address, autocomplete: "address-line1", placeholder: "静岡県静岡市葵区追手町0-0" %><br>
-      <%= f.label :telephone_number, "電話番号(ハイフンなし)" %><br>
-      <%= f.text_field :telephone_number, autocomplete: "tel", placeholder: "0000000000" %><br>
-      <%= f.label :email, "メールアドレス" %><br>
-      <%= f.email_field :email, autocomplete: "email", placeholder: "reiwakodomoen@example.com" %><br>
-      <%= f.label :website, "HP" %><br>
+      <h3 class="mx-5 mb-3">施設新規登録</h3>
+      <%= form_with model: @facility, url: '/admin/facilities', method: :post do |f| %>
+        <%= f.label :name, "施設名" %><br>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "令和こども園", class: "form-control" %><br>
+        <%= f.label :name_kana, "フリガナ" %><br>
+        <%= f.text_field :name_kana, autocomplete: "name_kana", placeholder: "レイワコドモエン", class: "form-control" %><br>
+        <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><br>
+        <%= f.text_field :postal_code, autocomplete: "postal-code", placeholder: "0000000", class: "form-control" %><br>
+        <%= f.label :address, "住所" %><br>
+        <%= f.text_field :address, autocomplete: "address-line1", placeholder: "静岡県静岡市葵区追手町0-0", class: "form-control" %><br>
+        <%= f.label :telephone_number, "電話番号(ハイフンなし)" %><br>
+        <%= f.text_field :telephone_number, autocomplete: "tel", placeholder: "00000000000", class: "form-control" %><br>
+        <%= f.label :email, "メールアドレス" %><br>
+        <%= f.email_field :email, autocomplete: "email", placeholder: "hoge@example.com", class: "form-control" %><br>
+        <%= f.label :website, "HP" %><br>
+        <%= f.text_field :website, placeholder: "http://www.reiwakodomoen.co.jp", class: "form-control" %><br>
+        <%= f.label :business_day, "営業日" %><br>
+        <%= f.text_field :business_day, placeholder: "月曜日〜土曜日", class: "form-control" %><br>
+        <%= f.label :business_hours, "営業時間" %><br>
+        <%= f.text_field :business_hours, placeholder: "07:00 〜 19:00", class: "form-control" %><br>
+        <%= f.label :inquiry_hours, "問い合わせ時間" %><br>
+        <%= f.text_field :inquiry_hours, placeholder: "08:30 〜 18:00", class: "form-control" %><br>
+        <%= f.label :closed_day, "休園日" %><br>
+        <%= f.text_field :closed_day, placeholder: "日曜日、祝日、年末年始", class: "form-control" %><br>
+        <%= f.label :childcare_hours, "保育時間" %><br>
+        <%= f.text_field :childcare_hours, placeholder: "08:30 〜 16:30", class: "form-control" %><br>
+        <%= f.label :target_age, "受け入れ年齢" %><br>
+        <%= f.text_field :target_age, placeholder: "産休明けから小学校就学前", class: "form-control" %><br>
+        <%= f.label :school_meal, "給食の有無" %><br>
+        <%= f.text_field :school_meal, placeholder: "給食・おやつあり", class: "form-control" %><br>
+        <%= f.label :fee, "利用料金" %><br>
+        <%= f.text_field :fee, placeholder: "1日利用料1,750円＋給食おやつ代250円＝2,000円", class: "form-control" %><br>
+        <%= f.label :message, "施設からのメッセージ" %><br>
+        <%= f.text_area :message, placeholder: "子どもたちが笑顔になれる園であるようその子その子に合わせた教育と保育を目指します。", class: "form-control" %><br>
+        <%= f.label :password, "パスワード" %><br>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %><br>
+        <%= f.label :password_confirmation, "パスワード(確認用)" %><br>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %><br><br>
 
-      <%= f.label :business_day, "営業日" %><br>
-      <br>
-      <%= f.label :business_hours, "営業時間" %><br>
-      <br>
-      <%= f.label :inquiry_hours, "問い合わせ時間" %><br>
-      <br>
-      <%= f.label :closed_day, "休園日" %><br>
-      <br>
-      <%= f.label :childcare_hours, "保育時間" %><br>
-      <br>
-      <%= f.label :school_meal, "給食の有無" %><br>
-      <br>
-      <%= f.label :fee, "利用料金" %><br>
-      <br>
-      <%= f.label :message, "施設からのメッセージ" %><br>
-      <br>
-      <%= f.label :password, "パスワード" %><br>
-      <%= f.password_field :password, autocomplete: "new-password" %><br>
-      <%= f.label :password_confirmation, "パスワード(確認用)" %><br>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br>
-    <% end %>
+        <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+        <%= f.submit "新規登録", class: "btn btn-warning px-4" %>
+      <% end %><br><br>
     </div>
   </div>
 </div>

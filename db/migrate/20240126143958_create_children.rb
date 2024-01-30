@@ -43,6 +43,7 @@ class CreateChildren < ActiveRecord::Migration[6.1]
       t.string "hospital_name"
       t.string "hospital_telephone_number"
       t.text "memo"
+      t.boolean "is_active", default: true, null: false
       t.timestamps
     end
   end

@@ -1,5 +1,6 @@
 class Admin::FacilitiesController < ApplicationController
   before_action :authenticate_admin!
+  before_action :ensure_facility, only: [:show, :edit, :update]
 
   def new
     @facility = Facility.new
@@ -27,13 +28,20 @@ class Admin::FacilitiesController < ApplicationController
 
   def update
   end
+  
+  def destroy
+  end
 
   def situation
   end
 
   private
   def facility_params
-    params.require(:facility).permit(:name, :name_kana, :email, :password, :postal_code, :address, :telephone_number, :website, :business_day, :business_hours, :inquiry_hours, :closed_day, :childcare_hours, :target_age, :school_meal, :fee, :message)
+    params.require(:facility).permit(:name, :name_kana, :email, :password, :postal_code, :address, :telephone_number, :website, :business_day, :business_hours, :inquiry_hours, :closed_day, :childcare_hours, :target_age, :school_meal, :fee, :message, :is_active)
+  end
+
+  def ensure_facility
+    @facility = Facility.find(params[:id])
   end
 
 end

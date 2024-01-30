@@ -13,6 +13,7 @@ class CreateFamilies < ActiveRecord::Migration[6.1]
       t.string "telephone_number", null: false
       t.string "workplace"
       t.string "workplace_telephone_number"
+      t.boolean "is_active", default: true, null: false
       t.timestamps
     end
   end

@@ -39,28 +39,20 @@
         </li>
 
       <% elsif facility_signed_in? %>
+
+
         <li class="nav-item mr-4">
-          <%= link_to "予約を検索", facility_reservations_path, class: "btn btn-outline-secondary" %>
-        </li>
-        <li class="nav-item mr-4">
-          <%= link_to "予約カレンダー", facility_reservation_path, class: "btn btn-outline-secondary" %>
-        </li>
-        <li class="nav-item mr-4">
-          <%= link_to "マイページ", facility_facility_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "マイページ", facility_facility_path(current_facility), class: "btn btn-outline-secondary" %>
         </li>
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_facility_session_path, method: :delete, class: "btn btn-outline-secondary" %>
         </li>
 
       <% elsif customer_signed_in? %>
+
+
         <li class="nav-item mr-4">
-          <%= link_to "施設を探す", reservations_path, class: "btn btn-outline-secondary" %>
-        </li>
-        <li class="nav-item mr-4">
-          <%= link_to "予約を確認する", reservation_path, class: "btn btn-outline-secondary" %>
-        </li>
-        <li class="nav-item mr-4">
-          <%= link_to "マイページ", customers_mypage_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "マイページ", customers_mypage_path(current_customer), class: "btn btn-outline-secondary" %>
         </li>
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" %>
