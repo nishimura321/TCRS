@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
     t.text "allergy_details"
     t.integer "breastfeeding_status"
     t.integer "breastfeeding_amount"
-    t.integer "situation_after _breastfeeding"
+    t.integer "situation_after_breastfeeding"
     t.integer "amount_of_milk_after_baby_food"
     t.integer "baby_food_progress"
     t.integer "appetite"

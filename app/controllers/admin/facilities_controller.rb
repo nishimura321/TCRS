@@ -9,10 +9,10 @@ class Admin::FacilitiesController < ApplicationController
   def create
     @facility = Facility.new(facility_params)
     if @facility.save
-      flash[:notice] = "新規登録が完了しました。"
+      flash[:notice] = "施設登録が完了しました。"
       redirect_to admin_facility_path(@facility)
     else
-      flash.now[:notice] = "新規登録に失敗しました。"
+      flash.now[:notice] = "施設登録ができませんでした。"
       render :new
     end
   end
@@ -38,10 +38,9 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def withdrawal
-    if @facility.update(is_active: false)
-      flash[:notice] = "閉園処理を行いました。"
-      redirect_to admin_facilities_path
-    end
+    facility.update(is_active: false)
+    flash[:notice] = "閉園処理を行いました。"
+    redirect_to admin_facilities_path
   end
 
   def situation
