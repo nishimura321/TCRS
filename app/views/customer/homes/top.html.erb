@@ -1,2 +1,32 @@
-<h1>Customer::Homes#top</h1>
-<p>Find me in app/views/customer/homes/top.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+    <h2>TCRSとは</h2>
+      <p>テクロス ( Temporary Childcare Reservation System ) は一時預かり保育の予約システムです。<br>
+        静岡市では、幼稚園・保育園・こども園等に通っていないお子さんを、<br>
+        就労、病気、出産、冠婚葬祭、育児疲れの解消などの場合に一時的にお預かりします。<br><br>
+
+        これまで、一時預かり保育事業を利用しようとすると、<br>
+        ●一時預かり保育を実施している施設を探すのが大変...<br>
+        ●施設の空き状況の確認や、予約のために電話を掛けるのが大変...<br>
+        ●育児と家事が落ち着いた夜の時間帯に予約ができない...<br>
+        ●利用時の書類提出が大変...<br>
+        ●給食のアレルギー確認が大変...<br>
+        といった悩みがありました。<br><br>
+
+        TCRSでは、これらの悩みが解消できるように、<br>
+        ◎条件を指定して、施設検索ができる<br>
+        ◎WEB予約ができるため24時間いつでもどこにいても予約ができる<br>
+        ◎施設の利用予約状況が確認できるため急な用事でも空いている施設を探しやすい<br>
+        ◎利用時の書類提出やアレルギー確認がWEB上でできる<br>
+        といったことができる機能を作りました。<br><br>
+
+        1.アカウント登録、2施設検索、3必要事項を入力して予約の手順で簡単に予約ができます。<br>
+        このシステムを活用して、ぜひ〇〇市の一時預かり保育をご利用ください。
+      </p><br><br>
+      <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-warning px-4 mr-5" %>
+      <%= link_to "ログイン", new_customer_session_path, class: "btn btn-warning px-4 mr-5" %>
+      <%#= link_to "ゲストログイン", _path, class: "btn btn-warning px-4" %><br><br><br><br><br>
+    </div>
+  </div>
+</div>

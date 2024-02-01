@@ -58,7 +58,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :reservations, only: [:index, :show]
     resources :customers, only: [:index, :show]
-    resources :facilities
+    resources :facilities, only: [:new, :create, :index, :show, :edit, :update]
+    patch 'facilities/withdrawal/:id' => 'facilities#withdrawal', as: 'facility_withdrawal'
     get 'facilities/situation' => 'facilities#situation'
     get '/search' => 'searches#search'
   end

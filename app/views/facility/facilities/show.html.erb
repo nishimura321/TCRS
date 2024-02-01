@@ -2,13 +2,9 @@
   <div class="row">
     <div class="mx-auto">
       <h3 class="mb-3">マイページ</h3>
-      <%= link_to "修正", edit_admin_facility_path(@facility.id), class: "btn btn-warning px-4" %><br><br>
+      <%= link_to "修正", edit_facility_facility_path(@facility), class: "btn btn-warning px-4" %><br><br>
       <table class="table">
         <tbody>
-          <tr>
-            <th>施設ID</th>
-            <td><%= @facility.id %></td>
-          </tr>
           <tr>
             <th>施設名</th>
             <td><%= @facility.name %></td>

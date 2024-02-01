@@ -1,6 +1,6 @@
 class Admin::FacilitiesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_facility, only: [:show, :edit, :update]
+  before_action :ensure_facility, only: [:show, :edit, :update, :withdrawal]
 
   def new
     @facility = Facility.new
@@ -18,6 +18,7 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def index
+    @facilities = Facility.page(params[:page])
   end
 
   def show
@@ -27,9 +28,20 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def update
+    if @facility.update(facility_params)
+      flash[:notice] = "修正が完了しました。"
+      redirect_to admin_facility_path(@facility)
+    else
+      flash.now[:notice] = "修正の保存に失敗しました。"
+      render :edit
+    end
   end
-  
-  def destroy
+
+  def withdrawal
+    if @facility.update(is_active: false)
+      flash[:notice] = "閉園処理を行いました。"
+      redirect_to admin_facilities_path
+    end
   end
 
   def situation

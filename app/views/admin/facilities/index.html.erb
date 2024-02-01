@@ -1,2 +1,38 @@
-<h1>Admin::Facilities#index</h1>
-<p>Find me in app/views/admin/facilities/index.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+      <h3 class="mb-3">施設一覧</h3>
+      <%= link_to "新規施設登録", new_admin_facility_path, class: "btn btn-warning px-4" %><br><br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>施設ID</th>
+            <th>施設名</th>
+            <th>メールアドレス</th>
+            <th>電話番号</th>
+            <th>施設ステータス</th>
+          </tr>
+        </thead>
+        <% @facilities.each do |facility| %>
+        <tbody>
+          <tr>
+            <td><%= facility.id %></td>
+            <td><%= link_to facility.name, admin_facility_path(facility.id) %></td>
+            <td><%= facility.email %></td>
+            <td><%= facility.telephone_number %></td>
+            <td><% if facility.is_active %>
+            <p class="text-success"><strong>有効</strong></p>
+                <% else %>
+                <p class="text-secondary"><strong>閉園</strong></p>
+                <% end %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <br>
+      <%= paginate @facilities %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
+    </div>
+  </div>
+</div>

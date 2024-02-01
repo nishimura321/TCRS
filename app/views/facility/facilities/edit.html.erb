@@ -1,2 +1,43 @@
-<h1>Facility::Facilities#edit</h1>
-<p>Find me in app/views/facility/facilities/edit.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+      <h3 class="mx-5 mb-3">施設情報編集</h3>
+      <%= form_with model: @facility, url: facility_facility_path(@facility), method: :patch do |f| %>
+        <%= f.label :name, "施設名" %><br>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %><br>
+        <%= f.label :name_kana, "フリガナ" %><br>
+        <%= f.text_field :name_kana, autocomplete: "name_kana", class: "form-control" %><br>
+        <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><br>
+        <%= f.text_field :postal_code, autocomplete: "postal-code", class: "form-control" %><br>
+        <%= f.label :address, "住所" %><br>
+        <%= f.text_field :address, autocomplete: "address-line1", class: "form-control" %><br>
+        <%= f.label :telephone_number, "電話番号(ハイフンなし)" %><br>
+        <%= f.text_field :telephone_number, autocomplete: "tel", class: "form-control" %><br>
+        <%= f.label :email, "メールアドレス" %><br>
+        <%= f.email_field :email, autocomplete: "email", class: "form-control" %><br>
+        <%= f.label :website, "HP" %><br>
+        <%= f.text_field :website, class: "form-control" %><br>
+        <%= f.label :business_day, "営業日" %><br>
+        <%= f.text_field :business_day, class: "form-control" %><br>
+        <%= f.label :business_hours, "営業時間" %><br>
+        <%= f.text_field :business_hours, class: "form-control" %><br>
+        <%= f.label :inquiry_hours, "問い合わせ時間" %><br>
+        <%= f.text_field :inquiry_hours, class: "form-control" %><br>
+        <%= f.label :closed_day, "休園日" %><br>
+        <%= f.text_field :closed_day, class: "form-control" %><br>
+        <%= f.label :childcare_hours, "保育時間" %><br>
+        <%= f.text_field :childcare_hours, class: "form-control" %><br>
+        <%= f.label :target_age, "受け入れ年齢" %><br>
+        <%= f.text_field :target_age, class: "form-control" %><br>
+        <%= f.label :school_meal, "給食の有無" %><br>
+        <%= f.text_field :school_meal, class: "form-control" %><br>
+        <%= f.label :fee, "利用料金" %><br>
+        <%= f.text_field :fee, class: "form-control" %><br>
+        <%= f.label :message, "施設からのメッセージ" %><br>
+        <%= f.text_area :message, class: "form-control" %><br>
+        <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+        <%= f.submit "修正", class: "btn btn-warning px-4" %>
+      <% end %><br><br>
+    </div>
+  </div>
+</div>
