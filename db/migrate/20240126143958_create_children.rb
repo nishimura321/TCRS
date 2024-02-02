@@ -7,7 +7,7 @@ class CreateChildren < ActiveRecord::Migration[6.1]
       t.string "first_name", null: false
       t.string "last_name_kana", null: false
       t.string "first_name_kana", null: false
-      t.date "date_of_birth", null: false
+      t.date "birthday", null: false
       t.boolean "male", null: false
       t.decimal "normal_body_temperature"
       t.decimal "fever"

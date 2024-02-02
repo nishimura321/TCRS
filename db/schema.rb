@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.date "date_of_birth", null: false
+    t.date "birthday", null: false
     t.boolean "male", null: false
     t.decimal "normal_body_temperature"
     t.decimal "fever"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
     t.string "first_name_kana", null: false
     t.boolean "male", null: false
     t.integer "relationship", null: false
-    t.date "date_of_birth", null: false
+    t.date "birthday", null: false
     t.string "telephone_number", null: false
     t.string "workplace"
     t.string "workplace_telephone_number"

@@ -9,7 +9,7 @@ class CreateFamilies < ActiveRecord::Migration[6.1]
       t.string "first_name_kana", null: false
       t.boolean "male", null: false
       t.integer "relationship", null: false
-      t.date "date_of_birth", null: false
+      t.date "birthday", null: false
       t.string "telephone_number", null: false
       t.string "workplace"
       t.string "workplace_telephone_number"
