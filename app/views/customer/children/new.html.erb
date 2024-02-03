@@ -120,7 +120,10 @@
       </div><br>
       <div class="field">
         <%= f.label :"寝かせ方は？(複数選択科可)" %><br>
-        <%= f.text_field :how_to_lay_it_down, autocomplete: "", placeholder: "レイワ", class: "form-control" %><br>
+        <% Child.how_to_lay_it_downs.keys.each do |option| %>
+        <%= check_box_tag "child[how_to_lay_it_down][]", option %>
+        <%= Child.how_to_lay_it_downs[option] %>
+        <% end %><br>
       </div><br>
       <div class="field">
         <%= f.label :"寝つきは？" %><br>
@@ -132,19 +135,25 @@
       </div><br>
       <div class="field">
         <%= f.label :"寝る姿勢は？(複数選択可)" %><br>
-        <%= f.text_field :sleeping_position, autocomplete: "", placeholder: "レイワ", class: "form-control" %><br>
+        <% Child.sleeping_position.keys.each do |option| %>
+        <%= check_box_tag "child[sleeping_position][]", option %>
+        <%= Child.sleeping_position[option] %>
+        <% end %><br>
       </div><br>
       <div class="field">
         <%= f.label :"熟睡度は？" %><br>
-        <%= f.text_field :is_deep_sleep, autocomplete: "", placeholder: "レイワ", class: "form-control" %><br>
+        <%= f.radio_button :is_deep_sleep, "true" %>
+        <%= f.label :is_deep_sleep_true, "深い" %>
+        <%= f.radio_button :is_deep_sleep, "false" %>
+        <%= f.label :is_deep_sleep_false, "浅い" %>
       </div><br>
       <div class="field">
         <%= f.label :"寝る時の癖はありますか？" %><br>
-        <%= f.text_field :habits_when_sleeping, autocomplete: "", placeholder: "レイワ", class: "form-control" %><br>
+        <%= f.text_area :habits_when_sleeping, placeholder: "指しゃぶり", class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"おむつの状況について選択してください。" %><br>
-        <%= f.text_field :diaper_usage, autocomplete: "", placeholder: "レイワ", class: "form-control" %><br>
+        :diaper_usage<br>
       </div><br>
       <div class="field">
         <%= f.label :"かぶれについて選択してください。" %><br>
