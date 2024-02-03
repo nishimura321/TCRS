@@ -2,37 +2,31 @@ ja:
   enums:
     customer:
       breastfeeding_status_method:
-        no_selection: "選択なし"
         breast_milk_only: "母乳のみ"
         breast_milk_and_formula_milk: "混合栄養"
         formula_milk_only: "粉ミルク"
         follow_up_milk: "フォローアップミルク"
         milk: "牛乳"
       situation_after_breastfeeding_method:
-        no_selection: "選択なし"
         easy_to_vomit_milk: "ミルクを吐きやすい"
         difficult_to_vomit_milk: "ミルクを吐きにくい"
         none_of_the_above: "どちらとも言えない"
       milk_situation_after_baby_food_method:
-        no_selection: "選択なし"
         drink_breast_milk: "母乳を飲んでいる"
         drink_formula_milk: "ミルクを飲んでいる"
         not_drinking: "飲んでいない"
       baby_food_progress_method:
-        no_selection: "選択なし"
         early_weaning_period: "初期(ドロドロ)"
         middle_weaning_period: "中期(舌でつぶせる)"
         latter_weaning_period: "後期(歯茎でつぶせる)"
         the_weaning_completion_period: "完了期"
         normal_food: "普通食"
       appetite_method:
-        no_selection: "選択なし"
         eat_a_lot: "よく食べる"
         eat_a_standard_amount: "普通"
         children_do_not_eat_much: "あまり食べない"
         eating_unevenly: "ムラがある"
       how_to_eat_method:
-        no_selection: "選択なし"
         feed_a_child: "食べさせる"
         eat_with_one’s_hand: "手づかみで食べる"
         eat_alone_with_a_spoon: "スプーンでこぼしながらも一人で食べる"
@@ -44,34 +38,29 @@ ja:
         baby_carrying: "おんぶ"
         cradling: "抱っこ"
       falling_asleep_method:
-        no_selection: "選択なし"
         falling_asleep_easily: "良い"
         have_trouble_sleeping: "悪い"
         there_are_both: "良い時と悪い時どちらもある"
       waking_up_method:
-        no_selection: "選択なし"
         waking_up_easily: "良い"
         unable_to_get_to_sleep: "悪い"
-        there_are_both: "良い時と悪い時どちらもある"
+        both_0_and_1: "良い時と悪い時どちらもある"
       sleeping_position_method:
         sleep_on_your_back: "仰向け"
         sleep_on_your_side: "横向き"
         sleep_on_your_stomach: "うつ伏せ"
       diaper_usage_method:
-        no_selection: "選択なし"
         diaper: "紙おむつ"
         cloth_diaper: "布おむつ"
         paper_pants: "紙パンツ"
         cloth_pants: "布パンツ"
       urination_method:
-        no_selection: "選択なし"
         pee_in_omar: "教える(オマルでする)"
         pee_in_the_toilet: "教える(便器でする)"
         tell_me_after_peeing_in_the_pants: "パンツにした後教える"
         do_not_tell: "教えない"
         pee_by_myself: "自分でできる"
       defecation_method:
-        no_selection: "選択なし"
         hard_poop: "硬め"
         normal_poop: "普通"
         soft_poop: "ゆるめ"
