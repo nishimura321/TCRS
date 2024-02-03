@@ -1,0 +1,259 @@
+ja:
+  enums:
+    customer:
+      breastfeeding_status_method:
+        no_selection: "選択なし"
+        breast_milk_only: "母乳のみ"
+        breast_milk_and_formula_milk: "混合栄養"
+        formula_milk_only: "粉ミルク"
+        follow_up_milk: "フォローアップミルク"
+        milk: "牛乳"
+      situation_after_breastfeeding_method:
+        no_selection: "選択なし"
+        easy_to_vomit_milk: "ミルクを吐きやすい"
+        difficult_to_vomit_milk: "ミルクを吐きにくい"
+        none_of_the_above: "どちらとも言えない"
+      milk_situation_after_baby_food_method:
+        no_selection: "選択なし"
+        drink_breast_milk: "母乳を飲んでいる"
+        drink_formula_milk: "ミルクを飲んでいる"
+        not_drinking: "飲んでいない"
+      baby_food_progress_method:
+        no_selection: "選択なし"
+        early_weaning_period: "初期(ドロドロ)"
+        middle_weaning_period: "中期(舌でつぶせる)"
+        latter_weaning_period: "後期(歯茎でつぶせる)"
+        the_weaning_completion_period: "完了期"
+        normal_food: "普通食"
+      appetite_method:
+        no_selection: "選択なし"
+        eat_a_lot: "よく食べる"
+        eat_a_standard_amount: "普通"
+        children_do_not_eat_much: "あまり食べない"
+        eating_unevenly: "ムラがある"
+      how_to_eat_method:
+        no_selection: "選択なし"
+        feed_a_child: "食べさせる"
+        eat_with_one’s_hand: "手づかみで食べる"
+        eat_alone_with_a_spoon: "スプーンでこぼしながらも一人で食べる"
+        eat_with_hands_and_spoon: "手づかみとスプーンを使って一人で食べる"
+        eat_with_chopsticks: "お箸で食べる"
+      how_to_lay_it_down_method:
+        alone: "一人で"
+        co_sleeping: "添い寝"
+        baby_carrying: "おんぶ"
+        cradling: "抱っこ"
+      falling_asleep_method:
+        no_selection: "選択なし"
+        falling_asleep_easily: "良い"
+        have_trouble_sleeping: "悪い"
+        there_are_both: "良い時と悪い時どちらもある"
+      waking_up_method:
+        no_selection: "選択なし"
+        waking_up_easily: "良い"
+        unable_to_get_to_sleep: "悪い"
+        there_are_both: "良い時と悪い時どちらもある"
+      sleeping_position_method:
+        sleep_on_your_back: "仰向け"
+        sleep_on_your_side: "横向き"
+        sleep_on_your_stomach: "うつ伏せ"
+      diaper_usage_method:
+        no_selection: "選択なし"
+        diaper: "紙おむつ"
+        cloth_diaper: "布おむつ"
+        paper_pants: "紙パンツ"
+        cloth_pants: "布パンツ"
+      urination_method:
+        no_selection: "選択なし"
+        pee_in_omar: "教える(オマルでする)"
+        pee_in_the_toilet: "教える(便器でする)"
+        tell_me_after_peeing_in_the_pants: "パンツにした後教える"
+        do_not_tell: "教えない"
+        pee_by_myself: "自分でできる"
+      defecation_method:
+        no_selection: "選択なし"
+        hard_poop: "硬め"
+        normal_poop: "普通"
+        soft_poop: "ゆるめ"
+        feeling_constipated: "便秘気味"
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+  date:
+    abbr_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
+    abbr_month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 日曜日
+    - 月曜日
+    - 火曜日
+    - 水曜日
+    - 木曜日
+    - 金曜日
+    - 土曜日
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+    month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours: 約%{count}時間
+      about_x_months: 約%{count}ヶ月
+      about_x_years: 約%{count}年
+      almost_x_years: "%{count}年弱"
+      half_a_minute: 30秒前後
+      less_than_x_seconds: "%{count}秒未満"
+      less_than_x_minutes: "%{count}分未満"
+      over_x_years: "%{count}年以上"
+      x_seconds: "%{count}秒"
+      x_minutes: "%{count}分"
+      x_days: "%{count}日"
+      x_months: "%{count}ヶ月"
+      x_years: "%{count}年"
+    prompts:
+      second: 秒
+      minute: 分
+      hour: 時
+      day: 日
+      month: 月
+      year: 年
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: を受諾してください
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      in: は%{count}の範囲に含めてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      model_invalid: 'バリデーションに失敗しました: %{errors}'
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      other_than: は%{count}以外の値にしてください
+      present: は入力しないでください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください
+    template:
+      body: 次の項目を確認してください
+      header: "%{model}に%{count}個のエラーが発生しました"
+  helpers:
+    select:
+      prompt: 選択してください
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u"
+        precision: 0
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
+    format:
+      delimiter: ","
+      precision: 3
+      round_mode: default
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: 十億
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: バイト
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: "、"
+      two_words_connector: "、"
+      words_connector: "、"
+  time:
+    am: 午前
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      long: "%Y/%m/%d %H:%M"
+      short: "%m/%d %H:%M"
+    pm: 午後
