@@ -1,6 +1,6 @@
 ja:
   enums:
-    customer:
+    child:
       breastfeeding_status_method:
         breast_milk_only: "母乳のみ"
         breast_milk_and_formula_milk: "混合栄養"

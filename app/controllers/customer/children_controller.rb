@@ -48,7 +48,7 @@ class Customer::ChildrenController < ApplicationController
   end
 
   def ensure_child
-    @child = child.find(current_customer.children)
+    @child = Child.find(params[:id])
   end
 
 end

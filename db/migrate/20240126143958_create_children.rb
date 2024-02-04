@@ -28,10 +28,10 @@ class CreateChildren < ActiveRecord::Migration[6.1]
       t.text "hated_food"
       t.integer "how_to_eat"
       t.integer "meal_time"
-      t.text "how_to_lay_it_down", default: [], array: true
+      t.integer "how_to_lay_it_down"
       t.integer "falling_asleep"
       t.integer "waking_up"
-      t.text "sleeping_position", default: [], array: true
+      t.integer "sleeping_position"
       t.boolean "is_deep_sleep"
       t.text "habits_when_sleeping"
       t.integer "diaper_usage"
