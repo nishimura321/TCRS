@@ -1,7 +1,7 @@
 <%- if controller_name != 'sessions' %>
-  <p>アカウントをお持ちでない方は<%= link_to "こちら", new_session_path(resource_name) %></p><br />
+  <p>既にアカウント作成がお済みの方は<%= link_to "こちら", new_session_path(resource_name) %></p><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <p>既にアカウント作成がお済みの方は<%= link_to "こちら", new_registration_path(resource_name) %></p><br />
+  <p>アカウントをお持ちでない方は<%= link_to "こちら", new_registration_path(resource_name) %></p><br />
 <% end %>

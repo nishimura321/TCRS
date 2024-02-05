@@ -30,7 +30,7 @@ ja:
         feed_a_child: "食べさせる"
         eat_with_one’s_hand: "手づかみで食べる"
         eat_alone_with_a_spoon: "スプーンでこぼしながらも一人で食べる"
-        eat_with_hands_and_spoon: "手づかみとスプーンを使って一人で食べる"
+        eat_with_hands_and_spoon: "手づかみでも食べるがスプーンでも食べる(一人で)"
         eat_with_chopsticks: "お箸で食べる"
       how_to_lay_it_down_method:
         alone: "一人で"
@@ -65,6 +65,13 @@ ja:
         normal_poop: "普通"
         soft_poop: "ゆるめ"
         feeling_constipated: "便秘気味"
+    family:
+      relationship_method:
+        mother: "母"
+        father: "父"
+        grandmother: "祖母"
+        grandfather: "祖父"
+        other: "その他"
   activerecord:
     errors:
       messages:
