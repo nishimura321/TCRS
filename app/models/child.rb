@@ -1,15 +1,17 @@
 class Child < ApplicationRecord
 
+  belongs_to :customer
+
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
-  validates :date_of_birth, presence: true
+  validates :birthday, presence: true
   validates :male, presence: true
-  validates :has_febrile_seizure, presence: true
-  validates :has_dislocation, presence: true
-  validates :has_allergy, presence: true
-  
+  validates :has_febrile_seizure, inclusion: { in: [true, false] }
+  validates :has_dislocation, inclusion: { in: [true, false] }
+  validates :has_allergy, inclusion: { in: [true, false] }
+
   enum breastfeeding_status_method: { breast_milk_only: 0, breast_milk_and_formula_milk: 1, formula_milk_only: 2, follow_up_milk: 3, milk: 4 }
   enum situation_after_breastfeeding_method: { easy_to_vomit_milk: 0, difficult_to_vomit_milk: 1, none_of_the_above: 2 }
   enum milk_situation_after_baby_food_method: { drink_breast_milk: 0, drink_formula_milk: 1, not_drinking: 2 }
