@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="mx-auto">
-    <h2>お子さまの家族登録</h2><br>
+    <h2 class="font-weight-bold">お子さまの家族登録</h2><br>
 
     <% if @family.errors.any? %>
       <%= @family.errors.count %>件のエラーが発生しました
@@ -17,49 +17,49 @@
       <p>予約時の主な送迎者や緊急連絡先を選択する際に必要な情報となります。<br>
         あらかじめ登録を行うことで予約がスムーズに行えます。<br>
       </p>
-      <p>【お子さまの家族】</p>
+      <p class="font-weight-bold">【お子さまの家族】</p>
       <div class="field">
-        <%= f.label :"家族氏名" %><span class="red">*</span><br>
-        <%= f.label :"(姓)" %>
+        <%= f.label :"家族氏名", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.label :"(姓)", class: "font-weight-bold" %>
         <%= f.text_field :last_name, autofocus: true, autocomplete: "name", placeholder: "令和", class: "form-control" %><br>
-        <%= f.label :"(名)" %>
+        <%= f.label :"(名)", class: "font-weight-bold" %>
         <%= f.text_field :first_name, autocomplete: "name", placeholder: "花子", class: "form-control" %><br>
       </div><br>
       <div class="field">
-        <%= f.label :"フリガナ" %><span class="red">*</span><br>
-        <%= f.label :"(セイ)" %>
+        <%= f.label :"フリガナ", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.label :"(セイ)", class: "font-weight-bold" %>
         <%= f.text_field :last_name_kana, autocomplete: "name", placeholder: "レイワ", class: "form-control" %><br>
-        <%= f.label :"(メイ)" %>
+        <%= f.label :"(メイ)", class: "font-weight-bold" %>
         <%= f.text_field :first_name_kana, autocomplete: "name", placeholder: "ハナコ", class: "form-control" %><br>
       </div><br>
       <div class="field">
-        <%= f.label :"性別" %><span class="red">*</span><br>
+        <%= f.label :"性別", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.radio_button :male, "true" %>
         <%= f.label :male_true, "男", class: "mr-5" %>
         <%= f.radio_button :male, "false" %>
         <%= f.label :male_false, "女" %>
       </div><br>
       <div class="field">
-        <%= f.label :"続柄" %><br>
+        <%= f.label :"続柄", class: "font-weight-bold" %><br>
         <%= f.select :relationship, options_for_select(Family.relationship_methods.keys.map { |key| [I18n.t("enums.family.relationship_method.#{key}"), key] }, selected: @family.relationship), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
-        <%= f.label :"生年月日" %><span class="red">*</span><br>
+        <%= f.label :"生年月日", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.date_select :birthday, start_year: 1920, end_year: Date.today.year, class: "form-control" %><br><br>
       </div><br>
       <div class="field">
-        <%= f.label :"電話番号(ハイフンなし)" %><span class="red">*</span>
+        <%= f.label :"電話番号(ハイフンなし)", class: "font-weight-bold" %><span class="red">*</span>
         <%= f.text_field :telephone_number, autocomplete: "tel", placeholder: "0000000000", class: "form-control" %>
       </div><br><br>
       <div class="field">
-        <%= f.label :"勤務先" %>
+        <%= f.label :"勤務先", class: "font-weight-bold" %>
         <%= f.text_field :workplace, placeholder: "（株）令和", class: "form-control" %>
       </div><br><br>
       <div class="field">
-        <%= f.label :"勤務先電話番号(ハイフンなし)" %>
+        <%= f.label :"勤務先電話番号(ハイフンなし)", class: "font-weight-bold" %>
         <%= f.text_field :workplace_telephone_number, autocomplete: "tel", placeholder: "0000000000", class: "form-control" %>
       </div><br><br>
-      <%= f.submit "お子さまの家族を登録", class: "btn btn-warning px-4" %>
+      <%= f.submit "お子さまの家族を登録", class: "font-weight-bold btn btn-warning px-4" %>
     <% end %><br><br>
     </div>
   </div>

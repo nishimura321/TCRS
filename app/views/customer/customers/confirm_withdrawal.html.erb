@@ -1,2 +1,18 @@
-<h1>Customer::Customers#confirm_withdrawal</h1>
-<p>Find me in app/views/customer/customers/confirm_withdrawal.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto text-center">
+      <br><br><br><br>
+      <h5 class="font-weight-bold">本当に退会しますか？</h5>
+        <br>
+        <p>
+          退会すると、アカウント登録情報やお子さま・家族情報、<br>
+          これまでの予約履歴、登録施設が閲覧できなくなります。<br>
+          退会する場合は、「退会する」をクリックしてください。
+        </p>
+        <br>
+        <%= link_to "退会しない", customers_mypage_path, class: "btn btn-primary pl-4 pr-4" %>
+        <%= link_to "退会する", customers_withdrawal_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger pl-4 pr-4 ml-4"  %>
+        <br><br><br><br><br><br><br>
+    </div>
+  </div>
+</div>
