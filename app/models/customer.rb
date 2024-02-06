@@ -6,5 +6,6 @@ class Customer < ApplicationRecord
 
   has_many :children, dependent: :destroy
   has_many :families, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 
 end

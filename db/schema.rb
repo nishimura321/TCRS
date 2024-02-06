@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
   end
 
   create_table "children", force: :cascade do |t|
-    t.integer "cusutomer_id", null: false
+    t.integer "customer_id", null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
   end
 
   create_table "families", force: :cascade do |t|
-    t.integer "cusutomer_id", null: false
+    t.integer "customer_id", null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 2024_01_26_144500) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "cusutomer_id", null: false
+    t.integer "customer_id", null: false
     t.integer "child_id", null: false
     t.integer "facility_id", null: false
     t.integer "menu_id", null: false

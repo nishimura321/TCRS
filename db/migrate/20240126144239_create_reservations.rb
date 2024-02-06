@@ -2,7 +2,7 @@ class CreateReservations < ActiveRecord::Migration[6.1]
   def change
     create_table :reservations do |t|
 
-      t.integer "cusutomer_id", null: false
+      t.integer "customer_id", null: false
       t.integer "child_id", null: false
       t.integer "facility_id", null: false
       t.integer "menu_id", null: false

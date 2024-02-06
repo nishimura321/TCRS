@@ -1,13 +1,13 @@
 class Customer::ChildrenController < ApplicationController
-  #before_action :authenticate_customer!
+  before_action :authenticate_customer!
   before_action :ensure_child, only: [:show, :edit, :update, :destroy]
 
   def new
-    @child = Child.new
+    @child = Child.new(customer_id: current_customer.id)
   end
 
   def create
-    @child = Child.new(child_params)
+    @child = Child.new(child_params.merge(customer_id: current_customer.id))
     if @child.save
       flash[:notice] = "お子さまの登録が完了しました。"
       if current_customer.children.count > 1
@@ -39,7 +39,7 @@ class Customer::ChildrenController < ApplicationController
 
   private
   def child_params
-    params.require(:child).permit(:customer_id, :last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, :male, :normal_body_temperature,
+    params.require(:child).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, :male, :normal_body_temperature,
     :fever, :has_febrile_seizure, :febrile_seizure_details, :has_dislocation, :dislocation_details, :has_allergy, :allergy_details, :breastfeeding_status,
     :breastfeeding_amount, :situation_after_breastfeeding, :milk_situation_after_baby_food, :amount_of_milk_after_baby_food, :baby_food_progress, :appetite,
     :favorite_food, :hated_food, :how_to_eat, :meal_time, :how_to_lay_it_down, :falling_asleep, :waking_up, :sleeping_position, :is_deep_sleep, :habits_when_sleeping,

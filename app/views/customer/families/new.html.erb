@@ -14,6 +14,9 @@
 
     <%= form_with model: @family, url: families_path, method: :post do |f| %>
       <p class="red">*印の項目は必須項目です。</p>
+      <p>予約時の主な送迎者や緊急連絡先を選択する際に必要な情報となります。<br>
+        あらかじめ登録を行うことで予約がスムーズに行えます。<br>
+      </p>
       <p>【お子さまの家族】</p>
       <div class="field">
         <%= f.label :"家族氏名" %><span class="red">*</span><br>
@@ -49,12 +52,12 @@
         <%= f.text_field :telephone_number, autocomplete: "tel", placeholder: "0000000000", class: "form-control" %>
       </div><br><br>
       <div class="field">
-        <%= f.label :"電話番号" %><span class="red">*</span>
-        <%= f.text_field :telephone_number, placeholder: "（株）令和", class: "form-control" %>
+        <%= f.label :"勤務先" %>
+        <%= f.text_field :workplace, placeholder: "（株）令和", class: "form-control" %>
       </div><br><br>
       <div class="field">
-        <%= f.label :"勤務先電話番号(ハイフンなし)" %><span class="red">*</span>
-        <%= f.text_field :telephone_number, autocomplete: "tel", placeholder: "0000000000", class: "form-control" %>
+        <%= f.label :"勤務先電話番号(ハイフンなし)" %>
+        <%= f.text_field :workplace_telephone_number, autocomplete: "tel", placeholder: "0000000000", class: "form-control" %>
       </div><br><br>
       <%= f.submit "お子さまの家族を登録", class: "btn btn-warning px-4" %>
     <% end %><br><br>

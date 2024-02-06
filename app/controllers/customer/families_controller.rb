@@ -1,13 +1,13 @@
 class Customer::FamiliesController < ApplicationController
-  #before_action :authenticate_customer!
+  before_action :authenticate_customer!
   before_action :ensure_family, only: [:show, :edit, :update, :destroy]
 
   def new
-    @family = Family.new
+    @family = Family.new(customer_id: current_customer.id)
   end
 
   def create
-    @family = Family.new(family_params)
+    @family = Family.new(family_params.merge(customer_id: current_customer.id))
     if @family.save
       flash[:notice] = "家族の登録が完了しました。"
         redirect_to customers_mypage_path(current_customer)
