@@ -42,10 +42,15 @@
           </thead>
           <tbody>
             <tr>
-              <td class="px-3"><% child.last_name %><% child.first_name %></td>
-              <td class="px-3"><% child.last_name_kana %><% child.first_name_kana %></td>
-              <td class="px-3"><% child.birthday %></td>
-              <td class="px-3"><% child.male %></td>
+              <td class="px-3"><%= child.last_name %><%= child.first_name %></td>
+              <td class="px-3"><%= child.last_name_kana %><%= child.first_name_kana %></td>
+              <td class="px-3"><%= child.birthday.strftime("%Y年%m月%d日") %>（<%= age_in_years(child.birthday) %>歳<%= age_in_months(child.birthday) %>ヶ月）</td>
+              <td class="px-3"><% if child.male %>
+                男
+                <% else %>
+                女
+                <% end %>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -55,107 +60,107 @@
           <tbody>
             <tr>
               <th class="table-secondary">平熱</th>
-              <td><% child.normal_body_temperature %></td>
+              <td><%= child.normal_body_temperature %></td>
               <th class="table-secondary">発熱時</th>
-              <td><% child.fever %></td>
+              <td><%= child.fever %></td>
             </tr>
             <tr>
               <th class="align-middle table-secondary">熱性痙攣</th>
-              <td class="align-middle"><% child.has_febrile_seizure %></td>
+              <td class="align-middle"><%= child.has_febrile_seizure %></td>
               <th class="align-middle table-secondary">熱性痙攣詳細</th>
-              <td><% child.febrile_seizure_details %></td>
+              <td><%= child.febrile_seizure_details %></td>
             </tr>
             <tr>
               <th class="align-middle table-secondary">脱臼</th>
-              <td class="align-middle"><% child.has_dislocation %></td>
+              <td class="align-middle"><%= child.has_dislocation %></td>
               <th class="align-middle table-secondary">脱臼詳細</th>
-              <td><% child.dislocation_details %></td>
+              <td><%= child.dislocation_details %></td>
             </tr>
             <tr>
               <th class="align-middle table-secondary">アレルギー</th>
-              <td class="align-middle"><% child.has_allergy %></td>
+              <td class="align-middle"><%= child.has_allergy %></td>
               <th class="align-middle table-secondary">アレルギー詳細</th>
-              <td><% child.allergy_details %></td>
+              <td><%= child.allergy_details %></td>
             </tr>
             <tr>
               <th class="table-secondary">授乳状況</th>
-              <td><% child.breastfeeding_status %></td>
+              <td><%= child.breastfeeding_status %></td>
               <th class="table-secondary">授乳量</th>
-              <td><% child.breastfeeding_amount %></td>
+              <td><%= child.breastfeeding_amount %></td>
             </tr>
             <tr>
               <th class="table-secondary">授乳後の状況</th>
-              <td><% child.situation_after_breastfeeding %></td>
+              <td><%= child.situation_after_breastfeeding %></td>
               <th class="table-secondary">離乳食後のミルク状況</th>
-              <td><% child.milk_situation_after_baby_food %>　<% child.amount_of_milk_after_baby_food %></td>
+              <td><%= child.milk_situation_after_baby_food %>　<%= child.amount_of_milk_after_baby_food %></td>
             </tr>
             <tr>
               <th class="table-secondary">食事の進み具合</th>
-              <td><% child.baby_food_progress %></td>
+              <td><%= child.baby_food_progress %></td>
               <th class="table-secondary">食欲</th>
-              <td><% child.appetite %></td>
+              <td><%= child.appetite %></td>
             </tr>
             <tr>
               <th class="align-middle table-secondary">好きな食べ物</th>
-              <td class="align-middle"><% child.favorite_food %></td>
+              <td class="align-middle"><%= child.favorite_food %></td>
               <th class="align-middle table-secondary">嫌いな食べ物</th>
-              <td class="align-middle"><% child.hated_food %></td>
+              <td class="align-middle"><%= child.hated_food %></td>
             </tr>
             <tr>
               <th class="table-secondary">食べ方</th>
-              <td><% child.how_to_eat %></td>
+              <td><%= child.how_to_eat %></td>
               <th class="table-secondary">食事時間</th>
-              <td><% child.meal_time %></td>
+              <td><%= child.meal_time %></td>
             </tr>
             <tr>
               <th class="table-secondary">寝かせ方</th>
-              <td><% child.how_to_lay_it_down %></td>
+              <td><%= child.how_to_lay_it_down %></td>
               <th class="table-secondary">寝つき</th>
-              <td><% child.falling_asleep %></td>
+              <td><%= child.falling_asleep %></td>
             </tr>
             <tr>
               <th class="table-secondary">寝起き</th>
-              <td><% child.waking_up %></td>
+              <td><%= child.waking_up %></td>
               <th class="table-secondary">寝る時の姿勢</th>
-              <td><% child.sleeping_position %></td>
+              <td><%= child.sleeping_position %></td>
             </tr>
             <tr>
               <th class="align-middle table-secondary">熟睡度</th>
-              <td class="align-middle"><% child.is_deep_sleep %></td>
+              <td class="align-middle"><%= child.is_deep_sleep %></td>
               <th class="align-middle table-secondary">寝る時の癖</th>
-              <td><% child.habits_when_sleeping %></td>
+              <td><%= child.habits_when_sleeping %></td>
             </tr>
             <tr>
               <th class="table-secondary">おむつ状況</th>
-              <td><% child.diaper_usage %></td>
+              <td><%= child.diaper_usage %></td>
               <th class="table-secondary">かぶれ</th>
-              <td><% child.is_sensitive_to_rash %></td>
+              <td><%= child.is_sensitive_to_rash %></td>
             </tr>
             <tr>
               <th class="table-secondary">排尿</th>
-              <td><% child.urination %></td>
+              <td><%= child.urination %></td>
             </tr>
             <tr>
               <th class="table-secondary">排便</th>
-              <td><% child.defecation %></td>
+              <td><%= child.defecation %></td>
               <th class="table-secondary">排便の回数</th>
-              <td><% child.number_of_defecation %></td>
+              <td><%= child.number_of_defecation %></td>
             </tr>
             <tr>
               <th class="table-secondary">好きな遊び</th>
-              <td><% child.favorite_game %></td>
+              <td><%= child.favorite_game %></td>
               <th class="table-secondary">好きなおもちゃ</th>
-              <td><% child.favorite_toy %></td>
+              <td><%= child.favorite_toy %></td>
             </tr>
             <tr>
               <th class="table-secondary">かかりつけ医</th>
-              <td><% child.hospital_name %></td>
+              <td><%= child.hospital_name %></td>
               <th class="table-secondary">かかりつけ医電話番号</th>
-              <td><% child.hospital_telephone_number %></td>
+              <td><%= child.hospital_telephone_number %></td>
             </tr>
             <tr>
               <th class="table-secondary">その他連絡事項</th>
-              <td><% child.memo %></td>
+              <td><%= child.memo %></td>
             </tr>
           </tbody>
         </table><br>
@@ -178,14 +183,19 @@
               <th class="px-3">勤務先電話番号</th>
             </tr>
             <tr>
-              <td class="px-3 align-middle"><% family.last_name %><% family.first_name %></td>
-              <td class="px-3 align-middle"><% family.last_name_kana %><% family.first_name_kana %></td>
-              <td class="px-3 align-middle"><% family.relationship %></td>
-              <td class="px-3 align-middle"><% family.male %></td>
-              <td class="px-3 align-middle"><% family.birthday %></td>
-              <td class="px-3 align-middle"><% family.telephone_number %></td>
-              <td class="px-3 align-middle"><% family.workplace %></td>
-              <td class="px-3 align-middle"><% family.workplace_telephone_number %></td>
+              <td class="px-3 align-middle"><%= family.last_name %><% family.first_name %></td>
+              <td class="px-3 align-middle"><%= family.last_name_kana %><% family.first_name_kana %></td>
+              <td class="px-3 align-middle"><%= family.relationship I18n.t("enums.relationship_methods") %></td>
+              <td class="px-3 align-middle"><% if family.male %>
+                男
+                <% else %>
+                女
+                <% end %>
+              </td>
+              <td class="px-3 align-middle"><%= family.birthday.strftime("%Y年%m月%d日") %></td>
+              <td class="px-3 align-middle"><%= family.telephone_number %></td>
+              <td class="px-3 align-middle"><%= family.workplace %></td>
+              <td class="px-3 align-middle"><%= family.workplace_telephone_number %></td>
             </tr>
           </thead>
         </table><br>
