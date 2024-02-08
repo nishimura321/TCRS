@@ -45,7 +45,8 @@
               <td class="px-3"><%= child.last_name %><%= child.first_name %></td>
               <td class="px-3"><%= child.last_name_kana %><%= child.first_name_kana %></td>
               <td class="px-3"><%= child.birthday.strftime("%Y年%m月%d日") %>（<%= age_in_years(child.birthday) %>歳<%= age_in_months(child.birthday) %>ヶ月）</td>
-              <td class="px-3"><% if child.male %>
+              <td class="px-3">
+                <% if child.male %>
                 男
                 <% else %>
                 女
@@ -61,7 +62,7 @@
             <tr>
               <th class="table-secondary">平熱</th>
               <td><%= child.normal_body_temperature %></td>
-              <th class="table-secondary">発熱時</th>
+              <th class="table-secondary">発熱時の連絡</th>
               <td><%= child.fever %></td>
             </tr>
             <tr>
@@ -109,7 +110,7 @@
             <tr>
               <th class="table-secondary">食べ方</th>
               <td><%= child.how_to_eat %></td>
-              <th class="table-secondary">食事時間</th>
+              <th class="table-secondary">食事時間(分）</th>
               <td><%= child.meal_time %></td>
             </tr>
             <tr>
@@ -165,6 +166,7 @@
           </tbody>
         </table><br>
         <%= link_to "お子さま情報を修正する", edit_child_path(child), class: "font-weight-bold btn btn-warning px-4" %>
+        <br><br><br>
         <% end %>
         <br><br><br><br>
 
@@ -183,10 +185,11 @@
               <th class="px-3">勤務先電話番号</th>
             </tr>
             <tr>
-              <td class="px-3 align-middle"><%= family.last_name %><% family.first_name %></td>
-              <td class="px-3 align-middle"><%= family.last_name_kana %><% family.first_name_kana %></td>
-              <td class="px-3 align-middle"><%= family.relationship I18n.t("enums.relationship_methods") %></td>
-              <td class="px-3 align-middle"><% if family.male %>
+              <td class="px-3 align-middle"><%= family.last_name %><%= family.first_name %></td>
+              <td class="px-3 align-middle"><%= family.last_name_kana %><%= family.first_name_kana %></td>
+              <td class="px-3 align-middle"><%= relationship_i18n_text(family) %></td>
+              <td class="px-3 align-middle">
+                <% if family.male %>
                 男
                 <% else %>
                 女
@@ -200,7 +203,9 @@
           </thead>
         </table><br>
         <%= link_to "お子さまの家族情報を修正する", edit_family_path(family), class: "font-weight-bold btn btn-warning px-4" %>
-        <% end %><br><br><br><br>
+        <br><br><br>
+        <% end %>
+        <br><br><br><br>
 
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
       <%= link_to "予約を確認する", reservation_path(@customer), class: "btn btn-warning px-4 mr-5" %>

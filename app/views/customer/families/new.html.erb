@@ -41,7 +41,7 @@
       </div><br>
       <div class="field">
         <%= f.label :"続柄", class: "font-weight-bold" %><br>
-        <%= f.select :relationship, options_for_select(Family.relationship_methods.keys.map { |key| [I18n.t("enums.family.relationship_method.#{key}"), key] }, selected: @family.relationship), include_blank: true, class: "form-control" %><br>
+        <%= f.select :relationship, options_for_select(Family.relationships.keys.map { |key| [I18n.t("enums.family.relationship.#{key}"), key] }, selected: @family.relationship), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"生年月日", class: "font-weight-bold" %><span class="red">*</span><br>

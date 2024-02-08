@@ -1,5 +1,5 @@
 class Customer::FamiliesController < ApplicationController
-  before_action :authenticate_customer!
+  #before_action :authenticate_customer!
   before_action :ensure_family, only: [:show, :edit, :update, :destroy]
 
   def new

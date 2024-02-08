@@ -12,6 +12,6 @@ class Family < ApplicationRecord
   validates :birthday, presence: true
   validates :telephone_number, presence: true
 
-  enum relationship_method: { mother: 0, father: 1, grandmother: 2, grandfather: 3, other: 4 }
+  enum relationship: { mother: 0, father: 1, grandmother: 2, grandfather: 3, other: 4 }
 
 end

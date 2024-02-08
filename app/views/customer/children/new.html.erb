@@ -85,7 +85,7 @@
       </div><br>
       <div class="field">
         <%= f.label :"授乳状況について選択してください。", class: "font-weight-bold" %><br>
-        <%= f.select :breastfeeding_status, options_for_select(Child.breastfeeding_status_methods.keys.map { |key| [I18n.t("enums.child.breastfeeding_status_method.#{key}"), key] }, selected: @child.breastfeeding_status), include_blank: true, class: "form-control" %><br>
+        <%= f.select :breastfeeding_status, options_for_select(Child.breastfeeding_statuses.keys.map { |key| [I18n.t("enums.child.breastfeeding_status.#{key}"), key] }, selected: @child.breastfeeding_status), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"授乳量や時間などの詳細をご記入ください。", class: "font-weight-bold" %><br>
@@ -93,11 +93,11 @@
       </div><br>
       <div class="field">
         <%= f.label :"授乳後の状況について選択してください。", class: "font-weight-bold" %><br>
-        <%= f.select :situation_after_breastfeeding, options_for_select(Child.situation_after_breastfeeding_methods.keys.map { |key| [I18n.t("enums.child.situation_after_breastfeeding_method.#{key}"), key] }, selected: @child.situation_after_breastfeeding), include_blank: true, class: "form-control" %><br>
+        <%= f.select :situation_after_breastfeeding, options_for_select(Child.situation_after_breastfeedings.keys.map { |key| [I18n.t("enums.child.situation_after_breastfeeding.#{key}"), key] }, selected: @child.situation_after_breastfeeding), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"離乳食後のミルクは？", class: "font-weight-bold" %><br>
-        <%= f.select :milk_situation_after_baby_food, options_for_select(Child.milk_situation_after_baby_food_methods.keys.map { |key| [I18n.t("enums.child.milk_situation_after_baby_food_method.#{key}"), key] }, selected: @child.milk_situation_after_baby_food), include_blank: true, class: "form-control" %><br>
+        <%= f.select :milk_situation_after_baby_food, options_for_select(Child.milk_situation_after_baby_foods.keys.map { |key| [I18n.t("enums.child.milk_situation_after_baby_food.#{key}"), key] }, selected: @child.milk_situation_after_baby_food), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"離乳食後のミルクの量は？", class: "font-weight-bold" %><br>
@@ -105,11 +105,11 @@
       </div><br>
       <div class="field">
         <%= f.label :"離乳食の現在の進み具合は？", class: "font-weight-bold" %><br>
-        <%= f.select :baby_food_progress, options_for_select(Child.baby_food_progress_methods.keys.map { |key| [I18n.t("enums.child.baby_food_progress_method.#{key}"), key] }, selected: @child.baby_food_progress), include_blank: true, class: "form-control" %><br>
+        <%= f.select :baby_food_progress, options_for_select(Child.baby_food_progresses.keys.map { |key| [I18n.t("enums.child.baby_food_progress.#{key}"), key] }, selected: @child.baby_food_progress), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"食欲について選択してください。", class: "font-weight-bold" %><br>
-        <%= f.select :appetite, options_for_select(Child.appetite_methods.keys.map { |key| [I18n.t("enums.child.appetite_method.#{key}"), key] }, selected: @child.appetite), include_blank: true, class: "form-control" %><br>
+        <%= f.select :appetite, options_for_select(Child.appetites.keys.map { |key| [I18n.t("enums.child.appetite.#{key}"), key] }, selected: @child.appetite), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"お子さまの好きな食べ物をご記入ください。", class: "font-weight-bold" %><br>
@@ -121,7 +121,7 @@
       </div><br>
       <div class="field">
         <%= f.label :"食べ方を選択してください。", class: "font-weight-bold" %><br>
-        <%= f.select :how_to_eat, options_for_select(Child.how_to_eat_methods.keys.map { |key| [I18n.t("enums.child.how_to_eat_method.#{key}"), key] }, selected: @child.how_to_eat), include_blank: true, class: "form-control" %><br>
+        <%= f.select :how_to_eat, options_for_select(Child.how_to_eats.keys.map { |key| [I18n.t("enums.child.how_to_eat.#{key}"), key] }, selected: @child.how_to_eat), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"食事をする時間は何分掛かりますか？", class: "font-weight-bold" %><br>
@@ -129,19 +129,19 @@
       </div><br>
       <div class="field">
         <%= f.label :"寝かせ方は？", class: "font-weight-bold" %><br>
-        <%= f.select :how_to_lay_it_down, options_for_select(Child.how_to_lay_it_down_methods.keys.map { |key| [I18n.t("enums.child.how_to_lay_it_down_method.#{key}"), key] }, selected: @child.how_to_lay_it_down), include_blank: true, class: "form-control" %><br>
+        <%= f.select :how_to_lay_it_down, options_for_select(Child.how_to_lay_it_downs.keys.map { |key| [I18n.t("enums.child.how_to_lay_it_down.#{key}"), key] }, selected: @child.how_to_lay_it_down), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"寝つきは？", class: "font-weight-bold" %><br>
-        <%= f.select :falling_asleep, options_for_select(Child.falling_asleep_methods.keys.map { |key| [I18n.t("enums.child.falling_asleep_method.#{key}"), key] }, selected: @child.falling_asleep), include_blank: true, class: "form-control" %><br>
+        <%= f.select :falling_asleep, options_for_select(Child.falling_asleeps.keys.map { |key| [I18n.t("enums.child.falling_asleep.#{key}"), key] }, selected: @child.falling_asleep), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"寝起きは？", class: "font-weight-bold" %><br>
-        <%= f.select :waking_up, options_for_select(Child.waking_up_methods.keys.map { |key| [I18n.t("enums.child.waking_up_method.#{key}"), key] }, selected: @child.waking_up), include_blank: true, class: "form-control" %><br>
+        <%= f.select :waking_up, options_for_select(Child.waking_ups.keys.map { |key| [I18n.t("enums.child.waking_up.#{key}"), key] }, selected: @child.waking_up), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"寝る姿勢は？", class: "font-weight-bold" %><br>
-        <%= f.select :sleeping_position, options_for_select(Child.sleeping_position_methods.keys.map { |key| [I18n.t("enums.child.sleeping_position_method.#{key}"), key] }, selected: @child.sleeping_position), include_blank: true, class: "form-control" %><br>
+        <%= f.select :sleeping_position, options_for_select(Child.sleeping_positions.keys.map { |key| [I18n.t("enums.child.sleeping_position.#{key}"), key] }, selected: @child.sleeping_position), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"熟睡度は？", class: "font-weight-bold" %><br>
@@ -156,7 +156,7 @@
       </div><br>
       <div class="field">
         <%= f.label :"おむつの状況について選択してください。", class: "font-weight-bold" %><br>
-        <%= f.select :diaper_usage, options_for_select(Child.diaper_usage_methods.keys.map { |key| [I18n.t("enums.child.diaper_usage_method.#{key}"), key] }, selected: @child.diaper_usage), include_blank: true, class: "form-control" %><br>
+        <%= f.select :diaper_usage, options_for_select(Child.diaper_usages.keys.map { |key| [I18n.t("enums.child.diaper_usage.#{key}"), key] }, selected: @child.diaper_usage), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"かぶれについて選択してください。", class: "font-weight-bold" %><br>
@@ -167,11 +167,11 @@
       </div><br>
       <div class="field">
         <%= f.label :"排尿は？", class: "font-weight-bold" %><br>
-        <%= f.select :urination, options_for_select(Child.urination_methods.keys.map { |key| [I18n.t("enums.child.urination_method.#{key}"), key] }, selected: @child.urination), include_blank: true, class: "form-control" %><br>
+        <%= f.select :urination, options_for_select(Child.urinations.keys.map { |key| [I18n.t("enums.child.urination.#{key}"), key] }, selected: @child.urination), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"排便は？", class: "font-weight-bold" %><br>
-        <%= f.select :defecation, options_for_select(Child.defecation_methods.keys.map { |key| [I18n.t("enums.child.defecation_method.#{key}"), key] }, selected: @child.defecation), include_blank: true, class: "form-control" %><br>
+        <%= f.select :defecation, options_for_select(Child.defecations.keys.map { |key| [I18n.t("enums.child.defecation.#{key}"), key] }, selected: @child.defecation), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"排便の回数についてご記入ください。", class: "font-weight-bold" %><br>
