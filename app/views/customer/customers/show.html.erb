@@ -67,37 +67,55 @@
             </tr>
             <tr>
               <th class="align-middle table-secondary">熱性痙攣</th>
-              <td class="align-middle"><%= child.has_febrile_seizure %></td>
+              <td class="align-middle">
+                <% if child.has_febrile_seizure %>
+                有
+                <% else %>
+                無
+                <% end %>
+              </td>
               <th class="align-middle table-secondary">熱性痙攣詳細</th>
-              <td><%= child.febrile_seizure_details %></td>
+              <td><% child.febrile_seizure_details %></td>
             </tr>
             <tr>
               <th class="align-middle table-secondary">脱臼</th>
-              <td class="align-middle"><%= child.has_dislocation %></td>
+              <td class="align-middle">
+                <% if child.has_dislocation %>
+                有
+                <% else %>
+                無
+                <% end %>
+              </td>
               <th class="align-middle table-secondary">脱臼詳細</th>
               <td><%= child.dislocation_details %></td>
             </tr>
             <tr>
               <th class="align-middle table-secondary">アレルギー</th>
-              <td class="align-middle"><%= child.has_allergy %></td>
+              <td class="align-middle">
+                <% if child.has_allergy %>
+                有
+                <% else %>
+                無
+                <% end %>
+              </td>
               <th class="align-middle table-secondary">アレルギー詳細</th>
               <td><%= child.allergy_details %></td>
             </tr>
             <tr>
               <th class="table-secondary">授乳状況</th>
-              <td><%= child.breastfeeding_status %></td>
+              <td><%= breastfeeding_status_i18n_text(child) %></td>
               <th class="table-secondary">授乳量</th>
               <td><%= child.breastfeeding_amount %></td>
             </tr>
             <tr>
               <th class="table-secondary">授乳後の状況</th>
-              <td><%= child.situation_after_breastfeeding %></td>
+              <td><%= situation_after_breastfeeding_i18n_text(child) %></td>
               <th class="table-secondary">離乳食後のミルク状況</th>
-              <td><%= child.milk_situation_after_baby_food %>　<%= child.amount_of_milk_after_baby_food %></td>
+              <td><%= milk_situation_after_baby_food_i18n_text(child) %>　<%= child.amount_of_milk_after_baby_food %></td>
             </tr>
             <tr>
-              <th class="table-secondary">食事の進み具合</th>
-              <td><%= child.baby_food_progress %></td>
+              <th class="table-secondary">離乳食の進み具合</th>
+              <td><%= baby_food_progress_i18n_text(child) %></td>
               <th class="table-secondary">食欲</th>
               <td><%= child.appetite %></td>
             </tr>
