@@ -30,22 +30,24 @@
         <br><br><br><br>
 
         <p class="font-weight-bold">お子さま詳細</p>
+        <%= link_to "お子さまを追加する", new_child_path, class: "font-weight-bold btn btn-warning px-4" %>
+        <br><br>
         <% @children.each do |child| %>
         <table class="table border border-black">
           <thead>
             <tr class="table-secondary">
-              <th class="px-3">お子さま氏名</th>
-              <th class="px-3">フリガナ</th>
-              <th class="px-3">生年月日</th>
-              <th class="px-3">性別</th>
+              <th class="px-3" style="width: 25%;">お子さま氏名</th>
+              <th class="px-3" style="width: 25%;">フリガナ</th>
+              <th class="px-3" style="width: 35%;">生年月日</th>
+              <th class="px-3" style="width: 15%;">性別</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="px-3"><%= child.last_name %><%= child.first_name %></td>
-              <td class="px-3"><%= child.last_name_kana %><%= child.first_name_kana %></td>
-              <td class="px-3"><%= child.birthday.strftime("%Y年%m月%d日") %>（<%= age_in_years(child.birthday) %>歳<%= age_in_months(child.birthday) %>ヶ月）</td>
-              <td class="px-3">
+              <td class="px-3" style="width: 25%;"><%= child.last_name %><%= child.first_name %></td>
+              <td class="px-3" style="width: 25%;"><%= child.last_name_kana %><%= child.first_name_kana %></td>
+              <td class="px-3" style="width: 35%;"><%= child.birthday.strftime("%Y年%m月%d日") %>（<%= age_in_years(child.birthday) %>歳<%= age_in_months(child.birthday) %>ヶ月）</td>
+              <td class="px-3" style="width: 15%;">
                 <% if child.male %>
                 男
                 <% else %>
@@ -60,135 +62,151 @@
         <table class="table border border-black">
           <tbody>
             <tr>
-              <th class="table-secondary">平熱</th>
-              <td><%= child.normal_body_temperature %></td>
-              <th class="table-secondary">発熱時の連絡</th>
-              <td><%= child.fever %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">平熱(℃)</th>
+              <td class="align-middle" style="width: 30%;"><%= child.normal_body_temperature %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">発熱時の連絡(℃)</th>
+              <td class="align-middle" style="width: 30%;"><%= child.fever %></td>
             </tr>
             <tr>
-              <th class="align-middle table-secondary">熱性痙攣</th>
-              <td class="align-middle">
+              <th class="table-secondary align-middle" style="width: 20%;">熱性痙攣</th>
+              <td class="align-middle" style="width: 30%;">
                 <% if child.has_febrile_seizure %>
                 有
                 <% else %>
                 無
                 <% end %>
               </td>
-              <th class="align-middle table-secondary">熱性痙攣詳細</th>
-              <td><% child.febrile_seizure_details %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">熱性痙攣詳細</th>
+              <td class="align-middle" style="width: 30%;"><% child.febrile_seizure_details %></td>
             </tr>
             <tr>
-              <th class="align-middle table-secondary">脱臼</th>
-              <td class="align-middle">
+              <th class="table-secondary align-middle" style="width: 20%;">脱臼</th>
+              <td class="align-middle" style="width: 30%;">
                 <% if child.has_dislocation %>
                 有
                 <% else %>
                 無
                 <% end %>
               </td>
-              <th class="align-middle table-secondary">脱臼詳細</th>
-              <td><%= child.dislocation_details %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">脱臼詳細</th>
+              <td class="align-middle" style="width: 30%;"><%= child.dislocation_details %></td>
             </tr>
             <tr>
-              <th class="align-middle table-secondary">アレルギー</th>
-              <td class="align-middle">
+              <th class="table-secondary align-middle" style="width: 20%;">アレルギー</th>
+              <td class="align-middle" style="width: 30%;">
                 <% if child.has_allergy %>
                 有
                 <% else %>
                 無
                 <% end %>
               </td>
-              <th class="align-middle table-secondary">アレルギー詳細</th>
-              <td><%= child.allergy_details %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">アレルギー詳細</th>
+              <td class="align-middle" style="width: 30%;"><%= child.allergy_details %></td>
             </tr>
             <tr>
-              <th class="table-secondary">授乳状況</th>
-              <td><%= breastfeeding_status_i18n_text(child) %></td>
-              <th class="table-secondary">授乳量</th>
-              <td><%= child.breastfeeding_amount %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">授乳状況</th>
+              <td class="align-middle" style="width: 30%;"><%= breastfeeding_status_i18n_text(child) %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">授乳量</th>
+              <td class="align-middle" style="width: 30%;"><%= child.breastfeeding_amount %></td>
             </tr>
             <tr>
-              <th class="table-secondary">授乳後の状況</th>
-              <td><%= situation_after_breastfeeding_i18n_text(child) %></td>
-              <th class="table-secondary">離乳食後のミルク状況</th>
-              <td><%= milk_situation_after_baby_food_i18n_text(child) %>　<%= child.amount_of_milk_after_baby_food %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">授乳後の状況</th>
+              <td class="align-middle" style="width: 30%;"><%= situation_after_breastfeeding_i18n_text(child) %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">離乳食後のミルク状況</th>
+              <td class="align-middle" style="width: 30%;"><%= milk_situation_after_baby_food_i18n_text(child) %></td>
             </tr>
             <tr>
-              <th class="table-secondary">離乳食の進み具合</th>
-              <td><%= baby_food_progress_i18n_text(child) %></td>
-              <th class="table-secondary">食欲</th>
-              <td><%= child.appetite %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">離乳食後のミルク量(cc)</th>
+              <td class="align-middle" style="width: 30%;"><%= child.amount_of_milk_after_baby_food %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">離乳食の進み具合</th>
+              <td class="align-middle" style="width: 30%;"><%= baby_food_progress_i18n_text(child) %></td>
             </tr>
             <tr>
-              <th class="align-middle table-secondary">好きな食べ物</th>
-              <td class="align-middle"><%= child.favorite_food %></td>
-              <th class="align-middle table-secondary">嫌いな食べ物</th>
-              <td class="align-middle"><%= child.hated_food %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">食欲</th>
+              <td class="align-middle" style="width: 30%;"><%= appetite_i18n_text(child) %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">好きな食べ物</th>
+              <td class="align-middle" style="width: 30%;"><%= child.favorite_food %></td>
             </tr>
             <tr>
-              <th class="table-secondary">食べ方</th>
-              <td><%= child.how_to_eat %></td>
-              <th class="table-secondary">食事時間(分）</th>
-              <td><%= child.meal_time %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">嫌いな食べ物</th>
+              <td class="align-middle" style="width: 30%;"><%= child.hated_food %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">食べ方</th>
+              <td class="align-middle" style="width: 30%;"><%= how_to_eat_i18n_text(child) %></td>
             </tr>
             <tr>
-              <th class="table-secondary">寝かせ方</th>
-              <td><%= child.how_to_lay_it_down %></td>
-              <th class="table-secondary">寝つき</th>
-              <td><%= child.falling_asleep %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">食事時間(分）</th>
+              <td class="align-middle" style="width: 30%;"><%= child.meal_time %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">寝かせ方</th>
+              <td class="align-middle" style="width: 30%;"><%= how_to_lay_it_down_i18n_text(child) %></td>
             </tr>
             <tr>
-              <th class="table-secondary">寝起き</th>
-              <td><%= child.waking_up %></td>
-              <th class="table-secondary">寝る時の姿勢</th>
-              <td><%= child.sleeping_position %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">寝つき</th>
+              <td class="align-middle" style="width: 30%;"><%= falling_asleep_i18n_text(child) %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">寝起き</th>
+              <td class="align-middle" style="width: 30%;"><%= waking_up_i18n_text(child) %></td>
             </tr>
             <tr>
-              <th class="align-middle table-secondary">熟睡度</th>
-              <td class="align-middle"><%= child.is_deep_sleep %></td>
-              <th class="align-middle table-secondary">寝る時の癖</th>
-              <td><%= child.habits_when_sleeping %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">寝る時の姿勢</th>
+              <td class="align-middle" style="width: 30%;"><%= sleeping_position_i18n_text(child) %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">熟睡度</th>
+              <td class="align-middle" style="width: 30%;">
+                <% if child.is_deep_sleep %>
+                深い
+                <% else %>
+                浅い
+                <% end %>
+              </td>
             </tr>
             <tr>
-              <th class="table-secondary">おむつ状況</th>
-              <td><%= child.diaper_usage %></td>
-              <th class="table-secondary">かぶれ</th>
-              <td><%= child.is_sensitive_to_rash %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">寝る時の癖</th>
+              <td class="align-middle" style="width: 30%;"><%= child.habits_when_sleeping %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">おむつ状況</th>
+              <td class="align-middle" style="width: 30%;"><%= diaper_usage_i18n_text(child) %></td>
             </tr>
             <tr>
-              <th class="table-secondary">排尿</th>
-              <td><%= child.urination %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">かぶれ</th>
+              <td class="align-middle" style="width: 30%;">
+                <% if child.is_sensitive_to_rash %>
+                かぶれやすい
+                <% else %>
+                かぶれにくい
+                <% end %>
+              </td>
+              <th class="table-secondary align-middle" style="width: 20%;">排尿</th>
+              <td class="align-middle" style="width: 30%;"><%= urination_i18n_text(child) %></td>
             </tr>
             <tr>
-              <th class="table-secondary">排便</th>
-              <td><%= child.defecation %></td>
-              <th class="table-secondary">排便の回数</th>
-              <td><%= child.number_of_defecation %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">排便</th>
+              <td class="align-middle" style="width: 30%;"><%= defecation_i18n_text(child) %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">排便の回数</th>
+              <td class="align-middle" style="width: 30%;"><%= child.number_of_defecation %></td>
             </tr>
             <tr>
-              <th class="table-secondary">好きな遊び</th>
-              <td><%= child.favorite_game %></td>
-              <th class="table-secondary">好きなおもちゃ</th>
-              <td><%= child.favorite_toy %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">好きな遊び</th>
+              <td class="align-middle" style="width: 30%;"><%= child.favorite_game %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">好きなおもちゃ</th>
+              <td class="align-middle" style="width: 30%;"><%= child.favorite_toy %></td>
             </tr>
             <tr>
-              <th class="table-secondary">かかりつけ医</th>
-              <td><%= child.hospital_name %></td>
-              <th class="table-secondary">かかりつけ医電話番号</th>
-              <td><%= child.hospital_telephone_number %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">かかりつけ医</th>
+              <td class="align-middle" style="width: 30%;"><%= child.hospital_name %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">かかりつけ医電話番号</th>
+              <td class="align-middle" style="width: 30%;"><%= child.hospital_telephone_number %></td>
             </tr>
             <tr>
-              <th class="table-secondary">その他連絡事項</th>
-              <td><%= child.memo %></td>
+              <th class="table-secondary align-middle" style="width: 20%;">その他連絡事項</th>
+              <td colspan="3" class="align-middle" style="width:80%;"><%= child.memo %></td>
             </tr>
           </tbody>
         </table><br>
         <%= link_to "お子さま情報を修正する", edit_child_path(child), class: "font-weight-bold btn btn-warning px-4" %>
         <br><br><br>
         <% end %>
-        <br><br><br><br>
+        <br><br>
 
         <p class="font-weight-bold">お子さまの家族</p>
+        <%= link_to "家族を追加する", new_family_path, class: "font-weight-bold btn btn-warning px-4" %>
+        <br><br>
         <% @families.each do |family| %>
           <table class="table border border-black">
           <thead>
@@ -223,11 +241,12 @@
         <%= link_to "お子さまの家族情報を修正する", edit_family_path(family), class: "font-weight-bold btn btn-warning px-4" %>
         <br><br><br>
         <% end %>
-        <br><br><br><br>
+        <br><br><br>
 
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
       <%= link_to "予約を確認する", reservation_path(@customer), class: "btn btn-warning px-4 mr-5" %>
-      <%= link_to "登録施設を見る", relationships_path, class: "btn btn-warning px-4" %><br><br>
+      <%= link_to "登録施設を見る", relationships_path, class: "btn btn-warning px-4" %>
+    <br><br><br><br>
     </div>
   </div>
 </div>

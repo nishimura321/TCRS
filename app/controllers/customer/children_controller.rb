@@ -35,6 +35,9 @@ class Customer::ChildrenController < ApplicationController
   end
 
   def destroy
+    child = Child.find(params[:id])
+    child.destroy
+    redirect_to customers_mypage_path(current_customer)
   end
 
   private

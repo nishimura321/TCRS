@@ -1,6 +1,6 @@
 class Customer::FamiliesController < ApplicationController
-  #before_action :authenticate_customer!
-  before_action :ensure_family, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_customer!
+  before_action :ensure_family, only: [:show, :edit, :update]
 
   def new
     @family = Family.new(customer_id: current_customer.id)
@@ -31,6 +31,9 @@ class Customer::FamiliesController < ApplicationController
   end
 
   def destroy
+    family = Family.find(params[:id])
+    family.destroy
+    redirect_to customers_mypage_path(current_customer)
   end
 
 private

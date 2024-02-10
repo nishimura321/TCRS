@@ -1,2 +1,207 @@
-<h1>Customer::Children#edit</h1>
-<p>Find me in app/views/customer/children/edit.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+    <h2 class="font-weight-bold">お子さま情報編集</h2><br>
+
+    <% if @child.errors.any? %>
+      <%= @child.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @child.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form_with model: @child, url: child_path(@child), method: :patch do |f| %>
+      <p class="red">*印の項目は必須項目です。</p>
+      <p class="font-weight-bold">【お子さま情報】</p>
+      <div class="field">
+        <%= f.label :"お子さま氏名", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.label :"(姓)", class: "font-weight-bold" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "name", class: "form-control" %><br>
+        <%= f.label :"(名)", class: "font-weight-bold" %>
+        <%= f.text_field :first_name, autocomplete: "name", class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"フリガナ", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.label :"(セイ)", class: "font-weight-bold" %>
+        <%= f.text_field :last_name_kana, autocomplete: "name", class: "form-control" %><br>
+        <%= f.label :"(メイ)", class: "font-weight-bold" %>
+        <%= f.text_field :first_name_kana, autocomplete: "name", class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"生年月日", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.date_select :birthday, start_year: 2015, end_year: Date.today.year, class: "form-control" %><br><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"性別", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.radio_button :male, "true" %>
+        <%= f.label :male_true, "男", class: "mr-5" %>
+        <%= f.radio_button :male, "false" %>
+        <%= f.label :male_false, "女" %>
+      </div><br><br>
+
+      <p class="font-weight-bold">【成育状況】</p>
+      <div class="field">
+        <%= f.label :"平熱は何℃ですか？", class: "font-weight-bold" %><br>
+        <%= f.text_field :normal_body_temperature, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"発熱時は何℃で連絡を希望しますか？", class: "font-weight-bold" %><br>
+        <%= f.text_field :fever, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"熱性痙攣を起こしたことはありますか？", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.radio_button :has_febrile_seizure, "true" %>
+        <%= f.label :has_febrile_seizure_true, "有", class: "mr-5" %>
+        <%= f.radio_button :has_febrile_seizure, "false" %>
+        <%= f.label :has_febrile_seizure_false, "無" %>
+      </div><br>
+      <div class="field">
+        <%= f.label :"熱性痙攣が起きた時の詳細をご記入ください。", class: "font-weight-bold" %><br>
+        <%= f.text_area :febrile_seizure_details, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"脱臼を起こしたことはありますか？", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.radio_button :has_dislocation, "true" %>
+        <%= f.label :has_dislocation_true, "有", class: "mr-5" %>
+        <%= f.radio_button :has_dislocation, "false" %>
+        <%= f.label :has_dislocation_false, "無" %>
+      </div><br>
+      <div class="field">
+        <%= f.label :"脱臼の詳細についてご記入ください。", class: "font-weight-bold" %><br>
+        <%= f.text_area :dislocation_details, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"アレルギーはありますか？", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.radio_button :has_allergy, "true" %>
+        <%= f.label :has_allergy_true, "有", class: "mr-5" %>
+        <%= f.radio_button :has_allergy, "false" %>
+        <%= f.label :has_allergy_false, "無" %>
+      </div><br>
+      <div class="field">
+        <%= f.label :"アレルギーの詳細をご記入ください。", class: "font-weight-bold" %><br>
+        <%= f.text_area :allergy_details, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"授乳状況について選択してください。", class: "font-weight-bold" %><br>
+        <%= f.select :breastfeeding_status, options_for_select(Child.breastfeeding_statuses.keys.map { |key| [I18n.t("enums.child.breastfeeding_status.#{key}"), key] }, selected: @child.breastfeeding_status), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"授乳量や時間などの詳細をご記入ください。", class: "font-weight-bold" %><br>
+        <%= f.text_area :breastfeeding_amount, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"授乳後の状況について選択してください。", class: "font-weight-bold" %><br>
+        <%= f.select :situation_after_breastfeeding, options_for_select(Child.situation_after_breastfeedings.keys.map { |key| [I18n.t("enums.child.situation_after_breastfeeding.#{key}"), key] }, selected: @child.situation_after_breastfeeding), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"離乳食後のミルクは？", class: "font-weight-bold" %><br>
+        <%= f.select :milk_situation_after_baby_food, options_for_select(Child.milk_situation_after_baby_foods.keys.map { |key| [I18n.t("enums.child.milk_situation_after_baby_food.#{key}"), key] }, selected: @child.milk_situation_after_baby_food), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"離乳食後のミルクの量は？", class: "font-weight-bold" %><br>
+        <%= f.number_field :amount_of_milk_after_baby_food, placeholder: "100", class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"離乳食の現在の進み具合は？", class: "font-weight-bold" %><br>
+        <%= f.select :baby_food_progress, options_for_select(Child.baby_food_progresses.keys.map { |key| [I18n.t("enums.child.baby_food_progress.#{key}"), key] }, selected: @child.baby_food_progress), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"食欲について選択してください。", class: "font-weight-bold" %><br>
+        <%= f.select :appetite, options_for_select(Child.appetites.keys.map { |key| [I18n.t("enums.child.appetite.#{key}"), key] }, selected: @child.appetite), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"お子さまの好きな食べ物をご記入ください。", class: "font-weight-bold" %><br>
+        <%= f.text_area :favorite_food, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"お子さまの嫌いな食べ物をご記入ください。", class: "font-weight-bold" %><br>
+        <%= f.text_area :hated_food, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"食べ方を選択してください。", class: "font-weight-bold" %><br>
+        <%= f.select :how_to_eat, options_for_select(Child.how_to_eats.keys.map { |key| [I18n.t("enums.child.how_to_eat.#{key}"), key] }, selected: @child.how_to_eat), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"食事をする時間は何分掛かりますか？", class: "font-weight-bold" %><br>
+        <%= f.number_field :meal_time, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"寝かせ方は？", class: "font-weight-bold" %><br>
+        <%= f.select :how_to_lay_it_down, options_for_select(Child.how_to_lay_it_downs.keys.map { |key| [I18n.t("enums.child.how_to_lay_it_down.#{key}"), key] }, selected: @child.how_to_lay_it_down), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"寝つきは？", class: "font-weight-bold" %><br>
+        <%= f.select :falling_asleep, options_for_select(Child.falling_asleeps.keys.map { |key| [I18n.t("enums.child.falling_asleep.#{key}"), key] }, selected: @child.falling_asleep), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"寝起きは？", class: "font-weight-bold" %><br>
+        <%= f.select :waking_up, options_for_select(Child.waking_ups.keys.map { |key| [I18n.t("enums.child.waking_up.#{key}"), key] }, selected: @child.waking_up), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"寝る姿勢は？", class: "font-weight-bold" %><br>
+        <%= f.select :sleeping_position, options_for_select(Child.sleeping_positions.keys.map { |key| [I18n.t("enums.child.sleeping_position.#{key}"), key] }, selected: @child.sleeping_position), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"熟睡度は？", class: "font-weight-bold" %><br>
+        <%= f.radio_button :is_deep_sleep, "true" %>
+        <%= f.label :is_deep_sleep_true, "深い", class: "mr-5" %>
+        <%= f.radio_button :is_deep_sleep, "false" %>
+        <%= f.label :is_deep_sleep_false, "浅い" %>
+      </div><br>
+      <div class="field">
+        <%= f.label :"寝る時の癖はありますか？", class: "font-weight-bold" %><br>
+        <%= f.text_area :habits_when_sleeping, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"おむつの状況について選択してください。", class: "font-weight-bold" %><br>
+        <%= f.select :diaper_usage, options_for_select(Child.diaper_usages.keys.map { |key| [I18n.t("enums.child.diaper_usage.#{key}"), key] }, selected: @child.diaper_usage), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"かぶれについて選択してください。", class: "font-weight-bold" %><br>
+        <%= f.radio_button :is_sensitive_to_rash, "true" %>
+        <%= f.label :is_sensitive_to_rash_true, "かぶれやすい", class: "mr-5" %>
+        <%= f.radio_button :is_sensitive_to_rash, "false" %>
+        <%= f.label :is_sensitive_to_rash_false, "かぶれにくい" %>
+      </div><br>
+      <div class="field">
+        <%= f.label :"排尿は？", class: "font-weight-bold" %><br>
+        <%= f.select :urination, options_for_select(Child.urinations.keys.map { |key| [I18n.t("enums.child.urination.#{key}"), key] }, selected: @child.urination), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"排便は？", class: "font-weight-bold" %><br>
+        <%= f.select :defecation, options_for_select(Child.defecations.keys.map { |key| [I18n.t("enums.child.defecation.#{key}"), key] }, selected: @child.defecation), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"排便の回数についてご記入ください。", class: "font-weight-bold" %><br>
+        <%= f.text_field :number_of_defecation, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"好きな遊びは何ですか？", class: "font-weight-bold" %><br>
+        <%= f.text_area :favorite_game, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"好きな玩具はありますか？", class: "font-weight-bold" %><br>
+        <%= f.text_area :favorite_toy, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"かかりつけ医療機関の名前は？", class: "font-weight-bold" %><br>
+        <%= f.text_field :hospital_name, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"かかりつけ医療機関の電話番号は？(ハイフンなし)", class: "font-weight-bold" %><br>
+        <%= f.text_field :hospital_telephone_number, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"その他連絡事項があればご記入ください。", class: "font-weight-bold" %><br>
+        <%= f.text_area :memo, class: "form-control" %><br>
+      </div><br>
+
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+      <%= f.submit "修正", class: "btn btn-warning px-4 mr-5" %>
+      <%= link_to "削除", child_path(@child), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-warning px-4" %>
+    <% end %><br><br>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,66 @@
-<h1>Customer::Families#edit</h1>
-<p>Find me in app/views/customer/families/edit.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+    <h2 class="font-weight-bold">お子さまの家族編集</h2><br>
+
+    <% if @family.errors.any? %>
+      <%= @family.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @family.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form_with model: @family, url: family_path(@family), method: :patch do |f| %>
+      <p class="red">*印の項目は必須項目です。</p>
+      </p>
+      <p class="font-weight-bold">【お子さまの家族】</p>
+      <div class="field">
+        <%= f.label :"家族氏名", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.label :"(姓)", class: "font-weight-bold" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "name", class: "form-control" %><br>
+        <%= f.label :"(名)", class: "font-weight-bold" %>
+        <%= f.text_field :first_name, autocomplete: "name", class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"フリガナ", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.label :"(セイ)", class: "font-weight-bold" %>
+        <%= f.text_field :last_name_kana, autocomplete: "name", class: "form-control" %><br>
+        <%= f.label :"(メイ)", class: "font-weight-bold" %>
+        <%= f.text_field :first_name_kana, autocomplete: "name", class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"性別", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.radio_button :male, "true" %>
+        <%= f.label :male_true, "男", class: "mr-5" %>
+        <%= f.radio_button :male, "false" %>
+        <%= f.label :male_false, "女" %>
+      </div><br>
+      <div class="field">
+        <%= f.label :"続柄", class: "font-weight-bold" %><br>
+        <%= f.select :relationship, options_for_select(Family.relationships.keys.map { |key| [I18n.t("enums.family.relationship.#{key}"), key] }, selected: @family.relationship), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"生年月日", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.date_select :birthday, start_year: 1920, end_year: Date.today.year, class: "form-control" %><br><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"電話番号(ハイフンなし)", class: "font-weight-bold" %><span class="red">*</span>
+        <%= f.text_field :telephone_number, autocomplete: "tel", class: "form-control" %>
+      </div><br><br>
+      <div class="field">
+        <%= f.label :"勤務先", class: "font-weight-bold" %>
+        <%= f.text_field :workplace, class: "form-control" %>
+      </div><br><br>
+      <div class="field">
+        <%= f.label :"勤務先電話番号(ハイフンなし)", class: "font-weight-bold" %>
+        <%= f.text_field :workplace_telephone_number, autocomplete: "tel", class: "form-control" %>
+      </div><br><br>
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+      <%= f.submit "修正", class: "btn btn-warning px-4 mr-5" %>
+      <%= link_to "削除", family_path(@family), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-warning px-4" %>
+    <% end %><br><br>
+    </div>
+  </div>
+</div>
