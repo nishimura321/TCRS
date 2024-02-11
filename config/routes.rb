@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   sessions: 'customer/sessions'
   }
 
+  #ゲストログイン用
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
+  end
+
   # device施設用
   # URL /facility/sign_in ...
   devise_for :facility, skip: [:registrations, :passwords], controllers: {

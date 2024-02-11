@@ -22,11 +22,11 @@
         といったことができる機能を作りました。<br><br>
 
         1.アカウント登録、2施設検索、3必要事項を入力して予約の手順で簡単に予約ができます。<br>
-        このシステムを活用して、ぜひ〇〇市の一時預かり保育をご利用ください。
+        このシステムを活用して、ぜひ静岡市の一時預かり保育をご利用ください。
       </p><br><br>
-      <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-warning px-4 mr-5" %>
-      <%= link_to "ログイン", new_customer_session_path, class: "btn btn-warning px-4 mr-5" %>
-      <%#= link_to "ゲストログイン", _path, class: "btn btn-warning px-4" %><br><br><br><br><br>
+      <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-warning px-4 mr-5 sign_up" %>
+      <%= link_to "ログイン", new_customer_session_path, class: "btn btn-warning px-4 mr-5 sign_in" %>
+      <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, method: :post, class: "btn btn-warning px-4 sign_in" %><br><br><br><br><br>
     </div>
   </div>
 </div>

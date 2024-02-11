@@ -1,6 +1,7 @@
 class Customer::CustomersController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_customer, only: [:show, :edit, :update, :withdrawal]
+  before_action :ensure_guest_user, only: [:edit]
 
   def show
     @children = @customer.children
@@ -37,6 +38,13 @@ class Customer::CustomersController < ApplicationController
 
   def ensure_customer
     @customer = Customer.find(current_customer.id)
+  end
+
+  def ensure_guest_user
+    @customer = Customer.find(current_customer.id)
+    if @customer.last_name == "guest" && @customer.first_name == "user"
+      redirect_to customers_mypage_path(current_customer) , notice: 'ゲストユーザーはアカウント情報編集画面へ遷移できません。'
+    end
   end
 
 end
