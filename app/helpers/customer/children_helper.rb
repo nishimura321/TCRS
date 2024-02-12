@@ -143,8 +143,8 @@ def diaper_usage_i18n_text(child)
     I18n.t("enums.child.diaper_usage.diaper")
   elsif child.cloth_diaper?
     I18n.t("enums.child.diaper_usage.cloth_diaper")
-  elsif child.baby_paper_pants?
-    I18n.t("enums.child.diaper_usage.baby_paper_pants")
+  elsif child.paper_pants?
+    I18n.t("enums.child.diaper_usage.paper_pants")
   elsif child.cloth_pants?
     I18n.t("enums.child.diaper_usage.cloth_pants")
   end
