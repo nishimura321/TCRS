@@ -52,7 +52,7 @@ ja:
       diaper_usage:
         diaper: "紙おむつ"
         cloth_diaper: "布おむつ"
-        paper_pants: "紙パンツ"
+        baby_paper_pants: "紙パンツ"
         cloth_pants: "布パンツ"
       urination:
         pee_in_omar: "教える(オマルでする)"

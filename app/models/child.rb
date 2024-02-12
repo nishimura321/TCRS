@@ -23,7 +23,7 @@ class Child < ApplicationRecord
   enum falling_asleep: { falling_asleep_easily: 0, have_trouble_sleeping: 1, there_are_both: 2 }
   enum waking_up: { waking_up_easily: 0, unable_to_get_to_sleep: 1, both_0_and_1: 2 }
   enum sleeping_position: { sleep_on_your_back: 0, sleep_on_your_side: 1, sleep_on_your_stomach: 2 }
-  enum diaper_usage: { diaper: 0, cloth_diaper: 1, paper_pants: 2, cloth_pants: 3 }
+  enum diaper_usage: { diaper: 0, cloth_diaper: 1, baby_paper_pants: 2, cloth_pants: 3 }
   enum urination: { pee_in_omar: 0, pee_in_the_toilet: 1, tell_me_after_peeing_in_the_pants: 2, do_not_tell: 3, pee_by_myself: 4 }
   enum defecation: { hard_poop: 0, normal_poop: 1, soft_poop: 2, feeling_constipated: 3 }
 

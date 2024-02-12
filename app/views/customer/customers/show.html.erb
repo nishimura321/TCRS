@@ -152,7 +152,9 @@
               <td class="align-middle" style="width: 30%;"><%= sleeping_position_i18n_text(child) %></td>
               <th class="table-secondary align-middle" style="width: 20%;">熟睡度</th>
               <td class="align-middle" style="width: 30%;">
-                <% if child.is_deep_sleep %>
+                <% if child.is_deep_sleep.nil? %>
+
+                <% elsif child.is_deep_sleep %>
                 深い
                 <% else %>
                 浅い
@@ -168,7 +170,9 @@
             <tr>
               <th class="table-secondary align-middle" style="width: 20%;">かぶれ</th>
               <td class="align-middle" style="width: 30%;">
-                <% if child.is_sensitive_to_rash %>
+                <% if child.is_sensitive_to_rash.nil? %>
+
+                <% elsif child.is_sensitive_to_rash %>
                 かぶれやすい
                 <% else %>
                 かぶれにくい

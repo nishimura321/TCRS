@@ -33,6 +33,13 @@ class Customer::SessionsController < Devise::SessionsController
     root_path
   end
 
+  #ゲストログイン用メアクション
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to customers_mypage_path(current_customer), notice: 'guestuserでログインしました。'
+  end
+
 private
   # アクティブであるかを判断するメソッド
   def customer_state
@@ -51,13 +58,6 @@ private
       flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
       redirect_to new_customer_registration_path
     end
-  end
-
-  #ゲストログイン用メソッド
-  def guest_sign_in
-    customer = Customer.guest
-    sign_in customer
-    redirect_to customers_mypage_path(current_customer), notice: 'guestuserでログインしました。'
   end
 
 end
