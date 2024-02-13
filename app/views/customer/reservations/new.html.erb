@@ -1,2 +1,14 @@
-<h1>Customer::Reservations#new</h1>
-<p>Find me in app/views/customer/reservations/new.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 text-center">
+    <h2 class="font-weight-bold">予約</h2>
+    </div>
+    
+    <div class="col-12 mt-3">
+      <%= week_calendar events: @reservations do |date, reservations| %>
+        <%= date.day %>
+      <% end %>
+    </div>
+    
+  </div>
+</div>
