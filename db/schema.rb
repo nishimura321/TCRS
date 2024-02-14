@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 2024_02_10_154134) do
 
   create_table "menus", force: :cascade do |t|
     t.date "date", null: false
-    t.text "school_lunch"
+    t.text "school_lunch", null: false
     t.string "snack"
     t.text "ingredient", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -174,12 +174,13 @@ ActiveRecord::Schema.define(version: 2024_02_10_154134) do
     t.integer "child_id", null: false
     t.integer "facility_id", null: false
     t.integer "menu_id", null: false
-    t.date "date", null: false
+    t.date "day", null: false
     t.time "time", null: false
     t.boolean "wants_meal_service", null: false
     t.integer "purpose_of_use", null: false
     t.boolean "is_valid_reservation", default: true, null: false
     t.boolean "is_allergy_checked", default: true, null: false
+    t.datetime "start_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
