@@ -11,7 +11,12 @@
     </div>
     
     <div class="col-12 mt-3">
-      
+      <%= form_with model: @reservation, url: '/reservations', method: :post do |f| %>
+        <div class="form-group">
+          
+        </div>
+        <%= f.submit '入力内容の確認' %>
+      <% end %>
     </div>
     
   </div>

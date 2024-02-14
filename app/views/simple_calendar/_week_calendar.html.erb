@@ -1,5 +1,7 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
+    <h5 class="mt-3 font-weight-bold text-center"><%= start_date.year %>年 <%= t('date.abbr_month_names')[start_date.month] %></h5>
+    <br>
     <%= link_to t('simple_calendar.previous', default: '前週'), calendar.url_for_previous_view %>
     <% if calendar.number_of_weeks == 1 %>
       <span class="calendar-title"><%= t('simple_calendar.week', default: '1週間') %></span>
