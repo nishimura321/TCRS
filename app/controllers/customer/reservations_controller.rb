@@ -3,8 +3,11 @@ class Customer::ReservationsController < ApplicationController
   before_action :ensure_reservation, only: [:show, :edit, :update, :destroy]
 
   def new
+    start_date = Date.current
+    end_date = start_date.end_of_month.next_month
+    @reservations = Reservation.all.where("day >= ? AND day <= ?", start_date, end_date).order(day: :desc)
     @reservation = Reservation.new(customer_id: current_customer.id)
-    @reservations = Reservation.all.where("day >= ?", Date.current).where("day < ?", Date.current >> 3).order(day: :desc)
+    
   end
 
   def confirm

@@ -1,5 +1,6 @@
 module Customer::ReservationsHelper
   
+  #予約時間帯を表示させる
   def times
     times = ["9:00",
              "9:30",
@@ -14,6 +15,23 @@ module Customer::ReservationsHelper
              "15:30",
              "16:00",
              "16:30"]
+  end
+  
+  #予約データから指定された日付と時間の予約があるかどうかをチェックするメソッド
+  def check_reservation(reservations, day, time)
+    result = false
+    reservations_count = reservations.count
+    # 取得した予約データにdayとtimeが一致する場合はtrue,一致しない場合はfalseを返す
+    if reservations_count > 1
+      reservations.each do |reservation|
+        result = reservation[:day].eql?(day.strftime("%Y-%m-%d")) && reservation[:time].eql?(time)
+        return result if result
+      end
+    elsif reservations_count == 1
+      result = reservations[0][:day].eql?(day.strftime("%Y-%m-%d")) && reservations[0][:time].eql?(time)
+      return result if result
+    end
+    return result
   end
   
 end
