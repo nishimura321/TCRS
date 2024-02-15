@@ -72,6 +72,11 @@ ja:
         grandmother: "祖母"
         grandfather: "祖父"
         other: "その他"
+    reservation:
+      purpose_of_use:
+        atypical: "非定型(短期の就労・職業訓練、就学等のため)"
+        emergency: "緊急(傷病、出産、親族の看護・介護、学校行事等のため)"
+        private_business: "私的(心身のリフレッシュなど私的な目的のため)"
   activerecord:
     errors:
       messages:

@@ -7,7 +7,8 @@ class Customer::ReservationsController < ApplicationController
     end_date = start_date.end_of_month.next_month
     @reservations = Reservation.all.where("day >= ? AND day <= ?", start_date, end_date).order(day: :desc)
     @reservation = Reservation.new
-    
+    @children = current_customer.children
+    @families = current_customer.families
   end
 
   def confirm

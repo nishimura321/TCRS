@@ -1,8 +1,9 @@
 module Customer::ReservationsHelper
-  
+
   #予約時間帯を表示させる
   def times
-    times = ["9:00",
+    times = ["8:30",
+             "9:00",
              "9:30",
              "10:00",
              "10:30",
@@ -16,7 +17,7 @@ module Customer::ReservationsHelper
              "16:00",
              "16:30"]
   end
-  
+
   #予約データから指定された日付と時間の予約があるかどうかをチェックするメソッド
   def check_reservation(reservations, day, time)
     result = false
@@ -33,5 +34,5 @@ module Customer::ReservationsHelper
     end
     return result
   end
-  
+
 end

@@ -14,4 +14,9 @@ class Family < ApplicationRecord
 
   enum relationship: { mother: 0, father: 1, grandmother: 2, grandfather: 3, other: 4 }
 
+  #予約時セレクトボックスに表示される名前
+  def family_name
+    last_name + first_name
+  end
+
 end

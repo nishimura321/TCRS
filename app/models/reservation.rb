@@ -6,6 +6,8 @@ class Reservation < ApplicationRecord
   belongs_to :menus
   has_many :families_reservations, dependent: :destroy
 
+  enum purpose_of_use: { atypical: 0, emergency: 1, private_business: 2}
+
   #当月末と来月末までの予約を取得するメソッド
   def self.reservations_for_two_months
     start_date = Date.current

@@ -3,21 +3,54 @@
     <div class="col-12 text-center">
     <h2 class="font-weight-bold">予約</h2>
     </div>
-    
+
     <div class="col-12 mt-3">
       <%= week_calendar events: @reservations do |date, reservations| %>
         <%= date.day %>
       <% end %>
     </div>
-    
+
     <div class="col-12 mt-3">
-      <%= form_with model: @reservation, url: '/reservations', method: :post do |f| %>
+      <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
         <div class="form-group">
-          
+          <%= f.label :"予約日", class: "font-weight-bold" %><br>
+          <%= f.date_select :day, class: 'form-control' %>
         </div>
+        <div class="form-group">
+          <%= f.label :"予約時間", class: "font-weight-bold" %><br>
+          <%= f.time_select :time, {start_hour: 8, start_minute: 30, end_hour: 16, end_minute: 30}, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"対象のお子さまを選択", class: "font-weight-bold" %><br>
+          <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name), include_blank: "-- 選択してください --" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"給食の有無", class: "font-weight-bold" %><br>
+          <%= f.radio_button :wants_meal_service, "true" %>
+          <%= f.label :wants_meal_service_true, "あり", class: "mr-5" %>
+          <%= f.radio_button :wants_meal_service, "false" %>
+          <%= f.label :iwants_meal_service_false, "なし" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"利用目的", class: "font-weight-bold" %><br>
+          <%= f.select :purpose_of_use, options_for_select(Reservation.purpose_of_uses.keys.map { |key| [I18n.t("enums.reservation.purpose_of_use.#{key}"), key] }, selected: @reservation.purpose_of_use), include_blank: true, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :"主な送迎者", class: "font-weight-bold" %><br>
+          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"緊急連絡先１", class: "font-weight-bold" %><br>
+          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"緊急連絡先２", class: "font-weight-bold" %><br>
+          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --" %>
+        </div>
+
         <%= f.submit '入力内容の確認' %>
       <% end %>
     </div>
-    
+
   </div>
 </div>

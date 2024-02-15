@@ -27,4 +27,9 @@ class Child < ApplicationRecord
   enum urination: { pee_in_omar: 0, pee_in_the_toilet: 1, tell_me_after_peeing_in_the_pants: 2, do_not_tell: 3, pee_by_myself: 4 }
   enum defecation: { hard_poop: 0, normal_poop: 1, soft_poop: 2, feeling_constipated: 3 }
 
+  #予約時セレクトボックスに表示される名前
+  def child_name
+   last_name + first_name
+  end
+
 end
