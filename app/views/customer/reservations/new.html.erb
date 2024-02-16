@@ -1,28 +1,35 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-12 text-center">
-    <h2 class="font-weight-bold">予約</h2>
+    <h2 class="font-weight-bold"><%= @facility.name %>予約</h2>
     </div>
 
-    <div class="col-12 mt-3">
+    <div class="col-12 mt-3 mb-5">
       <%= week_calendar events: @reservations do |date, reservations| %>
         <%= date.day %>
       <% end %>
     </div>
 
-    <div class="col-12 mt-3">
+    <div class="mt-5 mx-auto">
+      <h2 class="font-weight-bold">予約情報入力</h2><br>
       <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
         <div class="form-group">
           <%= f.label :"予約日", class: "font-weight-bold" %><br>
-          <%= f.date_select :day, class: 'form-control' %>
+          <%= f.date_select :day, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :"予約時間", class: "font-weight-bold" %><br>
-          <%= f.time_select :time, {start_hour: 8, start_minute: 30, end_hour: 16, end_minute: 30}, class: 'form-control' %>
+          <div class="input-group">
+            <%#= f.text_field :time, placeholder: "時:分", class: "form-control timepicker-input" %>
+            <%= f.time_select :time, class: "form-control timepicker-input" %>
+            <div class="input-group-append">
+            <span class="input-group-addon input-group-text"><i class="fa fa-clock-o"></i></span>
+            </div>
+          </div>
         </div>
         <div class="form-group">
-          <%= f.label :"対象のお子さまを選択", class: "font-weight-bold" %><br>
-          <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name), include_blank: "-- 選択してください --" %>
+          <%= f.label :select_child, "対象のお子さまを選択", class: "font-weight-bold" %><br>
+          <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :"給食の有無", class: "font-weight-bold" %><br>
@@ -36,21 +43,22 @@
           <%= f.select :purpose_of_use, options_for_select(Reservation.purpose_of_uses.keys.map { |key| [I18n.t("enums.reservation.purpose_of_use.#{key}"), key] }, selected: @reservation.purpose_of_use), include_blank: true, class: "form-control" %><br>
         </div>
         <div class="form-group">
-          <%= f.label :"主な送迎者", class: "font-weight-bold" %><br>
-          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --" %>
+          <%= f.label :pick_up_person, "主な送迎者", class: "font-weight-bold" %><br>
+          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :"緊急連絡先１", class: "font-weight-bold" %><br>
-          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --" %>
+          <%= f.label :emergency_contact_1, "緊急連絡先１", class: "font-weight-bold" %><br>
+          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :"緊急連絡先２", class: "font-weight-bold" %><br>
-          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --" %>
+          <%= f.label :emergency_contact_2, "緊急連絡先２", class: "font-weight-bold" %><br>
+          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
-
-        <%= f.submit '入力内容の確認' %>
+        <br><br>
+        <%= f.submit "入力内容の確認", class: "font-weight-bold btn btn-warning px-4" %>
       <% end %>
+      <br><br>
     </div>
-
   </div>
 </div>
+<script src="/app/javascript/packs/application.js"></script>

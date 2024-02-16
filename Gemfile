@@ -62,3 +62,7 @@ gem 'kaminari','~> 1.2.1'
 gem "enum_help"
 
 gem "simple_calendar"
+
+gem 'bootstrap-timepicker-rails'
+
+gem 'jquery-rails'

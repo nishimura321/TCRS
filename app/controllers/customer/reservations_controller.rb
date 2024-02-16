@@ -5,7 +5,8 @@ class Customer::ReservationsController < ApplicationController
   def new
     start_date = Date.current
     end_date = start_date.end_of_month.next_month
-    @reservations = Reservation.all.where("day >= ? AND day <= ?", start_date, end_date).order(day: :desc)
+    @facility = Facility.find(params[:facility_id])
+    @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
     @reservation = Reservation.new
     @children = current_customer.children
     @families = current_customer.families
@@ -54,5 +55,5 @@ class Customer::ReservationsController < ApplicationController
   def ensure_reservation
     @reservation = Reservation.find(params[:id])
   end
-  
+
 end
