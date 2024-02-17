@@ -19,20 +19,17 @@ module Customer::ReservationsHelper
   end
 
   #予約データから指定された日付と時間の予約があるかどうかをチェックするメソッド
-  def check_reservation(reservations, day, time)
-    result = false
-    reservations_count = reservations.count
-    # 取得した予約データにdayとtimeが一致する場合はtrue,一致しない場合はfalseを返す
-    if reservations_count > 1
-      reservations.each do |reservation|
-        result = reservation[:day].eql?(day.strftime("%Y-%m-%d")) && reservation[:time].eql?(time)
-        return result if result
-      end
-    elsif reservations_count == 1
-      result = reservations[0][:day].eql?(day.strftime("%Y-%m-%d")) && reservations[0][:time].eql?(time)
-      return result if result
+  def check_reservation(reservations, day, start_time, end_time)
+  result = false
+  reservations.each do |reservation|
+    start_time = reservation[:start_time].strftime("%H:%M")
+    end_time = reservation[:end_time].strftime("%H:%M")
+    if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time)
+      result = true
+      break
     end
-    return result
+  end
+  result
   end
 
 end

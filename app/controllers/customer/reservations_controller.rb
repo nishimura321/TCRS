@@ -49,7 +49,7 @@ class Customer::ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:day, :time, :wants_meal_service, :purpose_of_use, :start_time)
+    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use)
   end
 
   def ensure_reservation

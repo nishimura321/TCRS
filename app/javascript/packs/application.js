@@ -3,7 +3,6 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-//= require bootstrap-timepicker
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -18,12 +17,3 @@ import "../stylesheets/application";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-//bootstrap-timepicker初期化コード
-$(document).ready(function(){
-  $('#timepicker').timepicker({
-    minTime: '8:30',
-    maxTime: '16:30',
-    step: 30
-  });
-});
