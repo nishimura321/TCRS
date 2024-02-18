@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     resources :children, only: [:new, :create, :edit, :update, :destroy]
     resources :families, only: [:new, :create, :edit, :update, :destroy]
     resources :reservations
-    get 'reservations/confirm' => 'reservations#confirm'
+    post 'reservations/confirm' => 'reservations#confirm'
     get 'reservations/thanks' => 'reservations#thanks'
     get 'reservations/confirm_allergy' => 'reservations#confirm_allergy'
     resources :relationships, only: [:create, :index, :destroy]
