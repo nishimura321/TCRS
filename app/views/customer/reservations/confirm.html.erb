@@ -1,2 +1,48 @@
-<h1>Customer::Reservations#confirm</h1>
-<p>Find me in app/views/customer/reservations/confirm.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+   <div class="mx-auto">
+     <h2 class="font-weight-bold">予約情報確認</h2>
+      <p class="font-weight-bold">【予約内容】</p>
+       <table>
+         <tbody>
+           <tr>
+             <th>利用希望日時</th>
+             <td><%= @reservation.day.strftime('%Y年%m月%d日 (%a)') %>　<%= @reservation.start_time.strftime('%H:%M') %>　〜　<%= @reservation.end_time.strftime('%H:%M') %></td>
+           </tr>
+           <tr>
+             <th>施設名</th>
+             <td><%= @facility.name %></td>
+           </tr>
+           <tr>
+             <th>給食の有無</th>
+             <td>
+              <% if @reservation.wants_meal_service %>
+              あり
+              <% else %>
+              なし
+              <% end %>
+             </td>
+           </tr>
+           <tr>
+             <th>利用目的</th>
+             <td><%= @purpo
+             def purpose_of_use_i18n_text(reservation)
+    if reservation.atypical?
+      I18n.t("enums.reservation.diaper_usage.atypical")
+    elsif reservation.emergency?
+      I18n.t("enums.reservation.diaper_usage.emergency")
+    elsif reservation.private_business?
+      I18n.t("enums.reservation.diaper_usage.private_business")
+    end
+  end
+             </td>
+           </tr>
+         </tbody>
+       </table>
+      <p class="font-weight-bold">【アカウント情報】</p>
+      <p class="font-weight-bold">【お子さま情報】</p>
+      <p class="font-weight-bold">【主な送迎者】</p>
+      <p class="font-weight-bold">【緊急連絡先】</p>
+    </div>
+  </div>
+</div>

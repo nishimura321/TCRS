@@ -14,11 +14,11 @@
       <h2 class="font-weight-bold">予約情報入力</h2><br>
       <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
         <div class="form-group">
-          <%= f.label :"予約日", class: "font-weight-bold" %><br>
+          <%= f.label :"予約希望日", class: "font-weight-bold" %><br>
           <%= f.date_select :day, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :"予約時間", class: "font-weight-bold" %><br>
+          <%= f.label :"予約希望時間", class: "font-weight-bold" %><br>
           <%= f.time_select :start_time, { default: f.object.day.nil? ? nil : f.object.day.to_datetime }, id: "start-time-field" %>　〜　<%= f.time_select :end_time, { default: f.object.day.nil? ? nil : f.object.day.to_datetime }, id: "end-time-field" %>
         </div>
         <div class="form-group">
@@ -49,6 +49,7 @@
           <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
         <br><br>
+        <%= f.hidden_field :facility_id, :value => @facility.id %>
         <%= f.submit "入力内容の確認", class: "font-weight-bold btn btn-warning px-4" %>
       <% end %>
       <br><br>

@@ -20,16 +20,16 @@ module Customer::ReservationsHelper
 
   #予約データから指定された日付と時間の予約があるかどうかをチェックするメソッド
   def check_reservation(reservations, day, time)
-  result = false
-  reservations.each do |reservation|
-    start_time = reservation[:start_time].strftime("%H:%M")
-    end_time = reservation[:end_time].strftime("%H:%M")
-    if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time)
-      result = true
-      break
+    result = false
+    reservations.each do |reservation|
+      start_time = reservation[:start_time].strftime("%H:%M")
+      end_time = reservation[:end_time].strftime("%H:%M")
+      if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time)
+        result = true
+        break
+      end
     end
-  end
-  result
+    result
   end
 
 end

@@ -1,6 +1,6 @@
 class Customer::ReservationsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_reservation, only: [:show, :edit, :update, :destroy]
+  #before_action :ensure_reservation, only: [:show, :edit, :update, :destroy]
 
   def new
     start_date = Date.current
@@ -13,6 +13,8 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def confirm
+    @reservation = Reservation.new(reservation_params)
+    @facility = Facility.find(params[:reservation][:facility_id])
   end
 
   def thanks
@@ -52,8 +54,8 @@ class Customer::ReservationsController < ApplicationController
     params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use)
   end
 
-  def ensure_reservation
-    @reservation = Reservation.find(params[:id])
-  end
+  #def ensure_reservation
+   # @reservation = Reservation.find(params[:id])
+  #end
 
 end
