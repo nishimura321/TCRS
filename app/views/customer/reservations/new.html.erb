@@ -37,19 +37,20 @@
           <%= f.select :purpose_of_use, options_for_select(Reservation.purpose_of_uses.keys.map { |key| [I18n.t("enums.reservation.purpose_of_use.#{key}"), key] }, selected: @reservation.purpose_of_use), include_blank: true, class: "form-control" %><br>
         </div>
         <div class="form-group">
-          <%= f.label :pick_up_person, "主な送迎者", class: "font-weight-bold" %><br>
-          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+          <%= f.label :main_pick_up_person, "主な送迎者", class: "font-weight-bold" %><br>
+          <%= f.select :main_pick_up_person_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :emergency_contact_1, "緊急連絡先１", class: "font-weight-bold" %><br>
-          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+          <%= f.select :emergency_contact_1_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :emergency_contact_2, "緊急連絡先２", class: "font-weight-bold" %><br>
-          <%= f.select :family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+          <%= f.select :emergency_contact_2_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
         <br><br>
         <%= f.hidden_field :facility_id, :value => @facility.id %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
         <%= f.submit "入力内容の確認", class: "font-weight-bold btn btn-warning px-4" %>
       <% end %>
       <br><br>

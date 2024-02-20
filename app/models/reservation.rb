@@ -5,6 +5,7 @@ class Reservation < ApplicationRecord
   belongs_to :facilities
   belongs_to :menus
   has_many :families_reservations, dependent: :destroy
+  has_many :families, through: :families_reservations
 
   enum purpose_of_use: { atypical: 0, emergency: 1, private_business: 2}
 

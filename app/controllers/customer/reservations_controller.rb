@@ -16,7 +16,10 @@ class Customer::ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @facility = Facility.find(params[:reservation][:facility_id])
     @reservation.child = Child.find(params[:reservation][:child_id])
-    @customer = current_customer
+    @reservation.families << Family.find(params[:reservation][:main_pick_up_person_family_id])
+    @reservation.families << Family.find(params[:reservation][:emergency_contact_1_family_id])
+    @reservation.families << Family.find(params[:reservation][:emergency_contact_2_family_id])
+    @reservation.customer = current_customer
   end
 
   def thanks
@@ -29,7 +32,7 @@ class Customer::ReservationsController < ApplicationController
       redirect_to reservations_thanks_path
     else
       flash.now[:notice] = "新規予約ができませんでした。"
-      render reservations_confir_path
+      render reservations_confirm_path
     end
   end
 

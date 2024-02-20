@@ -2,6 +2,7 @@ class Family < ApplicationRecord
 
   belongs_to :customer
   has_many :families_reservations, dependent: :destroy
+  has_many :reservations, through: :families_reservations
 
   validates :last_name, presence: true
   validates :first_name, presence: true
