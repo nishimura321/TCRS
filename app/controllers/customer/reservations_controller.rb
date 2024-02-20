@@ -15,6 +15,8 @@ class Customer::ReservationsController < ApplicationController
   def confirm
     @reservation = Reservation.new(reservation_params)
     @facility = Facility.find(params[:reservation][:facility_id])
+    @reservation.child = Child.find(params[:reservation][:child_id])
+    @customer = current_customer
   end
 
   def thanks

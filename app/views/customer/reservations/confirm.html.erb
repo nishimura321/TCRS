@@ -3,11 +3,11 @@
    <div class="mx-auto">
      <h2 class="font-weight-bold">予約情報確認</h2>
       <p class="font-weight-bold">【予約内容】</p>
-       <table>
+       <table class ="table boder">
          <tbody>
            <tr>
              <th>利用希望日時</th>
-             <td><%= @reservation.day.strftime('%Y年%m月%d日 (%a)') %>　<%= @reservation.start_time.strftime('%H:%M') %>　〜　<%= @reservation.end_time.strftime('%H:%M') %></td>
+             <td><%= @reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(@reservation.day) %>　<%= @reservation.start_time.strftime('%H:%M') %>　〜　<%= @reservation.end_time.strftime('%H:%M') %></td>
            </tr>
            <tr>
              <th>施設名</th>
@@ -24,25 +24,106 @@
              </td>
            </tr>
            <tr>
-             <th>利用目的</th>
-             <td><%= @purpo
-             def purpose_of_use_i18n_text(reservation)
-    if reservation.atypical?
-      I18n.t("enums.reservation.diaper_usage.atypical")
-    elsif reservation.emergency?
-      I18n.t("enums.reservation.diaper_usage.emergency")
-    elsif reservation.private_business?
-      I18n.t("enums.reservation.diaper_usage.private_business")
-    end
-  end
+              <th>利用目的</th>
+              <td>
+              <% if @reservation.atypical? %>
+              <%= I18n.t("enums.reservation.purpose_of_use.atypical") %>
+              <% elsif @reservation.emergency? %>
+              <%= I18n.t("enums.reservation.purpose_of_use.emergency") %>
+              <% elsif @reservation.private_business? %>
+              <%= I18n.t("enums.reservation.purpose_of_use.private_business") %>
+              <% end %>
              </td>
            </tr>
          </tbody>
        </table>
-      <p class="font-weight-bold">【アカウント情報】</p>
-      <p class="font-weight-bold">【お子さま情報】</p>
-      <p class="font-weight-bold">【主な送迎者】</p>
-      <p class="font-weight-bold">【緊急連絡先】</p>
+      <p class="font-weight-bold mt-5">【アカウント情報】</p>
+      <table class ="table border">
+        <tbody>
+          <tr>
+            <th>保護者氏名</th>
+            <td><%= @customer.last_name %><%= @customer.first_name %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td>
+              〒<%= @customer.postal_code %><br>
+              <%= @customer.address %>
+            </td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="font-weight-bold mt-5">【お子さま情報】</p>
+            <table class ="table border">
+        <tbody>
+          <tr>
+            <th>お子さま氏名</th>
+            <td><%= @reservation.last_name %><%= @reservation.first_name %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= @reservation.last_name_kana %><%= @reservation.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th>生年月日</th>
+            <td>
+              〒<%= @reservation.birthday %>
+            </td>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <td>
+              <% if @reservation.male %>
+              男
+              <% else %>
+              女
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="font-weight-bold mt-5">【主な送迎者】</p>
+            <table class ="table border">
+        <tbody>
+          <tr>
+            <th>保護者氏名</th>
+            <td><%= @customer.last_name %><%= @customer.first_name %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td>
+              〒<%= @customer.postal_code %><br>
+              <%= @customer.address %>
+            </td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="font-weight-bold mt-5">【緊急連絡先】</p>
+      
     </div>
   </div>
 </div>
