@@ -15,11 +15,9 @@ class Customer::ReservationsController < ApplicationController
   def confirm
     @reservation = Reservation.new(reservation_params)
     @facility = Facility.find(params[:reservation][:facility_id])
-    @reservation.child = Child.find(params[:reservation][:child_id])
-    @reservation.families << Family.find(params[:reservation][:main_pick_up_person_family_id])
-    @reservation.families << Family.find(params[:reservation][:emergency_contact_1_family_id])
-    @reservation.families << Family.find(params[:reservation][:emergency_contact_2_family_id])
-    @reservation.customer = current_customer
+    @reservation.main_pick_up_person_family = Family.find(params[:reservation][:main_pick_up_person_family_id])
+    @reservation.emergency_contact_1_family_id = Family.find(params[:reservation][:emergency_contact_1_family_id])
+    @reservation.emergency_contact_2_family_id = Family.find(params[:reservation][:emergency_contact_2_family_id])
   end
 
   def thanks
@@ -56,7 +54,7 @@ class Customer::ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use)
+    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use, :customer_id, :facility_id, :child_id, :family_id, :menu_id)
   end
 
   #def ensure_reservation
