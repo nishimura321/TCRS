@@ -14,9 +14,9 @@ class Customer::ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.new(reservation_params)
-    #start_timeとend_timeの逆転防止のバリデーション
+    #予約日予約時間のバリデーション
     if @reservation.invalid?(:confirm)
-      flash[:notice] = "予約終了時間が開始時間よりも早い時間になっています。正しい値を入力して下さい。"
+      flash[:notice] = "予約日、予約時間の確認を行い正しい値を入力して下さい。"
       redirect_to(request.referer)
     end
     #複数のfamily_idをfamiliesに追加する処理

@@ -1,10 +1,40 @@
 class Reservation < ApplicationRecord
 
+  #予約日の選択に関するバリデーション
+  validate :date_before_start, on: :confirm
+  validate :date_current_today, on: :confirm
+  validate :date_tow_month_end, on: :confirm
   #予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :start_end_check, on: :confirm
+  #予約時間を8:30から16:30に指定するバリデーション
+  validate :time_range
+
+  def date_before_start
+    errors.add(:day, "は過去の日付は選択できません。") if day < Date.current
+  end
+
+  def date_current_today
+    errors.add(:day, "は当日は選択できません。予約画面から正しい日付を選択してください。") if day < (Date.current + 1)
+  end
+
+  def date_tow_month_end
+    next_month_end = Date.current.end_of_month.next_month
+    errors.add(:day, "は再来月以降の日付は選択できません。") if day > next_month_end
+  end
 
   def start_end_check
     errors.add(:end_time, "は開始時間より早い時間は登録できません。") unless self.start_time < self.end_time
+  end
+
+  def time_range
+    start_time = self.start_time
+    end_time = self.end_time
+    min_time = Time.new(Time.current.year, Time.current.month, Time.current.day, 8, 30)
+    max_time = Time.new(Time.current.year, Time.current.month, Time.current.day, 16, 30)
+
+    if start_time.present? && end_time.present? && (start_time < min_time || end_time > max_time)
+    errors.add(:start_time, "は8:30から16:30の間で選択してください。")
+    end
   end
 
   belongs_to :customer
