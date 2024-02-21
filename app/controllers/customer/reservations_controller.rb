@@ -1,6 +1,6 @@
 class Customer::ReservationsController < ApplicationController
   before_action :authenticate_customer!
-  #before_action :ensure_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_reservation, only: [:show, :edit, :update, :destroy]
 
   def new
     start_date = Date.current
@@ -14,10 +14,27 @@ class Customer::ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.new(reservation_params)
-    @facility = Facility.find(params[:reservation][:facility_id])
-    @reservation.main_pick_up_person_family = Family.find(params[:reservation][:main_pick_up_person_family_id])
-    @reservation.emergency_contact_1_family_id = Family.find(params[:reservation][:emergency_contact_1_family_id])
-    @reservation.emergency_contact_2_family_id = Family.find(params[:reservation][:emergency_contact_2_family_id])
+    #start_timeとend_timeの逆転防止のバリデーション
+    if @reservation.invalid?(:confirm)
+      flash[:notice] = "予約終了時間が開始時間よりも早い時間になっています。正しい値を入力して下さい。"
+      redirect_to(request.referer)
+    end
+    #複数のfamily_idをfamiliesに追加する処理
+    if params[:reservation][:main_pick_up_person_family_id].present?
+      @reservation.families << Family.find(params[:reservation][:main_pick_up_person_family_id])
+    else
+      flash[:notice] = "主な送迎者を選択して下さい。"
+      redirect_to(request.referer)
+    end
+    if params[:reservation][:emergency_contact_1_family_id].present?
+      @reservation.families << Family.find(params[:reservation][:emergency_contact_1_family_id])
+    else
+      flash[:notice] = "緊急連絡先を選択して下さい。"
+      redirect_to(request.referer)
+    end
+    if params[:reservation][:emergency_contact_2_family_id].present?
+      @reservation.families << Family.find(params[:reservation][:emergency_contact_2_family_id])
+    end
   end
 
   def thanks
@@ -54,11 +71,11 @@ class Customer::ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use, :customer_id, :facility_id, :child_id, :family_id, :menu_id)
+    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use, :customer_id, :facility_id, :child_id, :menu_id)
   end
 
-  #def ensure_reservation
-   # @reservation = Reservation.find(params[:id])
-  #end
+  def ensure_reservation
+    @reservation = Reservation.find(params[:id])
+  end
 
 end

@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
           <%= f.label :"予約希望時間", class: "font-weight-bold" %><br>
-          <%= f.time_select :start_time, { :include_blank => true, :minute_step => 30, default: f.object.day.nil? ? nil : f.object.day.to_datetime }, id: "start-time-field" %>　〜　<%= f.time_select :end_time, { :include_blank => true, :minute_step => 30, default: f.object.day.nil? ? nil : f.object.day.to_datetime }, id: "end-time-field" %>
+          <%= f.time_select :start_time, { :include_blank => true, :minute_step => 30 } %>　〜　<%= f.time_select :end_time, { :include_blank => true, :minute_step => 30 } %>
         </div>
         <div class="form-group">
           <%= f.label :select_child, "対象のお子さまを選択", class: "font-weight-bold" %><br>
@@ -57,17 +57,3 @@
     </div>
   </div>
 </div>
-<script>
-$(document).ready(function() {
-  $("#start-time-field").change(function() {
-    var selectedStartTime = new Date($(this).val());
-    var end_time_field = $("#end-time-field");
-    var selectedEndTime = new Date(end_time_field.val());
-
-    // start_timeの値より前の時間が選択されている場合、end_timeをクリアする
-    if (selectedEndTime < selectedStartTime) {
-      end_time_field.val("");
-    }
-  });
-});
-</script>

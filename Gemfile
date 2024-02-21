@@ -63,8 +63,4 @@ gem "enum_help"
 
 gem "simple_calendar"
 
-gem 'bootstrap-timepicker-rails'
-
-gem 'jquery-rails'
-
 gem 'pry-byebug'

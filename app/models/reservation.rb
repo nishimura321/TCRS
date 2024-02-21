@@ -1,9 +1,16 @@
 class Reservation < ApplicationRecord
 
+  #予約時間のstart_timeとend_timeの逆転防止のバリデーション
+  validate :start_end_check, on: :confirm
+
+  def start_end_check
+    errors.add(:end_time, "は開始時間より早い時間は登録できません。") unless self.start_time < self.end_time
+  end
+
   belongs_to :customer
   belongs_to :child
-  belongs_to :facilities
-  belongs_to :menus
+  belongs_to :facility
+  belongs_to :menu, optional: true
   has_many :families_reservations, dependent: :destroy
   has_many :families, through: :families_reservations
 

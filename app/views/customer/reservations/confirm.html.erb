@@ -3,7 +3,7 @@
    <div class="mx-auto">
      <h2 class="font-weight-bold">予約情報確認</h2>
       <p class="font-weight-bold">【予約内容】</p>
-       <table class ="table boder">
+       <table class ="table border">
          <tbody>
            <tr>
              <th>利用希望日時</th>
@@ -11,7 +11,7 @@
            </tr>
            <tr>
              <th>施設名</th>
-             <td><%= @facility.name %></td>
+             <td><%= @reservation.facility.name %></td>
            </tr>
            <tr>
              <th>給食の有無</th>
@@ -103,9 +103,20 @@
             <th>連絡先</th>
           </tr>
           <tr>
-            <td><%= @reservation.main_pick_up_person_family.last_name %><%= @reservation.main_pick_up_person_family.first_name %></td>
-            <td><%= @reservation.main_pick_up_person_family.relationship %></td>
-            <td><%= @reservation.main_pick_up_person_family.telephone_number %></td>
+            <td><%= @reservation.families.first.last_name %><%= @reservation.families.first.first_name %></td>
+            <td><% if @reservation.families.first.mother? %>
+                <%= I18n.t("enums.family.relationship.mother") %>
+                <% elsif @reservation.families.first.father? %>
+                <%= I18n.t("enums.family.relationship.father") %>
+                <% elsif @reservation.families.first.grandmother? %>
+                <%= I18n.t("enums.family.relationship.grandmother") %>
+                <% elsif @reservation.families.first.grandfather? %>
+                <%= I18n.t("enums.family.relationship.grandfather") %>
+                <% elsif @reservation.families.first.other? %>
+                <%= I18n.t("enums.family.relationship.other") %>
+                <% end %>
+            </td>
+            <td><%= @reservation.families.first.telephone_number %></td>
           </tr>
         </tbody>
       </table>
@@ -117,18 +128,29 @@
             <th>続柄</th>
             <th>連絡先</th>
           </tr>
-          <% @reservation.emergency_contacts.each do |emergency_contact| %>
+          <% @reservation.families.last(@reservation.families.size == 3 ? 2:1).each do |emergency_contact| %>
           <tr>
-            <td><%= emergency_contact.family.family_name %></td>
-            <td><%= emergency_contact.family.relationship %></td>
-            <td><%= emergency_contact.family.telephone_number %></td>
+            <td><%= emergency_contact.family_name %></td>
+            <td><% if emergency_contact.mother? %>
+                <%= I18n.t("enums.family.relationship.mother") %>
+                <% elsif emergency_contact.father? %>
+                <%= I18n.t("enums.family.relationship.father") %>
+                <% elsif emergency_contact.grandmother? %>
+                <%= I18n.t("enums.family.relationship.grandmother") %>
+                <% elsif emergency_contact.grandfather? %>
+                <%= I18n.t("enums.family.relationship.grandfather") %>
+                <% elsif emergency_contact.other? %>
+                <%= I18n.t("enums.family.relationship.other") %>
+                <% end %>
+            </td>
+            <td><%= emergency_contact.telephone_number %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
 
       <%= form_with model: @reservation, url: reservations_path, method: :post do |f| %>
-
+      <%= f.hidden_field :menu_id, :value => menu_id %>
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %><%= f.submit '予約を確定する', class: "btn btn-outline-warning px-4" %>
       <% end %>
     </div>
