@@ -5,5 +5,7 @@ class Facility < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :reservations, dependent: :destroy
+  has_many :facilities_menus, dependent: :destroy
+  has_many :menus, through: :facilities_menus
 
 end

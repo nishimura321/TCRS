@@ -8,6 +8,7 @@ class Facility::MenusController < ApplicationController
 
   def create
     @menu = Menu.new(menu_params)
+    @menu.facilities << Facility.find(params[:menu][:facility_id])
     if @menu.save
       flash[:notice] = "献立の登録が完了しました。"
       redirect_to facility_menus_path
@@ -18,7 +19,7 @@ class Facility::MenusController < ApplicationController
   end
 
   def index
-    @menus = Menu.all
+    @menus = current_facility.menus
   end
 
   def edit

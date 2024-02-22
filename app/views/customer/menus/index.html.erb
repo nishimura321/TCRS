@@ -1,2 +1,38 @@
-<h1>Customer::Menus#index</h1>
-<p>Find me in app/views/customer/menus/index.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+    <h2 class="font-weight-bold mb-5"><%= @facility.name>献立一覧</h2>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <table class="table border border-black">
+        <thead>
+          <tr class="table-secondary">
+            <th class="align-middle", style="width: 20%;">日付</th>
+            <th class="align-middle", style="width: 25%;">給食</th>
+            <th class="align-middle", style="width: 22%;">おやつ</th>
+            <th class="align-middle", style="width: 33%;">食材</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @menus.each do |menu| %>
+          <tr>
+            <td class="align-middle", style="width: 20%;"><%= menu.date.strftime('%Y年%m月%d日 ') %><%= japanese_day(menu.date) %></td>
+            <td class="align-middle", style="width: 25%;"><%= menu.school_lunch %></td>
+            <td class="align-middle", style="width: 22%;"><%= menu.snack %></td>
+            <td class="align-middle", style="width: 33%;"><%= menu.ingredient %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="mx-auto">
+    <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+    </div>
+  </div>
+</div>
