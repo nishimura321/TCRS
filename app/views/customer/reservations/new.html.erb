@@ -4,6 +4,17 @@
     <h2 class="font-weight-bold"><%= @facility.name %>予約</h2>
     </div>
 
+    <% if @reservation.errors.any? %>
+    <div class="col-10 mx-auto alert alert-danger" role="alert">
+      <%= @reservation.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
     <div class="col-12 mt-3 mb-5">
       <%= week_calendar events: @reservations do |date, reservations| %>
         <%= date.day %>

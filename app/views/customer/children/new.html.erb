@@ -3,6 +3,7 @@
     <div class="mx-auto">
     <h2 class="font-weight-bold">お子さま情報登録</h2><br>
 
+    <div class="col-10 mx-auto alert alert-danger" role="alert">
     <% if @child.errors.any? %>
       <%= @child.errors.count %>件のエラーが発生しました
       <ul>
@@ -10,6 +11,7 @@
         <li><%= message %></li>
         <% end %>
       </ul>
+    </div>
     <% end %>
 
     <%= form_with model: @child, url: children_path, method: :post do |f| %>

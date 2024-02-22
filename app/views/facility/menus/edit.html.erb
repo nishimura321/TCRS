@@ -4,16 +4,46 @@
     <h2 class="font-weight-bold mb-5">献立編集</h2>
     </div>
   </div>
-  
+
+    <div class="row">
+    <% if @menu.errors.any? %>
+    <div class="col-10 mx-auto alert alert-danger" role="alert">
+      <%= @menu.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @menu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+
   <div class="row">
     <div class="col-8 mx-auto">
-      
+        <%= form_with model: @menu, url: facility_menu_path(@menu.id), method: :patch do |f| %>
+      <div class="form-group">
+        <%= f.label :"日付", class: "font-weight-bold" %><br>
+        <%= f.date_select :date, {start_year: Date.current.year, end_year: Date.current.year + 10, prompt: { year: '年', month: '月', day: '日' }}, value: f.object.date %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"給食", class: "font-weight-bold" %><br>
+        <%= f.text_area :school_lunch, class: "form-control", value: f.object.school_lunch %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"おやつ", class: "font-weight-bold" %><br>
+        <%= f.text_field :snack, class: "form-control", value: f.object.snack %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"食材", class: "font-weight-bold" %><br>
+        <%= f.text_area :ingredient, class: "form-control", value: f.object.ingredient %>
+      </div><br>
     </div>
   </div>
 
   <div class="row">
     <div class="mx-auto">
-      
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %><%= f.submit "献立を修正", class: "font-weight-bold btn btn-warning px-4" %>
+      <% end %><br><br>
     </div>
   </div>
 </div>

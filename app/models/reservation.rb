@@ -1,5 +1,11 @@
 class Reservation < ApplicationRecord
 
+  validates :day, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :wants_meal_service, inclusion: { in: [true, false] }
+  validates :purpose_of_use, presence: true
+
   #予約日の選択に関するバリデーション
   validate :date_before_start, on: :confirm
   validate :date_current_today, on: :confirm

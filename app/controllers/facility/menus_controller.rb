@@ -25,20 +25,29 @@ class Facility::MenusController < ApplicationController
   end
 
   def update
+    if @menu.update(menu_params)
+      flash[:notice] = "献立の修正が完了しました。"
+      redirect_to facility_menus_path
+    else
+      flash.now[:notice] = "献立の修正ができませんでした。"
+      render 'edit'
+    end
   end
-  
+
   def destroy
-    
+    menu = Menu.find(params[:id])
+    menu.destroy
+    redirect_to facility_menus_path
   end
-  
+
   private
-  
+
   def menu_params
     params.require(:menu).permit(:date, :school_lunch, :snack, :ingredient)
   end
-  
+
   def ensure_menu
     @menu = Menu.find(params[:id])
   end
-  
+
 end
