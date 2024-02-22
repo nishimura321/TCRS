@@ -15,14 +15,14 @@
       <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
         <div class="form-group">
           <%= f.label :"予約希望日", class: "font-weight-bold" %><br>
-          <%= f.date_select :day, class: "form-control" %>
+          <%= f.date_select :day, {prompt: { year: '年', month: '月', day: '日' }} %>
         </div>
         <div class="form-group">
           <%= f.label :"予約希望時間", class: "font-weight-bold" %><br>
           <%= f.time_select :start_time, { :include_blank => true, :minute_step => 30, :min => "8:30", :max => "16:30" } %>　〜　<%= f.time_select :end_time, { :include_blank => true, :minute_step => 30, :min => "8:30", :max => "16:30" } %>
         </div>
         <div class="form-group">
-          <%= f.label :select_child, "対象のお子さまを選択", class: "font-weight-bold" %><br>
+          <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><br>
           <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name), include_blank: "-- 選択してください --", class: "form-control" %>
         </div>
         <div class="form-group">

@@ -30,6 +30,7 @@
 ・実装機能リスト  https://docs.google.com/spreadsheets/d/1Ft4XQZCV7slZh1OGTch3gbak5ZjF0rjE9OUUDS_Gfp8/edit?usp=sharing  
 ・UI Flows  https://drive.google.com/file/d/16DKqHSTQTgaerYDS6Ay05oCYgRJbtAKX/view?usp=sharing  
 ・ワイヤーフレーム  https://drive.google.com/file/d/1PB3ORD8jAVoukndEmcC454YT3lU0HTaX/view?usp=sharing  
+・ER図  https://drive.google.com/file/d/1sOozJ7w5vr82AcZISbOMZCjJshrVAYkB/view?usp=sharing 
 ・テーブル定義書  https://docs.google.com/spreadsheets/d/1tTEst9zKAuIAK-PX-BdFp59nKNd5-tXG2KXNMbY19v4/edit?usp=sharing  
 ・アプリケーション詳細設計書  https://docs.google.com/spreadsheets/d/1asoRgeS0yECLhBVvLtCLB974ZQ6sQ1CuIal3uQ9hSEk/edit?usp=sharing 
 

@@ -7,7 +7,7 @@ class Reservation < ApplicationRecord
   #予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :start_end_check, on: :confirm
   #予約時間を8:30から16:30に指定するバリデーション
-  validate :time_range
+  validate :time_range, on: :confirm
 
   def date_before_start
     errors.add(:day, "は過去の日付は選択できません。") if day < Date.current

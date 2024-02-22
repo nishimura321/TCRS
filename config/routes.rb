@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     resources :facilities, only: [:show, :edit, :update]
     resources :customers, only: [:show, :create]
     get '/search' => 'searches#search'
-    resources :menus, only: [:new, :create, :index, :edit, :update]
+    resources :menus, only: [:new, :create, :index, :edit, :update, :destroy]
   end
 
   #管理者用
