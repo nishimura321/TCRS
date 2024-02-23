@@ -19,7 +19,7 @@ class Facility::MenusController < ApplicationController
   end
 
   def index
-    @menus = current_facility.menus
+    @menus = current_facility.menus.page(params[:page])
   end
 
   def edit

@@ -2,73 +2,83 @@
   <div class="row">
     <div class="mx-auto">
       <h3 class="mb-3 font-weight-bold">マイページ</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto">
       <%= link_to "修正", edit_facility_facility_path(@facility), class: "btn btn-warning px-4" %><br><br>
-      <table class="table">
+      <table class="table border border-black">
         <tbody>
           <tr>
-            <th>施設名</th>
+            <th class="table-secondary">施設名</th>
             <td><%= @facility.name %></td>
           </tr>
           <tr>
-            <th>フリガナ</th>
+            <th class="table-secondary">フリガナ</th>
             <td><%= @facility.name_kana %></td>
           </tr>
           <tr>
-            <th>住所</th>
+            <th class="table-secondary">住所</th>
             <td>〒<%= @facility.postal_code %><br>
                 <%= @facility.address %>
             </td>
           </tr>
           <tr>
-            <th>電話番号</th>
+            <th class="table-secondary">電話番号</th>
             <td><%= @facility.telephone_number %></td>
           </tr>
           <tr>
-            <th>メールアドレス</th>
+            <th class="table-secondary">メールアドレス</th>
             <td><%= @facility.email %></td>
           </tr>
           <tr>
-            <th>HP</th>
+            <th class="table-secondary">HP</th>
             <td><%= @facility.website %></td>
           </tr>
           <tr>
-            <th>営業日</th>
+            <th class="table-secondary">営業日</th>
             <td><%= @facility.business_day %></td>
           </tr>
           <tr>
-            <th>営業時間</th>
+            <th class="table-secondary">営業時間</th>
             <td><%= @facility.business_hours %></td>
           </tr>
           <tr>
-            <th>問い合わせ時間</th>
+            <th class="table-secondary">問い合わせ時間</th>
             <td><%= @facility.inquiry_hours %></td>
           </tr>
           <tr>
-            <th>休園日</th>
+            <th class="table-secondary">休園日</th>
             <td><%= @facility.closed_day %></td>
           </tr>
           <tr>
-            <th>保育時間</th>
+            <th class="table-secondary">保育時間</th>
             <td><%= @facility.childcare_hours %></td>
           </tr>
           <tr>
-            <th>受け入れ年齢</th>
+            <th class="table-secondary">受け入れ年齢</th>
             <td><%= @facility.target_age %></td>
           </tr>
           <tr>
-            <th>給食の有無</th>
+            <th class="table-secondary">給食の有無</th>
             <td><%= @facility.school_meal %></td>
           </tr>
           <tr>
-            <th>利用料金</th>
+            <th class="table-secondary">利用料金</th>
             <td><%= @facility.fee %></td>
           </tr>
           <tr>
-            <th>施設からのメッセージ</th>
+            <th class="table-secondary">施設からのメッセージ</th>
             <td><%= @facility.message %></td>
           </tr>
         </tbody>
       </table><br><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
       <%= link_to "予約状況を確認", facility_reservations_situation_path(@facility.id), class: "btn btn-warning px-4 mr-5" %>
       <%= link_to "献立一覧", facility_menus_path, class: "btn btn-warning px-4" %><br><br>

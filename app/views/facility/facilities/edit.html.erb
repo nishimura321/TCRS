@@ -1,40 +1,95 @@
 <div class="container mt-5">
   <div class="row">
     <div class="mx-auto">
-      <h3 class="mx-5 mb-3">施設情報編集</h3>
+      <h3 class="mx-5 mb-3 font-weight-bold">施設情報編集</h3>
+    </div>
+  </div>
+
+    <div class="row">
+    <% if @facility.errors.any? %>
+    <div class="col-10 mx-auto alert alert-danger" role="alert">
+      <%= @facility.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @facility.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-10 mx-auto">
       <%= form_with model: @facility, url: facility_facility_path(@facility), method: :patch do |f| %>
-        <%= f.label :name, "施設名" %><br>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %><br>
-        <%= f.label :name_kana, "フリガナ" %><br>
-        <%= f.text_field :name_kana, autocomplete: "name_kana", class: "form-control" %><br>
-        <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><br>
-        <%= f.text_field :postal_code, autocomplete: "postal-code", class: "form-control" %><br>
-        <%= f.label :address, "住所" %><br>
-        <%= f.text_field :address, autocomplete: "address-line1", class: "form-control" %><br>
-        <%= f.label :telephone_number, "電話番号(ハイフンなし)" %><br>
-        <%= f.text_field :telephone_number, autocomplete: "tel", class: "form-control" %><br>
-        <%= f.label :email, "メールアドレス" %><br>
-        <%= f.email_field :email, autocomplete: "email", class: "form-control" %><br>
-        <%= f.label :website, "HP" %><br>
-        <%= f.text_field :website, class: "form-control" %><br>
-        <%= f.label :business_day, "営業日" %><br>
-        <%= f.text_field :business_day, class: "form-control" %><br>
-        <%= f.label :business_hours, "営業時間" %><br>
-        <%= f.text_field :business_hours, class: "form-control" %><br>
-        <%= f.label :inquiry_hours, "問い合わせ時間" %><br>
-        <%= f.text_field :inquiry_hours, class: "form-control" %><br>
-        <%= f.label :closed_day, "休園日" %><br>
-        <%= f.text_field :closed_day, class: "form-control" %><br>
-        <%= f.label :childcare_hours, "保育時間" %><br>
-        <%= f.text_field :childcare_hours, class: "form-control" %><br>
-        <%= f.label :target_age, "受け入れ年齢" %><br>
-        <%= f.text_field :target_age, class: "form-control" %><br>
-        <%= f.label :school_meal, "給食の有無" %><br>
-        <%= f.text_field :school_meal, class: "form-control" %><br>
-        <%= f.label :fee, "利用料金" %><br>
-        <%= f.text_field :fee, class: "form-control" %><br>
-        <%= f.label :message, "施設からのメッセージ" %><br>
-        <%= f.text_area :message, class: "form-control" %><br>
+        <div class="form-group">
+          <%= f.label :name, "施設名", class: "font-weight-bold" %><br>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :name_kana, "フリガナ", class: "font-weight-bold" %><br>
+          <%= f.text_field :name_kana, autocomplete: "name_kana", class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "font-weight-bold" %><br>
+          <%= f.text_field :postal_code, autocomplete: "postal-code", class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :address, "住所", class: "font-weight-bold" %><br>
+          <%= f.text_field :address, autocomplete: "address-line1", class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :telephone_number, "電話番号(ハイフンなし)", class: "font-weight-bold" %><br>
+          <%= f.text_field :telephone_number, autocomplete: "tel", class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, "メールアドレス", class: "font-weight-bold" %><br>
+          <%= f.email_field :email, autocomplete: "email", class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :website, "HP", class: "font-weight-bold" %><br>
+          <%= f.text_field :website, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :business_day, "営業日", class: "font-weight-bold" %><br>
+          <%= f.text_field :business_day, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :business_hours, "営業時間", class: "font-weight-bold" %><br>
+          <%= f.text_field :business_hours, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :inquiry_hours, "問い合わせ時間", class: "font-weight-bold" %><br>
+          <%= f.text_field :inquiry_hours, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :closed_day, "休園日", class: "font-weight-bold" %><br>
+          <%= f.text_field :closed_day, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :childcare_hours, "保育時間", class: "font-weight-bold" %><br>
+          <%= f.text_field :childcare_hours, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :target_age, "受け入れ年齢", class: "font-weight-bold" %><br>
+          <%= f.text_field :target_age, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :school_meal, "給食の有無", class: "font-weight-bold" %><br>
+          <%= f.text_field :school_meal, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :fee, "利用料金", class: "font-weight-bold" %><br>
+          <%= f.text_field :fee, class: "form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :message, "施設からのメッセージ", class: "font-weight-bold" %><br>
+          <%= f.text_area :message, class: "form-control" %><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mx-auto">
         <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
         <%= f.submit "修正", class: "btn btn-warning px-4" %>
       <% end %><br><br>

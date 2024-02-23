@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="row mt-5">
+  <div class="row mt-3">
     <div class="col-12 mx-auto">
       <table class="table border border-black">
         <thead>
@@ -43,7 +43,8 @@
 
   <div class="row mt-5">
     <div class="mx-auto">
-    <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+      <%= paginate @menus %><br><br>
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
     </div>
   </div>
 </div>

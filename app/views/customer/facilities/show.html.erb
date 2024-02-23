@@ -3,7 +3,7 @@
     <div class="mx-auto">
     <h2 class="font-weight-bold"><%= @facility.name %>詳細</h2><br>
 
-      <table class="table">
+      <table class="table border border-black">
         <tbody>
           <tr>
             <th>施設名</th>
@@ -59,7 +59,7 @@
             <th>給食の有無</th>
             <td>
               <%= @facility.school_meal %>
-              <%= link_to "献立を見る", menus_path(@facility), class: "btn btn-warning px-4" %>
+              <%= link_to "献立を見る", menus_path(facility_id: @facility.id), class: "btn btn-warning px-4" %>
             </td>
           </tr>
           <tr>
