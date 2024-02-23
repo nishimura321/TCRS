@@ -1,17 +1,25 @@
 <div class="container mt-5">
   <div class="row">
     <div class="mx-auto">
-    <h2 class="font-weight-bold">お子さまの家族編集</h2><br>
+    <h2 class="font-weight-bold mb-5">お子さまの家族編集</h2>
+    </div>
+  </div>
 
+  <div class="row">
     <% if @family.errors.any? %>
+    <div class="col-10 mx-auto alert alert-danger" role="alert">
       <%= @family.errors.count %>件のエラーが発生しました
       <ul>
         <% @family.errors.full_messages.each do |message| %>
         <li><%= message %></li>
         <% end %>
       </ul>
+    </div>
     <% end %>
+  </div>
 
+  <div class="row">
+    <div class="col-8 mx-auto">
     <%= form_with model: @family, url: family_path(@family), method: :patch do |f| %>
       <p class="red">*印の項目は必須項目です。</p>
       </p>
@@ -57,6 +65,11 @@
         <%= f.label :"勤務先電話番号(ハイフンなし)", class: "font-weight-bold" %>
         <%= f.text_field :workplace_telephone_number, autocomplete: "tel", class: "form-control" %>
       </div><br><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
       <%= f.submit "修正", class: "btn btn-warning px-4 mr-5" %>
       <%= link_to "削除", family_path(@family), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-warning px-4" %>

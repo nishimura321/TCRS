@@ -3,7 +3,23 @@
     <div class="col-12 text-center">
     <h2 class="font-weight-bold"><%= @facility.name %>予約</h2>
     </div>
+  </div>
 
+  <div class="row">
+    <div class="col-12 mt-3 mb-5">
+      <%= week_calendar events: @reservations do |date, reservations| %>
+        <%= date.day %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mt-5 mx-auto">
+      <h2 class="font-weight-bold mb-5">予約情報入力</h2>
+    </div>
+  </div>
+
+  <div class="row">
     <% if @reservation.errors.any? %>
     <div class="col-10 mx-auto alert alert-danger" role="alert">
       <%= @reservation.errors.count %>件のエラーが発生しました
@@ -14,55 +30,53 @@
       </ul>
     </div>
     <% end %>
-
-    <div class="col-12 mt-3 mb-5">
-      <%= week_calendar events: @reservations do |date, reservations| %>
-        <%= date.day %>
-      <% end %>
-    </div>
-
-    <div class="mt-5 mx-auto">
-      <h2 class="font-weight-bold">予約情報入力</h2><br>
+  </div>
+  
+  <div class="row">
+    <div class="mx-auto">
       <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
-        <div class="form-group">
-          <%= f.label :"予約希望日", class: "font-weight-bold" %><br>
-          <%= f.date_select :day, {prompt: { year: '年', month: '月', day: '日' }} %>
-        </div>
-        <div class="form-group">
-          <%= f.label :"予約希望時間", class: "font-weight-bold" %><br>
-          <%= f.time_select :start_time, { :include_blank => true, :minute_step => 30, :min => "8:30", :max => "16:30" } %>　〜　<%= f.time_select :end_time, { :include_blank => true, :minute_step => 30, :min => "8:30", :max => "16:30" } %>
-        </div>
-        <div class="form-group">
-          <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><br>
-          <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name), include_blank: "-- 選択してください --", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :"給食の有無", class: "font-weight-bold" %><br>
-          <%= f.radio_button :wants_meal_service, "true" %>
-          <%= f.label :wants_meal_service_true, "あり", class: "mr-5" %>
-          <%= f.radio_button :wants_meal_service, "false" %>
-          <%= f.label :iwants_meal_service_false, "なし" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :"利用目的", class: "font-weight-bold" %><br>
-          <%= f.select :purpose_of_use, options_for_select(Reservation.purpose_of_uses.keys.map { |key| [I18n.t("enums.reservation.purpose_of_use.#{key}"), key] }, selected: @reservation.purpose_of_use), include_blank: true, class: "form-control" %><br>
-        </div>
-        <div class="form-group">
-          <%= f.label :main_pick_up_person, "主な送迎者", class: "font-weight-bold" %><br>
-          <%= f.select :main_pick_up_person_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :emergency_contact_1, "緊急連絡先１", class: "font-weight-bold" %><br>
-          <%= f.select :emergency_contact_1_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :emergency_contact_2, "緊急連絡先２", class: "font-weight-bold" %><br>
-          <%= f.select :emergency_contact_2_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
-        </div>
-        <br><br>
-        <%= f.hidden_field :facility_id, :value => @facility.id %>
-        <%= f.hidden_field :customer_id, :value => current_customer.id %>
-        <%= f.submit "入力内容の確認", class: "font-weight-bold btn btn-warning px-4" %>
+      <div class="form-group">
+        <%= f.label :"予約希望日", class: "font-weight-bold" %><br>
+        <%= f.date_select :day, {prompt: { year: '年', month: '月', day: '日' }} %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"予約希望時間", class: "font-weight-bold" %><br>
+        <%= f.time_select :start_time, { :include_blank => true, :minute_step => 30, :min => "8:30", :max => "16:30" } %>　〜　<%= f.time_select :end_time, { :include_blank => true, :minute_step => 30, :min => "8:30", :max => "16:30" } %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><br>
+        <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name), include_blank: "-- 選択してください --", class: "form-control" %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"給食の有無", class: "font-weight-bold" %><br>
+        <%= f.radio_button :wants_meal_service, "true" %>
+        <%= f.label :wants_meal_service_true, "あり", class: "mr-5" %>
+        <%= f.radio_button :wants_meal_service, "false" %>
+        <%= f.label :iwants_meal_service_false, "なし" %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"利用目的", class: "font-weight-bold" %><br>
+        <%= f.select :purpose_of_use, options_for_select(Reservation.purpose_of_uses.keys.map { |key| [I18n.t("enums.reservation.purpose_of_use.#{key}"), key] }, selected: @reservation.purpose_of_use), include_blank: true, class: "form-control" %><br>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :main_pick_up_person, "主な送迎者", class: "font-weight-bold" %><br>
+        <%= f.select :main_pick_up_person_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :emergency_contact_1, "緊急連絡先１", class: "font-weight-bold" %><br>
+        <%= f.select :emergency_contact_1_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :emergency_contact_2, "緊急連絡先２", class: "font-weight-bold" %><br>
+        <%= f.select :emergency_contact_2_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+      </div>
+    </div>
+  </div><br><br>
+  <div class="row">
+    <div class="mx-auto">
+      <%= f.hidden_field :facility_id, :value => @facility.id %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.submit "入力内容の確認", class: "font-weight-bold btn btn-warning px-4" %>
       <% end %>
       <br><br>
     </div>

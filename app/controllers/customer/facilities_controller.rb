@@ -2,7 +2,7 @@ class Customer::FacilitiesController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @facilities = Facility.all
+    @facilities = Facility.page(params[:page])
   end
 
   def show

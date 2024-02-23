@@ -12,7 +12,7 @@ class Reservation < ApplicationRecord
   validate :date_tow_month_end, on: :confirm
   #予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :start_end_check, on: :confirm
-  #予約時間を8:30から16:30に指定するバリデーション
+  #予約時間を8:30から16:30の間に指定するバリデーション
   validate :time_range, on: :confirm
 
   def date_before_start

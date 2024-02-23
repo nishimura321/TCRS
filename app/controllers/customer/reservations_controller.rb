@@ -42,6 +42,8 @@ class Customer::ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
+    start_time = DateTime.new(day(1i), day(2i), day(3i), start_time(4i), start_time(5i))
+    end_time = DateTime.new(day(1i), day(2i), day(3i), emd_time(6i), emd_time(7i))
     if @reservation.save
       flash[:notice] = "ご予約が完了しました。"
       redirect_to reservations_thanks_path

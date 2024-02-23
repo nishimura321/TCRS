@@ -1,80 +1,77 @@
 <div class="container mt-5">
   <div class="row">
     <div class="mx-auto">
-    <h2 class="font-weight-bold">施設一覧</h2><br>
+    <h2 class="font-weight-bold mb-5">施設一覧</h2>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-10 mx-auto">
     <% @facilities.each do |facility| %>
     <% if facility.is_active %>
-    <table class="table">
+    <%= link_to "詳細を見る", facility_path(facility.id), class: "btn btn-warning px-4 mb-3" %>
+    <table class="table border border-black">
         <tbody>
           <tr>
-            <th>施設名</th>
-            <td><%= facility.name %></td>
+            <th class="table-secondary align-middle">施設名</th>
+            <td class="align-middle"><%= facility.name %></td>
           </tr>
           <tr>
-            <th>フリガナ</th>
-            <td><%= facility.name_kana %></td>
+            <th class="table-secondary align-middle">フリガナ</th>
+            <td class="align-middle"><%= facility.name_kana %></td>
           </tr>
           <tr>
-            <th>住所</th>
-            <td>〒<%= facility.postal_code %><br>
+            <th class="table-secondary align-middle">住所</th>
+            <td class="align-middle">〒<%= facility.postal_code %><br>
                 <%= facility.address %>
             </td>
           </tr>
           <tr>
-            <th>電話番号</th>
-            <td><%= facility.telephone_number %></td>
+            <th class="table-secondary align-middle">電話番号</th>
+            <td class="align-middle"><%= facility.telephone_number %></td>
           </tr>
           <tr>
-            <th>メールアドレス</th>
-            <td><%= facility.email %></td>
+            <th class="table-secondary align-middle">営業日</th>
+            <td class="align-middle"><%= facility.business_day %></td>
           </tr>
           <tr>
-            <th>HP</th>
-            <td><%= facility.website %></td>
+            <th class="table-secondary align-middle">営業時間</th>
+            <td class="align-middle"><%= facility.business_hours %></td>
           </tr>
           <tr>
-            <th>営業日</th>
-            <td><%= facility.business_day %></td>
+            <th class="table-secondary align-middle">問い合わせ時間</th>
+            <td class="align-middle"><%= facility.inquiry_hours %></td>
           </tr>
           <tr>
-            <th>営業時間</th>
-            <td><%= facility.business_hours %></td>
+            <th class="table-secondary align-middle">一時預かり保育時間</th>
+            <td class="align-middle"><%= facility.childcare_hours %></td>
           </tr>
           <tr>
-            <th>問い合わせ時間</th>
-            <td><%= facility.inquiry_hours %></td>
+            <th class="table-secondary align-middle">受け入れ年齢</th>
+            <td class="align-middle"><%= facility.target_age %></td>
           </tr>
           <tr>
-            <th>休園日</th>
-            <td><%= facility.closed_day %></td>
+            <th class="table-secondary align-middle">給食の有無</th>
+            <td class="align-middle"><%= facility.school_meal %></td>
           </tr>
           <tr>
-            <th>保育時間</th>
-            <td><%= facility.childcare_hours %></td>
-          </tr>
-          <tr>
-            <th>受け入れ年齢</th>
-            <td><%= facility.target_age %></td>
-          </tr>
-          <tr>
-            <th>給食の有無</th>
-            <td><%= facility.school_meal %></td>
-          </tr>
-          <tr>
-            <th>利用料金</th>
-            <td><%= facility.fee %></td>
-          </tr>
-          <tr>
-            <th>施設からのメッセージ</th>
-            <td><%= facility.message %></td>
+            <th class="table-secondary align-middle">利用料金</th>
+            <td class="align-middle"><%= facility.fee %></td>
           </tr>
         </tbody>
-      </table><br><br>
-      <%= link_to "詳細を見る", facility_path(facility.id), class: "btn btn-warning px-4" %>
-      <br><br><br><br>
+      </table>
+      <br><br><br>
       <% end %>
       <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @facilities %>
+    </div><br><br><br>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
     </div>
   </div>
