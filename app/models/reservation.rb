@@ -16,16 +16,22 @@ class Reservation < ApplicationRecord
   validate :time_range, on: :confirm
 
   def date_before_start
-    errors.add(:day, "は過去の日付は選択できません。") if day < Date.current
+    if day.present?
+      errors.add(:day, "は過去の日付は選択できません。") if day < Date.current
+    end
   end
 
   def date_current_today
-    errors.add(:day, "は当日は選択できません。予約画面から正しい日付を選択してください。") if day < (Date.current + 1)
+    if day.present?
+      errors.add(:day, "は当日は選択できません。予約画面から正しい日付を選択してください。") if day < (Date.current + 1)
+    end
   end
 
   def date_tow_month_end
-    next_month_end = Date.current.end_of_month.next_month
-    errors.add(:day, "は再来月以降の日付は選択できません。") if day > next_month_end
+    if day.present?
+      next_month_end = Date.current.end_of_month.next_month
+      errors.add(:day, "は再来月以降の日付は選択できません。") if day > next_month_end
+    end
   end
 
   def start_end_check
@@ -35,11 +41,11 @@ class Reservation < ApplicationRecord
   def time_range
     start_time = self.start_time
     end_time = self.end_time
-    min_time = Time.new(Time.current.year, Time.current.month, Time.current.day, 8, 30)
-    max_time = Time.new(Time.current.year, Time.current.month, Time.current.day, 16, 30)
+    min_time = Time.new(1, 1, 1, 8, 30)
+    max_time = Time.new(1, 1, 1, 16, 30)
 
     if start_time.present? && end_time.present? && (start_time < min_time || end_time > max_time)
-    errors.add(:start_time, "は8:30から16:30の間で選択してください。")
+      errors.add(:start_time, "は8:30から16:30の間で選択してください。")
     end
   end
 
@@ -55,7 +61,7 @@ class Reservation < ApplicationRecord
   #当月末と来月末までの予約を取得するメソッド
   def self.reservations_for_two_months(facility_id)
     start_date = Date.current
-    end_date = start_date.end_of_month.next_month
+    end_date = start_date.next_month.end_of_month
     reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, facility_id).order(day: :desc)
 
     reservation_data = []

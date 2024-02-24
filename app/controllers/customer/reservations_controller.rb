@@ -4,12 +4,14 @@ class Customer::ReservationsController < ApplicationController
 
   def new
     start_date = Date.current
-    end_date = start_date.end_of_month.next_month
+    end_date = start_date.next_month.end_of_month
     @facility = Facility.find(params[:facility_id])
     @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
     @reservation = Reservation.new
     @children = current_customer.children
     @families = current_customer.families
+    #start_time = DateTime.new(params[:reservation]["day(1i)"].to_i, params[:reservation]["day(2i)"].to_i, params[:reservation]["day(3i)"].to_i, params[:reservation]["start_time(4i)"].to_i, params[:reservation]["start_time(5i)"].to_i)
+    #end_time = DateTime.new(params[:reservation]["day(1i)"].to_i, params[:reservation]["day(2i)"].to_i, params[:reservation]["day(3i)"].to_i, params[:reservation]["end_time(4i)"].to_i, params[:reservation]["end_time(5i)"].to_i)
   end
 
   def confirm
@@ -20,16 +22,12 @@ class Customer::ReservationsController < ApplicationController
       redirect_to(request.referer)
     end
     #複数のfamily_idをfamiliesに追加する処理
-    if params[:reservation][:main_pick_up_person_family_id].present?
+    if params[:reservation][:main_pick_up_person_family_id].present? &&
+      params[:reservation][:emergency_contact_1_family_id].present?
       @reservation.families << Family.find(params[:reservation][:main_pick_up_person_family_id])
-    else
-      flash[:notice] = "主な送迎者を選択して下さい。"
-      redirect_to(request.referer)
-    end
-    if params[:reservation][:emergency_contact_1_family_id].present?
       @reservation.families << Family.find(params[:reservation][:emergency_contact_1_family_id])
     else
-      flash[:notice] = "緊急連絡先を選択して下さい。"
+      flash[:notice] = "主な送迎者と緊急連絡先の確認を行い正しく選択して下さい。"
       redirect_to(request.referer)
     end
     if params[:reservation][:emergency_contact_2_family_id].present?
@@ -43,7 +41,7 @@ class Customer::ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     start_time = DateTime.new(day(1i), day(2i), day(3i), start_time(4i), start_time(5i))
-    end_time = DateTime.new(day(1i), day(2i), day(3i), emd_time(6i), emd_time(7i))
+    end_time = DateTime.new(day(1i), day(2i), day(3i), emd_time(4i), emd_time(5i))
     if @reservation.save
       flash[:notice] = "ご予約が完了しました。"
       redirect_to reservations_thanks_path
