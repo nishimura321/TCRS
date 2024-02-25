@@ -41,7 +41,7 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"予約希望時間", class: "font-weight-bold" %><br>
-        <%= f.time_select :start_time, { :include_blank => true, default: (@reservation.day.present? ? @reservation.day.to_time(:local) : nil) } %>　〜　<%= f.time_select :end_time, { :include_blank => true, :minute_step => 30, default: (@reservation.day.present? ? @reservation.day.to_time(:local) : nil) } %>
+        <%= f.time_select :start_time, { :include_blank => true, :minute_step => 30 } %>　〜　<%= f.time_select :end_time, { :include_blank => true, :minute_step => 30 } %>
       </div><br>
       <div class="form-group">
         <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><br>

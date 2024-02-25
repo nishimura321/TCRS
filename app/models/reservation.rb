@@ -6,14 +6,12 @@ class Reservation < ApplicationRecord
   validates :wants_meal_service, inclusion: { in: [true, false] }
   validates :purpose_of_use, presence: true
 
-  #予約日の選択に関するバリデーション
-  validate :date_before_start, on: :confirm
-  validate :date_current_today, on: :confirm
-  validate :date_tow_month_end, on: :confirm
-  #予約時間のstart_timeとend_timeの逆転防止のバリデーション
-  validate :start_end_check, on: :confirm
-  #予約時間を8:30から16:30の間に指定するバリデーション
-  validate :time_range, on: :confirm
+  validate :date_before_start #過去の日付を選択しないようにするバリデーション
+  validate :date_current_today #当日が選択できないようにするバリデーション
+  validate :date_tow_month_end #再来月以降の日付が選択できないようにするバリデーション
+  validate :start_end_check #予約時間のstart_timeとend_timeの逆転防止のバリデーション
+  validate :time_range #予約時間を8:30から16:30の間に指定するバリデーション
+  validate :child_presence #対象のお子様欄の入力を確認するバリデーション
 
   def date_before_start
     if day.present?
@@ -43,10 +41,13 @@ class Reservation < ApplicationRecord
     end_time = self.end_time
     min_time = Time.new(1, 1, 1, 8, 30)
     max_time = Time.new(1, 1, 1, 16, 30)
-
     if start_time.present? && end_time.present? && (start_time < min_time || end_time > max_time)
       errors.add(:start_time, "は8:30から16:30の間で選択してください。")
     end
+  end
+  
+  def child_presence
+    errors.add(:child_id, "を選択してください。") if child_id.blank?
   end
 
   belongs_to :customer

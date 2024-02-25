@@ -23,10 +23,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <% flash.each do |message_type, message| %>
-      <div class="flash-message <%= message_type %>"><%= message %></div>
-    <% end %>
-
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
       <% if admin_signed_in? %>
@@ -90,6 +86,16 @@
     </div>
     </nav>
   </header>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12 mx-auto">
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message alert alert-danger <%= message_type %>"><%= message %></div>
+      <% end %>
+      </div>
+    </div>
+  </div>
   <%= yield %>
 
   <div class="container mt-5">

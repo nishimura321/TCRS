@@ -5,7 +5,7 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.integer "customer_id", null: false
       t.integer "child_id", null: false
       t.integer "facility_id", null: false
-      t.integer "menu_id", null: false
+      t.integer "menu_id", null: true #menu_idはnullで入る場合があるためtrue
       t.date "day", null: false
       t.datetime "start_time", null: false
       t.datetime "end_time", null: false

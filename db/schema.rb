@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 2024_02_22_141709) do
     t.integer "customer_id", null: false
     t.integer "child_id", null: false
     t.integer "facility_id", null: false
-    t.integer "menu_id", null: false
+    t.integer "menu_id"
     t.date "day", null: false
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
