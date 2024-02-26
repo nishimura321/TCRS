@@ -14,10 +14,16 @@ class Customer::ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.new(reservation_params)
-    #カスタムバリデーションの実行処理
+    #バリデーションの実行処理
     if @reservation.invalid?
+      start_date = Date.current
+      end_date = start_date.next_month.end_of_month
+      @facility = Facility.find(@reservation.facility_id)
+      @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
+      @children = current_customer.children
+      @families = current_customer.families
       flash[:notice] = "入力内容の確認を行い正しい値を入力して下さい。"
-      redirect_to(request.referer)
+      render :new
       return
     end
     #複数のfamily_idをfamiliesに追加する処理
@@ -25,19 +31,12 @@ class Customer::ReservationsController < ApplicationController
       @reservation.families << Family.find(params[:reservation][:main_pick_up_person_family_id])
       @reservation.families << Family.find(params[:reservation][:emergency_contact_1_family_id])
     else
-      flash[:notice] = "主な送迎者と緊急連絡先の確認を行い正しく選択して下さい。"
-      redirect_to(request.referer)
+      flash[:notice] = "主な送迎者と緊急連絡先１は必ず選択して下さい。"
+      render :new
       return
     end
     if params[:reservation][:emergency_contact_2_family_id].present?
       @reservation.families << Family.find(params[:reservation][:emergency_contact_2_family_id])
-    end
-    #予約日と献立日が一致する献立IDを指定する処理
-    @menu = Menu.find_by(date: Date.parse(params[:reservation][:day]))
-    if @menu
-      @menu_id = @menu.id
-    else
-      @menu_id = nil
     end
   end
 
@@ -46,8 +45,21 @@ class Customer::ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    start_time = DateTime.new(params[:reservation]["day(1i)"].to_i, params[:reservation]["day(2i)"].to_i, params[:reservation]["day(3i)"].to_i, params[:reservation]["start_time(4i)"].to_i, params[:reservation]["start_time(5i)"].to_i)
-    end_time = DateTime.new(params[:reservation]["day(1i)"].to_i, params[:reservation]["day(2i)"].to_i, params[:reservation]["day(3i)"].to_i, params[:reservation]["end_time(4i)"].to_i, params[:reservation]["end_time(5i)"].to_i)
+    #予約時間の日付をセットする処理
+    start_date = Date.parse(params[:reservation][:day])
+    start_time = Time.zone.parse(params[:reservation][:start_time])
+    end_date = Date.parse(params[:reservation][:day])
+    end_time = Time.zone.parse(params[:reservation][:end_time])
+    #予約日と献立日が一致する献立IDをセットする処理
+    @menu = Menu.find_by(date: Date.parse(params[:reservation][:day]))
+    if @menu
+      @menu_id = @menu.id
+    else
+      @menu_id = nil
+    end
+    @reservation.families << Family.find(params[:reservation][:main_pick_up_person_family_id])
+    @reservation.families << Family.find(params[:reservation][:emergency_contact_1_family_id])
+    @reservation.families << Family.find(params[:reservation][:emergency_contact_2_family_id])
     if @reservation.save
       flash[:notice] = "ご予約が完了しました。"
       redirect_to reservations_thanks_path

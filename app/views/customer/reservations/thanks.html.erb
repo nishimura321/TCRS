@@ -1,2 +1,26 @@
-<h1>Customer::Reservations#thanks</h1>
-<p>Find me in app/views/customer/reservations/thanks.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="text-center">
+      <img src="/assets/reservation_completed.png" class="mt-5 mb-5">
+      <h1 class="font-weight-bold mb-5">予約完了</h1>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-8 mx-auto">
+      <p>
+        予約が完了しました。下記内容を必ずご確認いただき、利用予定日の3日前までに対応してください。<br><br>
+        ①マイページからご確認いただける登録されたお子さまの成育状況は内容に変更がないか確認し、変更がある場合は修正ボタンから修正をお願いします。<br><br>
+        ②給食の申込をされた場合、予約詳細ページから献立のアレルギー確認を行い同意をしていただきますようお願いします。
+      </p>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="mx-auto">
+      <%= link_to "予約する", facilities_path, class: "font-weight-bold btn btn-warning px-4 mr-5" %>
+      <%= link_to "予約を確認する", reservation_path(@reservation.id), class: "font-weight-bold btn btn-warning px-4" %>
+    </div>
+  </div>
+
+</div>

@@ -11,29 +11,29 @@ class Reservation < ApplicationRecord
   validate :date_tow_month_end #再来月以降の日付が選択できないようにするバリデーション
   validate :start_end_check #予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :time_range #予約時間を8:30から16:30の間に指定するバリデーション
-  validate :child_presence #対象のお子様欄の入力を確認するバリデーション
+  #validate :check_family_presence #主な送迎者と緊急連絡先１の入力をチェックするバリデーション
 
   def date_before_start
     if day.present?
-      errors.add(:day, "は過去の日付は選択できません。") if day < Date.current
+      errors.add(:day, "(予約日)は過去の日付は選択できません。") if day < Date.current
     end
   end
 
   def date_current_today
     if day.present?
-      errors.add(:day, "は当日は選択できません。予約画面から正しい日付を選択してください。") if day < (Date.current + 1)
+      errors.add(:day, "(予約日)は当日は選択できません。予約画面から正しい日付を選択してください。") if day < (Date.current + 1)
     end
   end
 
   def date_tow_month_end
     if day.present?
       next_month_end = Date.current.end_of_month.next_month
-      errors.add(:day, "は再来月以降の日付は選択できません。") if day > next_month_end
+      errors.add(:day, "(予約日)は再来月以降の日付は選択できません。") if day > next_month_end
     end
   end
 
   def start_end_check
-    errors.add(:end_time, "は開始時間より早い時間は登録できません。") unless self.start_time < self.end_time
+    errors.add(:end_time, "(予約終了時間)は開始時間より早い時間は登録できません。") unless self.start_time < self.end_time
   end
 
   def time_range
@@ -42,13 +42,17 @@ class Reservation < ApplicationRecord
     min_time = Time.new(1, 1, 1, 8, 30)
     max_time = Time.new(1, 1, 1, 16, 30)
     if start_time.present? && end_time.present? && (start_time < min_time || end_time > max_time)
-      errors.add(:start_time, "は8:30から16:30の間で選択してください。")
+      errors.add(:start_time, "(予約時間)は8:30から16:30の間で選択してください。")
     end
   end
-  
-  def child_presence
-    errors.add(:child_id, "を選択してください。") if child_id.blank?
-  end
+
+  #def check_family_presence
+    #if main_pick_up_person_family_id.blank?
+      #errors.add(:base, "主な送迎者は必ず選択してください")
+    #elsif emergency_contact_1_family_id.blank?
+      #errors.add(:base, "緊急連絡先1は必ず選択してください")
+    #end
+  #end
 
   belongs_to :customer
   belongs_to :child

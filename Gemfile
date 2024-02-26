@@ -64,3 +64,5 @@ gem "enum_help"
 gem "simple_calendar"
 
 gem 'pry-byebug'
+
+gem 'pry-rails'

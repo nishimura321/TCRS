@@ -6,6 +6,12 @@
   </div>
 
   <div class="row">
+    <div class="mt-5 mx-auto">
+      <img src="/assets/confirm_input_contents.png" class="mb-5">
+    </div>
+  </div>
+
+  <div class="row">
    <div class="col-8 mx-auto">
       <p class="font-weight-bold">【予約内容】</p>
        <table class ="table border border-black">
@@ -166,9 +172,9 @@
       <%= f.hidden_field :menu_id, :value => @menu_id %>
       <%= f.hidden_field :day, :value => @reservation.day %>
       <%= f.hidden_field :start_time, :value => @reservation.start_time %>
-      <%= f.hidden_field :end_time => @reservation.end_time %>
-      <%= f.hidden_field :wants_meal_servicec => @reservation.wants_meal_servicec %>
-      <%= f.hidden_field :purpose_of_use, :value = @reservation.purpose_of_use %>
+      <%= f.hidden_field :end_time, :value => @reservation.end_time %>
+      <%= f.hidden_field :wants_meal_service, :value => @reservation.wants_meal_service %>
+      <%= f.hidden_field :purpose_of_use, :value => @reservation.purpose_of_use %>
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %><%= f.submit "予約を確定する", class: "font-weight-bold btn btn-warning px-4" %>
       <% end %>
     </div>

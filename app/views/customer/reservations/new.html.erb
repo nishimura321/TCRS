@@ -15,13 +15,19 @@
 
   <div class="row">
     <div class="mt-5 mx-auto">
+      <img src="/assets/enter_required_information.png" class="mb-5">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mt-5 mx-auto">
       <h2 class="font-weight-bold mb-5">予約情報入力</h2>
     </div>
   </div>
 
   <div class="row">
     <% if @reservation.errors.any? %>
-    <div class="col-10 mx-auto alert alert-danger" role="alert">
+    <div class="col-8 mx-auto alert alert-danger" role="alert">
       <%= @reservation.errors.count %>件のエラーが発生しました
       <ul>
         <% @reservation.errors.full_messages.each do |message| %>
@@ -37,7 +43,7 @@
       <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
       <div class="form-group">
         <%= f.label :"予約希望日", class: "font-weight-bold" %><br>
-        <%= f.date_select :day, {prompt: { year: '年', month: '月', day: '日' }} %>
+        <%= f.date_select :day, {start_year: Date.current.year, end_year: Date.current.year + 10, prompt: { year: '年', month: '月', day: '日' }} %>
       </div><br>
       <div class="form-group">
         <%= f.label :"予約希望時間", class: "font-weight-bold" %><br>
