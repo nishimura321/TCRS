@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_22_141709) do
+ActiveRecord::Schema.define(version: 2024_02_27_144942) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -145,13 +145,6 @@ ActiveRecord::Schema.define(version: 2024_02_22_141709) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "families_reservations", force: :cascade do |t|
-    t.integer "family_id", null: false
-    t.integer "reservation_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "menus", force: :cascade do |t|
     t.date "date", null: false
     t.text "school_lunch", null: false
@@ -179,6 +172,7 @@ ActiveRecord::Schema.define(version: 2024_02_22_141709) do
   create_table "reservations", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "child_id", null: false
+    t.integer "family_id"
     t.integer "facility_id", null: false
     t.integer "menu_id"
     t.date "day", null: false
@@ -186,6 +180,9 @@ ActiveRecord::Schema.define(version: 2024_02_22_141709) do
     t.datetime "end_time", null: false
     t.boolean "wants_meal_service", null: false
     t.integer "purpose_of_use", null: false
+    t.integer "main_pick_up_person", null: false
+    t.integer "emergency_contact_1", null: false
+    t.integer "emergency_contact_2"
     t.boolean "is_valid_reservation", default: true, null: false
     t.boolean "is_allergy_checked", default: true, null: false
     t.datetime "created_at", precision: 6, null: false

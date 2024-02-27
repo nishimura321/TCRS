@@ -14,6 +14,11 @@ class Customer::ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.new(reservation_params)
+    @reservation.main_pick_up_person = Family.find(params[:reservation][:main_pick_up_person])
+    @reservation.emergency_contact_1 = Family.find(params[:reservation][:emergency_contact_1])
+    if params[:reservation][:emergency_contact_2].present?
+      @reservation.emergency_contact_2 = Family.find(params[:reservation][:emergency_contact_2])
+    end
     #バリデーションの実行処理
     if @reservation.invalid?
       start_date = Date.current
@@ -26,18 +31,6 @@ class Customer::ReservationsController < ApplicationController
       render :new
       return
     end
-    #複数のfamily_idをfamiliesに追加する処理
-    if params[:reservation][:main_pick_up_person_family_id].present? && params[:reservation][:emergency_contact_1_family_id].present?
-      @reservation.families << Family.find(params[:reservation][:main_pick_up_person_family_id])
-      @reservation.families << Family.find(params[:reservation][:emergency_contact_1_family_id])
-    else
-      flash[:notice] = "主な送迎者と緊急連絡先１は必ず選択して下さい。"
-      render :new
-      return
-    end
-    if params[:reservation][:emergency_contact_2_family_id].present?
-      @reservation.families << Family.find(params[:reservation][:emergency_contact_2_family_id])
-    end
   end
 
   def thanks
@@ -46,10 +39,10 @@ class Customer::ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     #予約時間の日付をセットする処理
-    start_date = Date.parse(params[:reservation][:day])
-    start_time = Time.zone.parse(params[:reservation][:start_time])
-    end_date = Date.parse(params[:reservation][:day])
-    end_time = Time.zone.parse(params[:reservation][:end_time])
+    new_start_time = @reservation.start_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
+    @reservations.start_time = new_start_time
+    new_end_time = @reservation.end_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
+    @reservations.end_time = new_end_time
     #予約日と献立日が一致する献立IDをセットする処理
     @menu = Menu.find_by(date: Date.parse(params[:reservation][:day]))
     if @menu
@@ -57,9 +50,7 @@ class Customer::ReservationsController < ApplicationController
     else
       @menu_id = nil
     end
-    @reservation.families << Family.find(params[:reservation][:main_pick_up_person_family_id])
-    @reservation.families << Family.find(params[:reservation][:emergency_contact_1_family_id])
-    @reservation.families << Family.find(params[:reservation][:emergency_contact_2_family_id])
+    @reservation.menu_id = @menu_id
     if @reservation.save
       flash[:notice] = "ご予約が完了しました。"
       redirect_to reservations_thanks_path
@@ -89,7 +80,7 @@ class Customer::ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use, :customer_id, :facility_id, :child_id, :menu_id)
+    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use, :main_pick_up_person, :emergency_contact_1, :emergency_contact_2, :customer_id, :facility_id, :child_id, :family_id)
   end
 
   def ensure_reservation

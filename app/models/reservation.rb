@@ -5,13 +5,14 @@ class Reservation < ApplicationRecord
   validates :end_time, presence: true
   validates :wants_meal_service, inclusion: { in: [true, false] }
   validates :purpose_of_use, presence: true
+  validates :main_pick_up_person, presence: true
+  validates :emergency_contact_1, presence: true
 
   validate :date_before_start #過去の日付を選択しないようにするバリデーション
   validate :date_current_today #当日が選択できないようにするバリデーション
   validate :date_tow_month_end #再来月以降の日付が選択できないようにするバリデーション
   validate :start_end_check #予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :time_range #予約時間を8:30から16:30の間に指定するバリデーション
-  #validate :check_family_presence #主な送迎者と緊急連絡先１の入力をチェックするバリデーション
 
   def date_before_start
     if day.present?
@@ -46,20 +47,11 @@ class Reservation < ApplicationRecord
     end
   end
 
-  #def check_family_presence
-    #if main_pick_up_person_family_id.blank?
-      #errors.add(:base, "主な送迎者は必ず選択してください")
-    #elsif emergency_contact_1_family_id.blank?
-      #errors.add(:base, "緊急連絡先1は必ず選択してください")
-    #end
-  #end
-
   belongs_to :customer
   belongs_to :child
+  belongs_to :family, optional: true
   belongs_to :facility
   belongs_to :menu, optional: true
-  has_many :families_reservations, dependent: :destroy
-  has_many :families, through: :families_reservations
 
   enum purpose_of_use: { atypical: 0, emergency: 1, private_business: 2}
 

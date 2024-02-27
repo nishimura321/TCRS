@@ -4,6 +4,7 @@ class CreateReservations < ActiveRecord::Migration[6.1]
 
       t.integer "customer_id", null: false
       t.integer "child_id", null: false
+      t.integer "family_id", null: false
       t.integer "facility_id", null: false
       t.integer "menu_id", null: true #menu_idはnullで入る場合があるためtrue
       t.date "day", null: false
@@ -11,6 +12,9 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.datetime "end_time", null: false
       t.boolean "wants_meal_service", null: false
       t.integer "purpose_of_use", null: false
+      t.integer "main_pick_up_person", null: false
+      t.integer "emergency_contact_1", null: false
+      t.integer "emergency_contact_2"
       t.boolean "is_valid_reservation", null: false, default: "TRUE"
       t.boolean "is_allergy_checked", null: false, default: "TRUE"
       t.timestamps

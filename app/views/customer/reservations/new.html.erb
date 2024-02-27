@@ -15,7 +15,7 @@
 
   <div class="row">
     <div class="mt-5 mx-auto">
-      <img src="/assets/enter_required_information.png" class="mb-5">
+      <img src="/assets/enter_required_information.png" class="mb-5" width="100%">
     </div>
   </div>
 
@@ -65,16 +65,16 @@
         <%= f.select :purpose_of_use, options_for_select(Reservation.purpose_of_uses.keys.map { |key| [I18n.t("enums.reservation.purpose_of_use.#{key}"), key] }, selected: @reservation.purpose_of_use), include_blank: true, class: "form-control" %><br>
       </div><br>
       <div class="form-group">
-        <%= f.label :main_pick_up_person, "主な送迎者", class: "font-weight-bold" %><br>
-        <%= f.select :main_pick_up_person_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+        <%= f.label :"主な送迎者", class: "font-weight-bold" %><br>
+        <%= f.select :main_pick_up_person, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
       </div><br>
       <div class="form-group">
-        <%= f.label :emergency_contact_1, "緊急連絡先１", class: "font-weight-bold" %><br>
-        <%= f.select :emergency_contact_1_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+        <%= f.label :"緊急連絡先１", class: "font-weight-bold" %><br>
+        <%= f.select :emergency_contact_1, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
       </div><br>
       <div class="form-group">
-        <%= f.label :emergency_contact_2, "緊急連絡先２", class: "font-weight-bold" %><br>
-        <%= f.select :emergency_contact_2_family_id, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
+        <%= f.label :"緊急連絡先２", class: "font-weight-bold" %><br>
+        <%= f.select :emergency_contact_2, options_from_collection_for_select(@families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
       </div>
     </div>
   </div><br><br>
