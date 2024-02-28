@@ -114,20 +114,20 @@
             <th class="align-middle">連絡先</th>
           </tr>
           <tr>
-            <td class="align-middle"><%= @reservation.main_pick_up_person.last_name %><%= @reservation.main_pick_up_person.first_name %></td>
-            <td class="align-middle"><% if @reservation.main_pick_up_person.mother? %>
+            <td class="align-middle"><%= @main_pick_up_person.last_name %><%= @main_pick_up_person.first_name %></td>
+            <td class="align-middle"><% if @main_pick_up_person.mother? %>
                 <%= I18n.t("enums.family.relationship.mother") %>
-                <% elsif @reservation.main_pick_up_person.father? %>
+                <% elsif @main_pick_up_person.father? %>
                 <%= I18n.t("enums.family.relationship.father") %>
-                <% elsif @reservation.main_pick_up_person.grandmother? %>
+                <% elsif @main_pick_up_person.grandmother? %>
                 <%= I18n.t("enums.family.relationship.grandmother") %>
-                <% elsif @reservation.main_pick_up_person.grandfather? %>
+                <% elsif @main_pick_up_person.grandfather? %>
                 <%= I18n.t("enums.family.relationship.grandfather") %>
-                <% elsif @reservation.main_pick_up_person.other? %>
+                <% elsif @main_pick_up_person.other? %>
                 <%= I18n.t("enums.family.relationship.other") %>
                 <% end %>
             </td>
-            <td class="align-middle"><%= @reservation.main_pick_up_person.telephone_number %></td>
+            <td class="align-middle"><%= @main_pick_up_person.telephone_number %></td>
           </tr>
         </tbody>
       </table>
@@ -140,37 +140,37 @@
             <th class="align-middle">連絡先</th>
           </tr>
           <tr>
-            <td class="align-middle"><%= @reservation.emergency_contact_1.family_name %></td>
-            <td class="align-middle"><% if @reservation.emergency_contact_1.mother? %>
+            <td class="align-middle"><%= @emergency_contact_1.family_name %></td>
+            <td class="align-middle"><% if @emergency_contact_1.mother? %>
                 <%= I18n.t("enums.family.relationship.mother") %>
-                <% elsif @reservation.emergency_contact_1.father? %>
+                <% elsif @emergency_contact_1.father? %>
                 <%= I18n.t("enums.family.relationship.father") %>
-                <% elsif @reservation.emergency_contact_1.grandmother? %>
+                <% elsif @emergency_contact_1.grandmother? %>
                 <%= I18n.t("enums.family.relationship.grandmother") %>
-                <% elsif @reservation.emergency_contact_1.grandfather? %>
+                <% elsif @emergency_contact_1.grandfather? %>
                 <%= I18n.t("enums.family.relationship.grandfather") %>
-                <% elsif @reservation.emergency_contact_1.other? %>
+                <% elsif @emergency_contact_1.other? %>
                 <%= I18n.t("enums.family.relationship.other") %>
                 <% end %>
             </td>
-            <td class="align-middle"><%= @reservation.emergency_contact_1.telephone_number %></td>
+            <td class="align-middle"><%= @emergency_contact_1.telephone_number %></td>
           </tr>
-          <% if @reservation.emergency_contact_2.present? %>
+          <% if @emergency_contact_2.present? %>
           <tr>
-            <td class="align-middle"><%= @reservation.emergency_contact_2.family_name %></td>
-            <td class="align-middle"><% if @reservation.emergency_contact_2.mother? %>
+            <td class="align-middle"><%= @emergency_contact_2.family_name %></td>
+            <td class="align-middle"><% if @emergency_contact_2.mother? %>
                 <%= I18n.t("enums.family.relationship.mother") %>
-                <% elsif @reservation.emergency_contact_2.father? %>
+                <% elsif @emergency_contact_2.father? %>
                 <%= I18n.t("enums.family.relationship.father") %>
-                <% elsif @reservation.emergency_contact_2.grandmother? %>
+                <% elsif @emergency_contact_2.grandmother? %>
                 <%= I18n.t("enums.family.relationship.grandmother") %>
-                <% elsif @reservation.emergency_contact_2.grandfather? %>
+                <% elsif @emergency_contact_2.grandfather? %>
                 <%= I18n.t("enums.family.relationship.grandfather") %>
-                <% elsif @reservation.emergency_contact_2.other? %>
+                <% elsif @emergency_contact_2.other? %>
                 <%= I18n.t("enums.family.relationship.other") %>
                 <% end %>
             </td>
-            <td class="align-middle"><%= @reservation.emergency_contact_2.telephone_number %></td>
+            <td class="align-middle"><%= @emergency_contact_2.telephone_number %></td>
           </tr>
           <% end %>
         </tbody>

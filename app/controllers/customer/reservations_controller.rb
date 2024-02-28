@@ -14,11 +14,9 @@ class Customer::ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.new(reservation_params)
-    @reservation.main_pick_up_person = Family.find(params[:reservation][:main_pick_up_person])
-    @reservation.emergency_contact_1 = Family.find(params[:reservation][:emergency_contact_1])
-    if params[:reservation][:emergency_contact_2].present?
-      @reservation.emergency_contact_2 = Family.find(params[:reservation][:emergency_contact_2])
-    end
+    #@reservation.main_pick_up_person = Family.find(params[:reservation][:main_pick_up_person]).id
+    #@reservation.emergency_contact_1 = Family.find(params[:reservation][:emergency_contact_1]).id
+    #byebug
     #バリデーションの実行処理
     if @reservation.invalid?
       start_date = Date.current
@@ -30,6 +28,11 @@ class Customer::ReservationsController < ApplicationController
       flash[:notice] = "入力内容の確認を行い正しい値を入力して下さい。"
       render :new
       return
+    end
+    @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
+    @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
+    if params[:reservation][:emergency_contact_2].present?
+      @emergency_contact_2 = Family.find(@reservation.emergency_contact_2)
     end
   end
 
