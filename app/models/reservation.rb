@@ -45,8 +45,8 @@ class Reservation < ApplicationRecord
   def time_range
     start_time = self.start_time
     end_time = self.end_time
-    min_time = Time.new(1, 1, 1, 8, 30)
-    max_time = Time.new(1, 1, 1, 16, 30)
+    min_time = Time.new(self.day.year, self.day.month, self.day.day, 8, 30)
+    max_time = Time.new(self.day.year, self.day.month, self.day.day, 16, 30)
     if start_time.present? && end_time.present? && (start_time < min_time || end_time > max_time)
       errors.add(:start_time, "(予約時間)は8:30から16:30の間で選択してください。")
     end

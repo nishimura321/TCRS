@@ -14,9 +14,11 @@ class Customer::ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.new(reservation_params)
-    #@reservation.main_pick_up_person = Family.find(params[:reservation][:main_pick_up_person]).id
-    #@reservation.emergency_contact_1 = Family.find(params[:reservation][:emergency_contact_1]).id
-    #byebug
+    #予約時間の日付をセットする処理
+    new_start_time = @reservation.start_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
+    @reservation.start_time = new_start_time
+    new_end_time = @reservation.end_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
+    @reservation.end_time = new_end_time
     #バリデーションの実行処理
     if @reservation.invalid?
       start_date = Date.current
@@ -36,16 +38,8 @@ class Customer::ReservationsController < ApplicationController
     end
   end
 
-  def thanks
-  end
-
   def create
     @reservation = Reservation.new(reservation_params)
-    #予約時間の日付をセットする処理
-    new_start_time = @reservation.start_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
-    @reservations.start_time = new_start_time
-    new_end_time = @reservation.end_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
-    @reservations.end_time = new_end_time
     #予約日と献立日が一致する献立IDをセットする処理
     @menu = Menu.find_by(date: Date.parse(params[:reservation][:day]))
     if @menu
@@ -58,9 +52,18 @@ class Customer::ReservationsController < ApplicationController
       flash[:notice] = "ご予約が完了しました。"
       redirect_to reservations_thanks_path
     else
-      flash.now[:notice] = "新規予約ができませんでした。"
-      render reservations_confirm_path
+      start_date = Date.current
+      end_date = start_date.next_month.end_of_month
+      @facility = Facility.find(@reservation.facility_id)
+      @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
+      @children = current_customer.children
+      @families = current_customer.families
+      flash.now[:notice] = "大変申し訳ございません。新規予約ができませんでした。再度予約画面から操作をお願いいたします。"
+      render :new
     end
+  end
+  
+  def thanks
   end
 
   def index
@@ -84,7 +87,7 @@ class Customer::ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use, :main_pick_up_person, :emergency_contact_1, :emergency_contact_2, :customer_id, :facility_id, :child_id, :family_id)
+    params.require(:reservation).permit(:day, :start_time, :end_time, :wants_meal_service, :purpose_of_use, :main_pick_up_person, :emergency_contact_1, :emergency_contact_2, :customer_id, :facility_id, :child_id, :family_id, :menu_id)
   end
 
   def ensure_reservation

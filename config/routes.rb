@@ -37,9 +37,9 @@ Rails.application.routes.draw do
     patch 'customers/withdrawal' => 'customers#withdrawal'
     resources :children, only: [:new, :create, :edit, :update, :destroy]
     resources :families, only: [:new, :create, :edit, :update, :destroy]
+    get 'reservations/thanks' => 'reservations#thanks'
     resources :reservations
     post 'reservations/confirm' => 'reservations#confirm'
-    get 'reservations/thanks' => 'reservations#thanks'
     get 'reservations/confirm_allergy' => 'reservations#confirm_allergy'
     resources :relationships, only: [:create, :index, :destroy]
     resources :facilities, only: [:index, :show]
