@@ -18,18 +18,18 @@ module Customer::ReservationsHelper
              "16:30"]
   end
 
-  #予約データから指定された日付と時間の予約があるかどうかをチェックするメソッド
-  def check_reservation(reservations, day, time)
-    result = false
-    reservations.each do |reservation|
-      start_time = reservation[:start_time].strftime("%H:%M")
-      end_time = reservation[:end_time].strftime("%H:%M")
-      if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time)
-        result = true
-        break
-      end
+  #予約データから指定された施設・日付・時間の予約があるかどうかをチェックするメソッド
+  def check_reservation(reservations, day, time, facility_id)
+  result = false
+  reservations.each do |reservation|
+    start_time = reservation[:start_time].strftime("%H:%M")
+    end_time = reservation[:end_time].strftime("%H:%M")
+    if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time) && reservation[:facility_id] == facility_id
+      result = true
+      break
     end
-    result
   end
-
+  result
+  end
+  
 end

@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     get '/' => 'homes#top', as: 'top'
     resources :reservations, only: [:index, :show, :edit, :update, :destroy]
     get 'reservations/situation' => 'reservations#situation'
-    resources :reservation_conditions, only: [:new, :create]
+    resources :reservation_conditions, only: [:new, :create, :index, :edit, :update, :destroy]
     resources :facilities, only: [:show, :edit, :update]
     resources :customers, only: [:show, :create]
     get '/search' => 'searches#search'

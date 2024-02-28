@@ -40,13 +40,19 @@
           <tr>
             <td><%= time %></td>
             <% week.each do |day| %>
-              <td>
-                <% if check_reservation(reservations, day, time) %>
-                  <%= '×' %>
-                <% else %>
-                  <%= '○' %>
-                <% end %>
-              </td>
+            <% if day.wday == 0 || day.wday == 6 %>
+            <td>
+              <%= '×' %>
+            </td>
+            <% else %>
+            <td>
+              <% if check_reservation(reservations, day, time, @facility_id) %>
+                <%= '×' %>
+              <% else %>
+                <%= '○' %>
+              <% end %>
+            </td>
+            <% end %>
             <% end %>
           </tr>
         <% end %>

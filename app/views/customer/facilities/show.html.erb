@@ -5,6 +5,19 @@
     </div>
   </div>
 
+<div class="row">
+    <div class="mt-3 mx-auto">
+      <h2 class="font-weight-bold">予約状況</h2><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mx-auto mb-5">
+      <%= week_calendar events: @reservations do |date, reservations| %>
+        <%= date.day %>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-11 mx-auto">
       <table class="table border border-black">
@@ -76,19 +89,6 @@
           </tr>
         </tbody>
       </table><br><br>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="mt-3 mx-auto">
-      <h2 class="font-weight-bold">予約状況</h2><br>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12 mx-auto mb-5">
-      <%= week_calendar events: @reservations do |date, reservations| %>
-        <%= date.day %>
-      <% end %>
     </div>
   </div>
 

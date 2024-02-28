@@ -1,2 +1,33 @@
-<h1>Facility::ReservationConditions#new</h1>
-<p>Find me in app/views/facility/reservation_conditions/new.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 text-center">
+    <h2 class="font-weight-bold mb-5"><%= @facility.name %>予約カレンダー詳細設定</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <%= form_with model: @reservation_onditions, url: reservations_confirm_path, method: :post do |f| %>
+      <div class="form-group">
+        <%= f.label :"予約不可日", class: "font-weight-bold" %><br>
+        <%= f.date_select :unavailable_days, {start_year: Date.current.year, end_year: Date.current.year + 10, prompt: { year: '年', month: '月', day: '日' }} %>
+      </div><br><br>
+      <div class="form-group">
+        <%= f.label :"予約不可時間", class: "font-weight-bold" %><br>
+        <%= f.time_select :unavailable_times, { :include_blank => true, :minute_step => 30 } %>
+      </div><br><br>
+      <div class="form-group">
+        <%= f.label :"予約人数上限", class: "font-weight-bold" %><br>
+        <%= f.number_field :maximum_number_of_people, class: "form-control" %>
+      </div><br><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= f.hidden_field :facility_id, :value => current_facility.id %>
+      <%= f.submit "条件登録", class: "font-weight-bold btn btn-warning px-4" %>
+      <% end %>
+    </div>
+  </div>
+  <br><br><br>
+</div>
