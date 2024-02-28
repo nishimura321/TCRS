@@ -61,6 +61,7 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def index
+    @reservations = current_customer.reservation.page(params[:page])
   end
 
   def show

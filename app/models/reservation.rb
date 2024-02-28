@@ -11,6 +11,7 @@ class Reservation < ApplicationRecord
   validate :date_before_start #過去の日付を選択しないようにするバリデーション
   validate :date_current_today #当日が選択できないようにするバリデーション
   validate :date_tow_month_end #再来月以降の日付が選択できないようにするバリデーション
+  validate :no_weekend #土日は選択できないようにするバリデーション
   validate :start_end_check #予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :time_range #予約時間を8:30から16:30の間に指定するバリデーション
 
@@ -31,6 +32,10 @@ class Reservation < ApplicationRecord
       next_month_end = Date.current.end_of_month.next_month
       errors.add(:day, "(予約日)は再来月以降の日付は選択できません。") if day > next_month_end
     end
+  end
+
+  def no_weekend
+    errors.add(:day, "(予約日)は土日は選択できません。") if day.present? && (day.saturday? || day.sunday?)
   end
 
   def start_end_check

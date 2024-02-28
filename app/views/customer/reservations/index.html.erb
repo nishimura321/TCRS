@@ -1,2 +1,33 @@
-<h1>Customer::Reservations#index</h1>
-<p>Find me in app/views/customer/reservations/index.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 text-center">
+    <h2 class="font-weight-bold mb-5">予約一覧</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <table class ="table border border-black">
+        <thead>
+          <tr>
+            <th>予約日</th>
+            <th>施設名</th>
+            <th>お子さま</th>
+            <th>ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @reservations.each do |reservation| %>
+        <tbody>
+          <tr>
+            <td><%= reservation.day %></td>
+            <td><%= reservation.facilty %></td>
+            <td><%= reservation.child %></td>
+            <td><%= reservation.is_valid_reservation %></td>
+            <td><%= link_to "詳細", reservation_path, class: "btn btn-warning px-4 mr-5" %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+
+</div>
