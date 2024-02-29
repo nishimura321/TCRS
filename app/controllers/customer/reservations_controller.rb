@@ -50,7 +50,7 @@ class Customer::ReservationsController < ApplicationController
     @reservation.menu_id = @menu_id
     if @reservation.save
       flash[:notice] = "ご予約が完了しました。"
-      redirect_to reservations_thanks_path
+      redirect_to reservations_thanks_path(id: @reservation.id)
     else
       start_date = Date.current
       end_date = start_date.next_month.end_of_month
@@ -62,12 +62,13 @@ class Customer::ReservationsController < ApplicationController
       render :new
     end
   end
-  
+
   def thanks
+    @reservation = current_customer.reservations.find(params[:id])
   end
 
   def index
-    @reservations = current_customer.reservation.page(params[:page])
+    @reservations = current_customer.reservations.page(params[:page])
   end
 
   def show

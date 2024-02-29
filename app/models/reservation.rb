@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+  include HolidayConcern
 
   validates :day, presence: true
   validates :start_time, presence: true
@@ -12,6 +13,7 @@ class Reservation < ApplicationRecord
   validate :date_current_today #当日が選択できないようにするバリデーション
   validate :date_tow_month_end #再来月以降の日付が選択できないようにするバリデーション
   validate :no_weekend #土日は選択できないようにするバリデーション
+  validate :no_holiday #祝日は選択できないようにするバリデーション
   validate :start_end_check #予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :time_range #予約時間を8:30から16:30の間に指定するバリデーション
 
@@ -36,6 +38,10 @@ class Reservation < ApplicationRecord
 
   def no_weekend
     errors.add(:day, "(予約日)は土日は選択できません。") if day.present? && (day.saturday? || day.sunday?)
+  end
+
+  def no_holiday
+    errors.add(:day, "(予約日)は祝日は選択できません。") if day.present? && is_holiday?(day)
   end
 
   def start_end_check

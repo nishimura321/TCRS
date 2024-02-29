@@ -40,9 +40,9 @@
           <tr>
             <td><%= time %></td>
             <% week.each do |day| %>
-            <% if day.wday == 0 || day.wday == 6 %>
+            <% if day.wday == 0 || day.wday == 6 || is_holiday?(day) %>
             <td>
-              <%= '×' %>
+              <%= '-' %>
             </td>
             <% else %>
             <td>

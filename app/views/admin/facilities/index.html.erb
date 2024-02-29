@@ -21,9 +21,9 @@
             <td><%= facility.email %></td>
             <td><%= facility.telephone_number %></td>
             <td><% if facility.is_active %>
-            <p class="text-success"><strong>有効</strong></p>
+                <p class="text-success font-weight-bold">有効</p>
                 <% else %>
-                <p class="text-secondary"><strong>閉園</strong></p>
+                <p class="text-secondary font-weight-bold">閉園</p>
                 <% end %>
             </td>
           </tr>

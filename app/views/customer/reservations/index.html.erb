@@ -10,21 +10,26 @@
       <table class ="table border border-black">
         <thead>
           <tr>
-            <th>予約日</th>
-            <th>施設名</th>
-            <th>お子さま</th>
-            <th>ステータス</th>
-            <th></th>
+            <th class="table-secondary align-middle", style="width: 25%;">予約日</th>
+            <th class="table-secondary align-middle", style="width: 25%;">施設名</th>
+            <th class="table-secondary align-middle", style="width: 20%;">お子さま</th>
+            <th class="table-secondary align-middle", style="width: 15%;">ステータス</th>
+            <th class="table-secondary align-middle", style="width: 15%;"></th>
           </tr>
         </thead>
         <% @reservations.each do |reservation| %>
         <tbody>
           <tr>
-            <td><%= reservation.day %></td>
-            <td><%= reservation.facilty %></td>
-            <td><%= reservation.child %></td>
-            <td><%= reservation.is_valid_reservation %></td>
-            <td><%= link_to "詳細", reservation_path, class: "btn btn-warning px-4 mr-5" %></td>
+            <td class="align-middle", style="width: 25%;"><%= reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(reservation.day) %></td>
+            <td class="align-middle", style="width: 25%;"><%= reservation.facility.name %></td>
+            <td class="align-middle", style="width: 20%;"><%= reservation.child.last_name %><%= reservation.child.first_name %></td>
+            <td class="align-middle", style="width: 15%;"><% if reservation.is_valid_reservation %>
+                <p class="text-success font-weight-bold">確定</p>
+                <% else %>
+                <p class="text-secondary font-weight-bold">キャンセル</p>
+                <% end %>
+            </td>
+            <td class="align-middle", style="width: 15%;"><%= link_to "詳細", reservation_path(reservation.id), class: "btn btn-warning px-3" %></td>
           </tr>
         </tbody>
         <% end %>

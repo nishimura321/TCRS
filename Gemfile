@@ -66,3 +66,5 @@ gem "simple_calendar"
 gem 'pry-byebug'
 
 gem 'pry-rails'
+
+gem 'holiday_japan'

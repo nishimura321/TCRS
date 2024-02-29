@@ -23,5 +23,5 @@ class Facility < ApplicationRecord
   validates :school_meal, presence: true
   validates :fee, presence: true
   validates :message, presence: true
-  
+
 end
