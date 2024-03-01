@@ -114,7 +114,7 @@
             <th class="align-middle">連絡先</th>
           </tr>
           <tr>
-            <td class="align-middle"><%= @main_pick_up_person.last_name %><%= @main_pick_up_person.first_name %></td>
+            <td class="align-middle"><%= @main_pick_up_person.family_name %></td>
             <td class="align-middle"><% if @main_pick_up_person.mother? %>
                 <%= I18n.t("enums.family.relationship.mother") %>
                 <% elsif @main_pick_up_person.father? %>

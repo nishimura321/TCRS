@@ -74,6 +74,11 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def show
+    @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
+    @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
+    if params[:reservation][:emergency_contact_2].present?
+      @emergency_contact_2 = Family.find(@reservation.emergency_contact_2)
+    end
   end
 
   def confirm_allergy
@@ -94,7 +99,7 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def ensure_reservation
-    @reservation = Reservation.find(params[:id])
+    @reservation = current_customer.reservations.find(params[:id])
   end
 
 end
