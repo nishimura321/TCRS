@@ -69,14 +69,6 @@ class Reservation < ApplicationRecord
     errors.add(:day, "祝日は選択できません。") if day.present? && is_holiday?(day)
   end
 
-  #カレンダーの×表示の日付が選択できないようにするバリデーション
-  validate :check_reservation_count
-  def check_reservation_count
-     if Customer::ReservationsHelper.check_reservation(Reservation.all, day, time, facility_id)
-       errors.add(:day, "この日付は予約がいっぱいです。")
-     end
-  end
-
   #予約希望日の入力を確認するバリデーション(27行目だけでは不足するため追加)
   validate :validate_date
   def validate_date
@@ -103,12 +95,38 @@ class Reservation < ApplicationRecord
   #予約時間を8:30から16:30の間に指定するバリデーション
   validate :time_range
   def time_range
+    if self.day.nil? || self.start_time.nil? || self.end_time.nil?
+      errors.add(:base, "予約希望日時を正しく選択してください")
+      return
+    end
+
     start_time = self.start_time
     end_time = self.end_time
     min_time = Time.new(self.day.year, self.day.month, self.day.day, 8, 30)
     max_time = Time.new(self.day.year, self.day.month, self.day.day, 16, 30)
-    if start_time.present? && end_time.present? && (start_time < min_time || end_time > max_time)
+    if start_time < min_time || end_time > max_time
       errors.add(:start_time, "予約時間は8:30から16:30の間で選択してください。")
+    end
+  end
+
+  validate :check_reservation_count
+  def check_reservation_count
+    if self.day.nil?
+      errors.add(:base, "予約希望日時を正しく選択してください")
+      return
+    end
+
+    count = 0
+    Reservation.all.each do |reservation|
+      start_time = reservation[:start_time].strftime("%H:%M")
+      end_time = reservation[:end_time].strftime("%H:%M")
+      if reservation[:day] == day.strftime("%Y-%m-%d") && start_time <= self.start_time.strftime("%H:%M") && self.start_time.strftime("%H:%M") <= end_time && reservation[:facility_id] == facility_id
+        count += 1
+      end
+    end
+
+    if count > 1
+      errors.add(:day, "この日付は予約がいっぱいです。")
     end
   end
 

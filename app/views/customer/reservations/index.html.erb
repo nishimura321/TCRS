@@ -24,7 +24,7 @@
             <td class="align-middle", style="width: 25%;"><%= reservation.facility.name %></td>
             <td class="align-middle", style="width: 20%;"><%= reservation.child.last_name %><%= reservation.child.first_name %></td>
             <td class="align-middle", style="width: 15%;"><% if reservation.is_valid_reservation %>
-                <p class="text-success font-weight-bold">確定</p>
+                <p>確定</p>
                 <% else %>
                 <p class="text-secondary font-weight-bold">キャンセル</p>
                 <% end %>
@@ -34,5 +34,12 @@
         </tbody>
         <% end %>
       </table>
+    </div>
+  </div>
 
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+    </div>
+  </div>
 </div>
