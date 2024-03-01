@@ -15,10 +15,12 @@ class Customer::ReservationsController < ApplicationController
   def confirm
     @reservation = Reservation.new(reservation_params)
     #予約時間の日付をセットする処理
-    new_start_time = @reservation.start_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
-    @reservation.start_time = new_start_time
-    new_end_time = @reservation.end_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
-    @reservation.end_time = new_end_time
+    if @reservation.day.present?
+      new_start_time = @reservation.start_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
+      @reservation.start_time = new_start_time
+      new_end_time = @reservation.end_time.change(year: @reservation.day.year, month: @reservation.day.month, day: @reservation.day.day)
+      @reservation.end_time = new_end_time
+    end
     #バリデーションの実行処理
     if @reservation.invalid?
       start_date = Date.current

@@ -18,18 +18,23 @@ module Customer::ReservationsHelper
              "16:30"]
   end
 
-  #予約データから指定された施設・日付・時間の予約があるかどうかをチェックするメソッド
+  #予約データから指定された施設・日付・時間の予約が2件以上あるかどうかをチェックするメソッド
   def check_reservation(reservations, day, time, facility_id)
-  result = false
-  reservations.each do |reservation|
-    start_time = reservation[:start_time].strftime("%H:%M")
-    end_time = reservation[:end_time].strftime("%H:%M")
-    if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time) && reservation[:facility_id] == facility_id
-      result = true
-      break
+    count = 0
+    result = false
+    reservations.each do |reservation|
+      start_time = reservation[:start_time].strftime("%H:%M")
+      end_time = reservation[:end_time].strftime("%H:%M")
+      if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time) && reservation[:facility_id] == facility_id
+        count += 1
+      end
     end
+
+    if count > 1
+      result = true
+    end
+
+    result
   end
-  result
-  end
-  
+
 end
