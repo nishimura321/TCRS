@@ -226,10 +226,12 @@
     </div>
   </div>
 
-<div class="row mt-5">
+  <div class="row mt-5">
     <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
-      <%= link_to "修正", edit_reservation_path(@reservation.id), class: "btn btn-warning px-4" %>
+      <% if @reservation.day >= Date.today %>
+        <%= link_to "修正", edit_reservation_path(@reservation.id), class: "btn btn-warning px-4" %>
+      <% end %>
     </div>
   </div>
 </div>
