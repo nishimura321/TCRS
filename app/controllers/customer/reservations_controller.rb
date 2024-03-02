@@ -50,6 +50,10 @@ class Customer::ReservationsController < ApplicationController
       @menu_id = nil
     end
     @reservation.menu_id = @menu_id
+    #給食がなしの場合アレルギーステータスをfalseにする処理
+    if @reservation.wants_meal_service == false
+      @reservation.is_allergy_checked = false
+    end
     if @reservation.save
       flash[:notice] = "ご予約が完了しました。"
       redirect_to reservations_thanks_path(id: @reservation.id)
@@ -76,7 +80,7 @@ class Customer::ReservationsController < ApplicationController
   def show
     @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
     @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
-    if params[:reservation][:emergency_contact_2].present?
+    if @reservation.emergency_contact_2.present?
       @emergency_contact_2 = Family.find(@reservation.emergency_contact_2)
     end
   end
