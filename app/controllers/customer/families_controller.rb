@@ -30,9 +30,10 @@ class Customer::FamiliesController < ApplicationController
     end
   end
 
-  def destroy
+  def disable_family
     family = Family.find(params[:id])
-    family.destroy
+    family.update(is_active: false)
+    flash[:notice] = "指定家族情報を無効にしました。"
     redirect_to customers_mypage_path(current_customer)
   end
 

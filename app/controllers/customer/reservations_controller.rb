@@ -1,6 +1,6 @@
 class Customer::ReservationsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_reservation, only: [:show, :edit, :update]
 
   def new
     start_date = Date.current
@@ -89,12 +89,38 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def edit
+    @children = current_customer.children
+    @families = current_customer.families
+    @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
+    @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
+    if @reservation.emergency_contact_2.present?
+      @emergency_contact_2 = Family.find(@reservation.emergency_contact_2)
+    end
   end
 
   def update
+    if @reservation.update(reservation_params)
+      if params[:reservation][:wants_meal_service] == "false"
+        @reservation.update(is_allergy_checked: false)
+      elsif params[:reservation][:wants_meal_service] == "true"
+        @reservation.update(is_allergy_checked: true)
+      end
+      flash[:notice] = "修正が完了しました。"
+      redirect_to reservation_path(@reservation)
+    else
+      flash.now[:notice] = "修正の保存に失敗しました。"
+      render :edit
+    end
   end
 
-  def destroy
+  def cancel
+    reservation = Reservation.find(params[:id])
+    reservation.update(is_valid_reservation: false)
+    if params[:reservation][:wants_meal_service] == "true"
+      @reservation.update(is_allergy_checked: false)
+    end
+    flash[:notice] = "キャンセルが完了しました。"
+    redirect_to reservations_path
   end
 
   private

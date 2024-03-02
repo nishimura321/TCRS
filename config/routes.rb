@@ -35,12 +35,15 @@ Rails.application.routes.draw do
     patch 'customers/information' => 'customers#update'
     get 'customers/confirm_withdrawal' => 'customers#confirm_withdrawal'
     patch 'customers/withdrawal' => 'customers#withdrawal'
-    resources :children, only: [:new, :create, :edit, :update, :destroy]
-    resources :families, only: [:new, :create, :edit, :update, :destroy]
+    resources :children, only: [:new, :create, :edit, :update]
+    patch 'children/disable_child/:id' => 'children#disable_child', as: 'disable_child'
+    resources :families, only: [:new, :create, :edit, :update]
+    patch 'families/disable_family/:id' => 'families#disable_family', as: 'disable_family'
     get 'reservations/thanks' => 'reservations#thanks'
-    resources :reservations
+    resources :reservations, only: [:new, :create, :index, :show, :edit, :update]
     post 'reservations/confirm' => 'reservations#confirm'
     get 'reservations/confirm_allergy' => 'reservations#confirm_allergy'
+    patch 'reservations/cancel/:id' => 'reservations#cancel', as: 'reservations_cancel'
     resources :relationships, only: [:create, :index, :destroy]
     resources :facilities, only: [:index, :show]
     get '/search' => 'searches#search'
@@ -50,8 +53,9 @@ Rails.application.routes.draw do
   #施設用
   namespace :facility do
     get '/' => 'homes#top', as: 'top'
-    resources :reservations, only: [:index, :show, :edit, :update, :destroy]
+    resources :reservations, only: [:index, :show, :edit, :update]
     get 'reservations/situation' => 'reservations#situation'
+    patch 'reservations/cancel/:id' => 'reservations#cancel', as: 'reservations_cancel'
     resources :reservation_conditions, only: [:new, :create, :index, :edit, :update, :destroy]
     resources :facilities, only: [:show, :edit, :update]
     resources :customers, only: [:show, :create]

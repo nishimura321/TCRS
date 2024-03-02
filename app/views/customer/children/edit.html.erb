@@ -212,7 +212,7 @@
     <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
       <%= f.submit "修正", class: "btn btn-warning px-4 mr-5" %>
-      <%= link_to "削除", child_path(@child), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-warning px-4" %>
+      <%= link_to "無効にする", disable_child_path(@child), method: :patch, "data-confirm" => "本当に無効にしますか？", class: "btn btn-danger px-4" %>
     <% end %><br><br>
     </div>
   </div>

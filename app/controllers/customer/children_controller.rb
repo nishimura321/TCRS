@@ -34,9 +34,10 @@ class Customer::ChildrenController < ApplicationController
     end
   end
 
-  def destroy
+  def disable_child
     child = Child.find(params[:id])
-    child.destroy
+    child.update(is_active: false)
+    flash[:notice] = "指定されたお子さま情報を無効にしました。"
     redirect_to customers_mypage_path(current_customer)
   end
 

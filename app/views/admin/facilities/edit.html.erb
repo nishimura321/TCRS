@@ -37,7 +37,7 @@
         <%= f.text_area :message, class: "form-control" %><br><br>
         <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
         <%= f.submit "修正", class: "btn btn-warning px-4 mr-5" %>
-        <%= link_to "閉園", admin_facility_withdrawal_path(@facility), method: :patch, "data-confirm" => "本当に閉園処理を行いますか？", class: "btn btn-warning px-4" %>
+        <%= link_to "閉園", admin_facility_withdrawal_path(@facility), method: :patch, "data-confirm" => "本当に閉園処理を行いますか？", class: "btn btn-danger px-4" %>
       <% end %><br><br>
     </div>
   </div>
