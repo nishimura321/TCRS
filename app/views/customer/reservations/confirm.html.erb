@@ -15,39 +15,39 @@
    <div class="col-8 mx-auto">
       <p class="font-weight-bold">【予約内容】</p>
        <table class ="table border border-black">
-         <tbody>
-           <tr>
-             <th class="table-secondary align-middle", style="width: 30%;">利用希望日時</th>
-             <td class="align-middle", style="width: 70%;"><%= @reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(@reservation.day) %>　<%= @reservation.start_time.strftime('%H:%M') %>　〜　<%= @reservation.end_time.strftime('%H:%M') %></td>
-           </tr>
-           <tr>
-             <th class="table-secondary align-middle", style="width: 30%;">施設名</th>
-             <td class="align-middle", style="width: 70%;"><%= @reservation.facility.name %></td>
-           </tr>
-           <tr>
-             <th class="table-secondary align-middle", style="width: 30%;">給食の有無</th>
-             <td class="align-middle", style="width: 70%;">
-              <% if @reservation.wants_meal_service %>
-              あり
-              <% else %>
-              なし
-              <% end %>
-             </td>
-           </tr>
-           <tr>
+          <tbody>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">利用希望日時</th>
+              <td class="align-middle", style="width: 70%;"><%= @reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(@reservation.day) %>　<%= @reservation.start_time.strftime('%H:%M') %>　〜　<%= @reservation.end_time.strftime('%H:%M') %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">施設名</th>
+              <td class="align-middle", style="width: 70%;"><%= @reservation.facility.name %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">給食の有無</th>
+              <td class="align-middle", style="width: 70%;">
+                <% if @reservation.wants_meal_service %>
+                <span>あり</span>
+                <% else %>
+                <span>なし</span>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
               <th class="table-secondary align-middle", style="width: 30%;">利用目的</th>
               <td class="align-middle", style="width: 70%;">
-              <% if @reservation.atypical? %>
-              <%= I18n.t("enums.reservation.purpose_of_use.atypical") %>
-              <% elsif @reservation.emergency? %>
-              <%= I18n.t("enums.reservation.purpose_of_use.emergency") %>
-              <% elsif @reservation.private_business? %>
-              <%= I18n.t("enums.reservation.purpose_of_use.private_business") %>
-              <% end %>
-             </td>
-           </tr>
-         </tbody>
-       </table>
+                <% if @reservation.atypical? %>
+                <%= I18n.t("enums.reservation.purpose_of_use.atypical") %>
+                <% elsif @reservation.emergency? %>
+                <%= I18n.t("enums.reservation.purpose_of_use.emergency") %>
+                <% elsif @reservation.private_business? %>
+                <%= I18n.t("enums.reservation.purpose_of_use.private_business") %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       <p class="font-weight-bold mt-5">【アカウント情報】</p>
       <table class ="table border border-black">
         <tbody>

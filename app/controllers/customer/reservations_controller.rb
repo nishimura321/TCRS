@@ -86,6 +86,8 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def confirm_allergy
+    @reservation = Reservation.find(params[:reservation][:id])
+    @menu = Menu.find(@reservation.menu_id)
   end
 
   def edit

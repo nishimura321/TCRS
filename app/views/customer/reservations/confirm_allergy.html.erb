@@ -1,2 +1,54 @@
-<h1>Customer::Reservations#confirm_allergy</h1>
-<p>Find me in app/views/customer/reservations/confirm_allergy.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+    <h2 class="font-weight-bold mb-5">献立アレルギー確認</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <p>利用予定日の献立は下記の通りになります。</p>
+      <table class ="table border border-black">
+        <tbody>
+          <tr>
+            <th class="table-secondary align-middle", style="width: 30%;">日付</th>
+            <td class="align-middle", style="width: 70%;"><%= @menu.date.strftime('%Y年%m月%d日 ') %><%= japanese_day(@reservation.day) %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary align-middle", style="width: 30%;">給食</th>
+            <td class="align-middle", style="width: 70%;"><%= @menu.school_lunch %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary align-middle", style="width: 30%;">おやつ</th>
+            <td class="align-middle", style="width: 70%;"><%= @menu.snack %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary align-middle", style="width: 30%;">食材</th>
+            <td class="align-middle", style="width: 70%;"><%= @menu.ingredient %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="mx-auto">
+      <p>上記献立内にアレルギーのある食材が使われている場合、代替えの給食・おやつのご用意をお願いします。<br>
+        確認ができましたら同意するボタンを押してください。
+      </p>
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-5">
+    <div class="mx-auto">
+      <%= link_to "同意する", reservation_path(@reservation.id), class: "btn btn-danger px-4" %>
+    </div>
+  </div>
+  
+  <div class="row mt-5 mb-5">
+    <div class="mx-auto">
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
+    </div>
+  </div>
+  
+</div>
