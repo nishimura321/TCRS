@@ -40,7 +40,8 @@ Rails.application.routes.draw do
     resources :families, only: [:new, :create, :edit, :update]
     patch 'families/disable_family/:id' => 'families#disable_family', as: 'disable_family'
     get 'reservations/thanks' => 'reservations#thanks'
-    get 'reservations/confirm_allergy' => 'reservations#confirm_allergy'
+    get 'reservations/confirm_allergy' => 'reservations#confirm_allergy_view'
+    patch 'reservations/confirm_allergy' => 'reservations#confirm_allergy'
     resources :reservations, only: [:new, :create, :index, :show, :edit, :update]
     post 'reservations/confirm' => 'reservations#confirm'
     patch 'reservations/cancel/:id' => 'reservations#cancel', as: 'reservations_cancel'

@@ -85,9 +85,16 @@ class Customer::ReservationsController < ApplicationController
     end
   end
 
-  def confirm_allergy
-    @reservation = Reservation.find(params[:reservation][:id])
+  def confirm_allergy_view
+    @reservation = Reservation.find(params[:id])
     @menu = Menu.find(@reservation.menu_id)
+  end
+
+  def confirm_allergy
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(is_allergy_checked: false)
+    flash[:notice] = "献立のアレルギー確認が完了しました。"
+    redirect_to reservation_path(@reservation)
   end
 
   def edit

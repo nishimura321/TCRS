@@ -76,7 +76,7 @@
           <th class="table-secondary align-middle", style="width: 30%;">献立アレルギー確認</th>
           <td class="align-middle", style="width: 70%;">
             <% if @reservation.is_allergy_checked %>
-              <span class="red font-weight-bold">未確認</span><%= link_to "確認する", reservations_confirm_allergy_path(@reservation.id), class: "btn btn-warning px-3 ml-3" %>
+              <span class="red font-weight-bold">未確認</span><%= link_to "確認する", reservations_confirm_allergy_path(id: @reservation.id), class: "btn btn-danger px-3 ml-3" %>
             <% else %>
               <span>確認済み</span>
             <% end %>
@@ -89,7 +89,7 @@
               <%= I18n.t("enums.reservation.purpose_of_use.atypical") %>
               <% elsif @reservation.emergency? %>
               <%= I18n.t("enums.reservation.purpose_of_use.emergency") %>
-              <% elsif @reservation.private_businessr? %>
+              <% elsif @reservation.private_business? %>
               <%= I18n.t("enums.reservation.purpose_of_use.private_business") %>
             <% end %>
           </td>

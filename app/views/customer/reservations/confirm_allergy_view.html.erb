@@ -7,7 +7,7 @@
 
   <div class="row">
     <div class="col-8 mx-auto">
-      <p>利用予定日の献立は下記の通りになります。</p>
+      <p class="mb-3">利用予定日の献立は下記の通りになります。</p>
       <table class ="table border border-black">
         <tbody>
           <tr>
@@ -30,9 +30,9 @@
       </table>
     </div>
   </div>
-  
-  <div class="row">
-    <div class="mx-auto">
+
+  <div class="row mt-5">
+    <div class="col-8 mx-auto">
       <p>上記献立内にアレルギーのある食材が使われている場合、代替えの給食・おやつのご用意をお願いします。<br>
         確認ができましたら同意するボタンを押してください。
       </p>
@@ -41,14 +41,16 @@
 
   <div class="row mt-5 mb-5">
     <div class="mx-auto">
-      <%= link_to "同意する", reservation_path(@reservation.id), class: "btn btn-danger px-4" %>
+      <%= form_with model: @reservation, url: reservations_confirm_allergy_path(id: @reservation.id), method: :patch do |f| %>
+        <%= f.submit "同意する", class: "font-weight-bold btn btn-danger px-4" %>
+      <% end %>
     </div>
   </div>
-  
+
   <div class="row mt-5 mb-5">
     <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
     </div>
   </div>
-  
+
 </div>
