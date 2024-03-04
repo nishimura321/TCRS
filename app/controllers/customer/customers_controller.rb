@@ -4,8 +4,8 @@ class Customer::CustomersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def show
-    @children = @customer.children
-    @families = @customer.families
+    @active_children = @customer.children.where(is_active: true)
+    @active_families = @customer.families.where(is_active: true)
   end
 
   def edit

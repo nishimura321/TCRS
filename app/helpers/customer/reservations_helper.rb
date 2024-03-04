@@ -2,9 +2,9 @@ module Customer::ReservationsHelper
 
   #予約時間帯を表示させる
   def times
-    times = ["8:30",
-             "9:00",
-             "9:30",
+    times = ["08:30",
+             "09:00",
+             "09:30",
              "10:00",
              "10:30",
              "11:00",

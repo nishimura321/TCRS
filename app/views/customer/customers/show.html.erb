@@ -47,7 +47,7 @@
     </div>
   </div><br>
 
-      <% @children.each do |child| %>
+      <% @active_children.each do |child| %>
       <table class="table border border-black">
         <thead>
           <tr class="table-secondary">
@@ -239,7 +239,7 @@
     </div>
   </div><br>
 
-      <% @families.each do |family| %>
+      <% @active_families.each do |family| %>
         <table class="table border border-black">
         <thead>
           <tr class="table-secondary">
@@ -282,8 +282,8 @@
   <div class="row">
     <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
-      <%= link_to "予約を確認する", reservation_path(@customer), class: "font-weight-bold btn btn-warning px-4 mr-5" %>
-      <%= link_to "登録施設を見る", relationships_path, class: "font-weight-bold btn btn-warning px-4" %>
+      <%= link_to "予約を確認する", reservation_path(@customer), class: "font-weight-bold btn btn-warning px-4" %>
+      <%#= link_to "登録施設を見る", relationships_path, class: "font-weight-bold btn btn-warning px-4 ml-5" %>
     <br><br><br><br>
     </div>
   </div>

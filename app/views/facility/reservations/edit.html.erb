@@ -1,2 +1,86 @@
-<h1>Facility::Reservations#edit</h1>
-<p>Find me in app/views/facility/reservations/edit.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+    <h2 class="font-weight-bold mb-5">予約情報編集</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <p class="font-weight-bold">【予約情報】</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <p class="red">※利用希望日時、施設の変更はできません。
+      </p>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-7 mx-auto">
+      <table class ="table border border-black">
+        <tbody>
+          <tr>
+            <th class="table-secondary align-middle", style="width: 30%;">利用希望日時</th>
+            <td class="align-middle", style="width: 70%;"><%= @reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(@reservation.day) %>　<%= @reservation.start_time.strftime('%H:%M') %>　〜　<%= @reservation.end_time.strftime('%H:%M') %></td>
+          </tr>
+          <tr>
+            <th class="table-secondary align-middle", style="width: 30%;">施設名</th>
+            <td class="align-middle", style="width: 70%;"><%= @reservation.facility.name %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto">
+      <%= form_with model: @reservation, url: reservation_path, method: :patch do |f| %>
+      <div class="form-group">
+        <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><br>
+        <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name, @reservation.child_id), include_blank: "-- 選択してください --", class: "form-control" %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"給食の有無", class: "font-weight-bold" %><br>
+        <%= f.radio_button :wants_meal_service, "true" %>
+        <%= f.label :wants_meal_service_true, "あり", class: "mr-5" %>
+        <%= f.radio_button :wants_meal_service, "false" %>
+        <%= f.label :iwants_meal_service_false, "なし" %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"利用目的", class: "font-weight-bold" %><br>
+        <%= f.select :purpose_of_use, options_for_select(Reservation.purpose_of_uses.keys.map { |key| [I18n.t("enums.reservation.purpose_of_use.#{key}"), key] }, selected: @reservation.purpose_of_use), include_blank: "-- 選択してください --", class: "form-control" %><br>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"主な送迎者", class: "font-weight-bold" %><br>
+        <%= f.select :main_pick_up_person, options_from_collection_for_select(@families, :id, :family_name, @reservation.main_pick_up_person), include_blank: "-- 選択してください --", class: "form-control" %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"緊急連絡先１", class: "font-weight-bold" %><br>
+        <%= f.select :emergency_contact_1, options_from_collection_for_select(@families, :id, :family_name, @reservation.emergency_contact_1), include_blank: "-- 選択してください --", class: "form-control" %>
+      </div><br>
+      <div class="form-group">
+        <%= f.label :"緊急連絡先２", class: "font-weight-bold" %><br>
+        <%= f.select :emergency_contact_2, options_from_collection_for_select(@families, :id, :family_name, @reservation.emergency_contact_2), include_blank: "-- 選択してください --", class: "form-control" %>
+      </div>
+    </div>
+  </div><br><br>
+
+  <div class="row mb-5">
+    <div class="mx-auto">
+      <%= f.submit "変更を保存", class: "font-weight-bold btn btn-warning px-4 mr-5" %>
+      <%= link_to "予約をキャンセル", reservations_cancel_path(@reservation.id), method: :patch, "data-confirm" => "本当に予約をキャンセルしますか？", class: "font-weight-bold btn btn-danger px-4" %>
+      <% end %>
+      <br><br>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="mx-auto">
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
+      <br><br>
+    </div>
+  </div>
+</div>
