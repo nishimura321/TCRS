@@ -60,7 +60,7 @@
         <div class="actions">
           <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
           <%= f.submit "編集を保存する", class: "btn btn-warning px-4 font-weight-bold mr-5" %>
-          <%= link_to "退会する", customers_confirm_withdrawal_path, class: "btn btn-warning px-4 font-weight-bold" %>
+          <%= link_to "退会する", customers_confirm_withdrawal_path(@customer.id), method: :patch, "data-confirm" => "本当に退会処理を行いますか？", class: "btn btn-danger px-4 font-weight-bold" %>
         </div>
       <% end %>
       <br><br><br>

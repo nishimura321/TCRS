@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+  scope :valid_reservations, -> { where(is_valid_reservation: true) }
   include HolidayConcern
 
   belongs_to :customer
@@ -121,12 +122,12 @@ class Reservation < ApplicationRecord
     Reservation.all.each do |reservation|
       start_time = reservation[:start_time].strftime("%H:%M")
       end_time = reservation[:end_time].strftime("%H:%M")
-      if reservation[:day] == day.strftime("%Y-%m-%d") && start_time <= self.start_time.strftime("%H:%M") && self.start_time.strftime("%H:%M") <= end_time && reservation[:facility_id] == facility_id
+      if reservation[:day] == day.strftime("%Y-%m-%d") && start_time <= self.start_time.strftime("%H:%M") && self.start_time.strftime("%H:%M") <= end_time && reservation[:facility_id] == facility_id && reservation[:is_valid_reservation]
         count += 1
       end
     end
 
-    if count > 1
+    if count >= 2
       errors.add(:day, "この日付は予約がいっぱいです。")
     end
   end

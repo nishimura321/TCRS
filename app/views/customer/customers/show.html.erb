@@ -5,28 +5,39 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-xl-11 col-lg-11 mx-auto">
     <p class="font-weight-bold">アカウント詳細</p>
     <table class="table border border-black">
-      <thead>
-        <tr class="table-secondary">
-          <th class="px-3 align-middle">氏名</th>
-          <th class="px-3 align-middle">フリガナ</th>
-          <th class="px-3 align-middle">住所</th>
-          <th class="px-3 align-middle">電話番号</th>
-          <th class="px-3 align-middle">メールアドレス</th>
+      <tbody>
+        <tr>
+          <th class="align-middle table-secondary" style="width: 30%;">氏名</th>
+          <td class="align-middle" style="width: 70%;"><%= @customer.last_name %><%= @customer.first_name %></td>
         </tr>
         <tr>
-          <td class="px-3 align-middle"><%= @customer.last_name %><%= @customer.first_name %></td>
-          <td class="px-3 align-middle"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
-          <td class="px-3 align-middle">
+          <th class="align-middle table-secondary" style="width: 30%;">フリガナ</th>
+          <td class="align-middle" style="width: 70%;"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th class="align-middle table-secondary" style="width: 30%;">住所</th>
+          <td class="align-middle" style="width: 70%;">
             〒<%= @customer.postal_code %><br>
             <%= @customer.address %>
           </td>
-          <td class="px-3 align-middle"><%= @customer.telephone_number %></td>
-          <td class="px-3 align-middle"><%= @customer.email %></td>
         </tr>
-      </thead>
+        <tr>
+          <th class="align-middle table-secondary" style="width: 30%;">電話番号</th>
+          <td class="align-middle" style="width: 70%;"><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <th class="align-middle table-secondary" style="width: 30%;">メールアドレス</th>
+          <td class="align-middle" style="width: 70%;"><%= @customer.email %></td>
+        </tr>
+      </body>
     </table><br>
+    </div>
+  </div>
+
   <div class="row">
     <div class="mx-auto">
         <% if @customer.last_name != "guest" && @customer.first_name != "user" %>
@@ -37,42 +48,43 @@
   </div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-xl-11 col-lg-11 mx-auto">
       <p class="font-weight-bold">お子さま詳細</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
       <%= link_to "お子さまを追加する", new_child_path, class: "font-weight-bold btn btn-warning px-4" %>
     </div>
   </div><br>
 
+  <div class="row">
+    <div class="col-xl-11 col-lg-11 mx-auto">
       <% @active_children.each do |child| %>
       <table class="table border border-black">
-        <thead>
-          <tr class="table-secondary">
-            <th class="px-3 align-middle" style="width: 25%;">お子さま氏名</th>
-            <th class="px-3 align-middle" style="width: 25%;">フリガナ</th>
-            <th class="px-3 align-middle" style="width: 35%;">生年月日</th>
-            <th class="px-3 align-middle" style="width: 15%;">性別</th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
-            <td class="px-3 align-middle" style="width: 25%;"><%= child.last_name %><%= child.first_name %></td>
-            <td class="px-3 align-middle" style="width: 25%;"><%= child.last_name_kana %><%= child.first_name_kana %></td>
-            <td class="px-3 align-middle" style="width: 35%;"><%= child.birthday.strftime("%Y年%m月%d日") %>（<%= age_in_years(child.birthday) %>歳<%= age_in_months(child.birthday) %>ヶ月）</td>
-            <td class="px-3 align-middle" style="width: 15%;">
+            <th class="align-middle table-secondary" style="width: 30%;">お子さま氏名</th>
+            <td class="align-middle" style="width: 70%;"><%= child.last_name %><%= child.first_name %></td>
+          </tr>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">フリガナ</th>
+            <td class="align-middle" style="width: 70%;"><%= child.last_name_kana %><%= child.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">生年月日</th>
+            <td class="align-middle" style="width: 70%;"><%= child.birthday.strftime("%Y年%m月%d日") %>（<%= age_in_years(child.birthday) %>歳<%= age_in_months(child.birthday) %>ヶ月）</td>
+         </tr>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">性別</th>
+            <td class="align-middle" style="width: 70%;">
               <% if child.male %>
-              男
+              <span>男</span>
               <% else %>
-              女
+              <span>女</span>
               <% end %>
             </td>
           </tr>
         </tbody>
       </table>
       <br>
+
       <p class="font-weight-bold">育成状況</p>
       <table class="table border border-black">
         <tbody>
@@ -86,9 +98,9 @@
             <th class="table-secondary align-middle" style="width: 20%;">熱性痙攣</th>
             <td class="align-middle" style="width: 30%;">
               <% if child.has_febrile_seizure %>
-              有
+              <span>有</span>
               <% else %>
-              無
+              <span>無</span>
               <% end %>
             </td>
             <th class="table-secondary align-middle" style="width: 20%;">熱性痙攣詳細</th>
@@ -98,9 +110,9 @@
             <th class="table-secondary align-middle" style="width: 20%;">脱臼</th>
             <td class="align-middle" style="width: 30%;">
               <% if child.has_dislocation %>
-              有
+              <span>有</span>
               <% else %>
-              無
+              <span>無</span>
               <% end %>
             </td>
             <th class="table-secondary align-middle" style="width: 20%;">脱臼詳細</th>
@@ -110,9 +122,9 @@
             <th class="table-secondary align-middle" style="width: 20%;">アレルギー</th>
             <td class="align-middle" style="width: 30%;">
               <% if child.has_allergy %>
-              有
+              <span>有</span>
               <% else %>
-              無
+              <span>無</span>
               <% end %>
             </td>
             <th class="table-secondary align-middle" style="width: 20%;">アレルギー詳細</th>
@@ -168,9 +180,9 @@
               <% if child.is_deep_sleep.nil? %>
 
               <% elsif child.is_deep_sleep %>
-              深い
+              <span>深い</span>
               <% else %>
-              浅い
+              <span>浅い</span>
               <% end %>
             </td>
           </tr>
@@ -186,9 +198,9 @@
               <% if child.is_sensitive_to_rash.nil? %>
 
               <% elsif child.is_sensitive_to_rash %>
-              かぶれやすい
+              <span>かぶれやすい</span>
               <% else %>
-              かぶれにくい
+              <span>かぶれにくい</span>
               <% end %>
             </td>
             <th class="table-secondary align-middle" style="width: 20%;">排尿</th>
@@ -218,66 +230,85 @@
           </tr>
         </tbody>
       </table><br>
-
-    <div class="mx-auto">
+    </div>
+  </div>
+  
+    <div class="row">
+      <div class="col-xl-11 col-lg-11 mx-auto">
         <% if @customer.last_name != "guest" && @customer.first_name != "user" %>
         <%= link_to "お子さま情報を修正する", edit_child_path(child), class: "font-weight-bold btn btn-warning px-4" %>
         <% end %>
         <br><br><br>
         <% end %>
         <br><br>
+      </div>
     </div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-xl-11 col-lg-11 mx-auto">
         <p class="font-weight-bold" id="family">お子さまの家族</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
         <%= link_to "家族を追加する", new_family_path, class: "font-weight-bold btn btn-warning px-4" %>
     </div>
   </div><br>
 
+  <div class="row">
+    <div class="col-xl-11 col-lg-11 mx-auto">
       <% @active_families.each do |family| %>
         <table class="table border border-black">
-        <thead>
-          <tr class="table-secondary">
-            <th class="px-3 align-middle">氏名</th>
-            <th class="px-3 align-middle">フリガナ</th>
-            <th class="px-3 align-middle">続柄</th>
-            <th class="px-3 align-middle">性別</th>
-            <th class="px-3 align-middle">生年月日</th>
-            <th class="px-3 align-middle">電話番号</th>
-            <th class="px-3 align-middle">勤務先</th>
-            <th class="px-3 align-middle">勤務先電話番号</th>
+        <tbody>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">氏名</th>
+            <td class="align-middle" style="width: 70%;"><%= family.last_name %><%= family.first_name %></td>
           </tr>
           <tr>
-            <td class="px-3 align-middle"><%= family.last_name %><%= family.first_name %></td>
-            <td class="px-3 align-middle"><%= family.last_name_kana %><%= family.first_name_kana %></td>
-            <td class="px-3 align-middle"><%= relationship_i18n_text(family) %></td>
-            <td class="px-3 align-middle">
+            <th class="align-middle table-secondary" style="width: 30%;">フリガナ</th>
+            <td class="align-middle" style="width: 70%;"><%= family.last_name_kana %><%= family.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">続柄</th>
+            <td class="align-middle" style="width: 70%;"><%= relationship_i18n_text(family) %></td>
+          </tr>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">性別</th>
+            <td class="align-middle" style="width: 70%;">
               <% if family.male %>
-              男
+              <span>男</span>
               <% else %>
-              女
+              <span>女</span>
               <% end %>
             </td>
-            <td class="px-3 align-middle"><%= family.birthday.strftime("%Y年%m月%d日") %></td>
-            <td class="px-3 align-middle"><%= family.telephone_number %></td>
-            <td class="px-3 align-middle"><%= family.workplace %></td>
-            <td class="px-3 align-middle"><%= family.workplace_telephone_number %></td>
           </tr>
-        </thead>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">生年月日</th>
+            <td class="align-middle" style="width: 70%;"><%= family.birthday.strftime("%Y年%m月%d日") %></td>
+          </tr>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">電話番号</th>
+            <td class="align-middle" style="width: 70%;"><%= family.telephone_number %></td>
+          </tr>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">勤務先</th>
+            <td class="align-middle" style="width: 70%;"><%= family.workplace %></td>
+          </tr>
+          <tr>
+            <th class="align-middle table-secondary" style="width: 30%;">勤務先電話番号</th>
+            <td class="align-middle" style="width: 70%;"><%= family.workplace_telephone_number %></td>
+          </tr>
+        </body>
       </table><br>
+    </div>
+  </div>
 
-    <div class="mx-auto">
+  <div class="row">
+    <div class="col-xl-11 col-lg-11 mx-auto">
       <% if @customer.last_name != "guest" && @customer.first_name != "user" %>
       <%= link_to "お子さまの家族情報を修正する", edit_family_path(family), class: "font-weight-bold btn btn-warning px-4" %>
       <% end %>
       <br><br><br>
       <% end %>
-    </div><br><br><br>
+    </div>
+  </div><br><br><br>
+
 
   <div class="row">
     <div class="mx-auto">

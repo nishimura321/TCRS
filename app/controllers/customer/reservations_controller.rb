@@ -27,8 +27,8 @@ class Customer::ReservationsController < ApplicationController
       end_date = start_date.next_month.end_of_month
       @facility = Facility.find(@reservation.facility_id)
       @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
-      @children = current_customer.children
-      @families = current_customer.families
+      @active_children = current_customer.children.where(is_active: true)
+      @active_families = current_customer.families.where(is_active: true)
       flash[:notice] = "入力内容の確認を行い正しい値を入力して下さい。"
       render :new
       return
@@ -62,8 +62,8 @@ class Customer::ReservationsController < ApplicationController
       end_date = start_date.next_month.end_of_month
       @facility = Facility.find(@reservation.facility_id)
       @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
-      @children = current_customer.children
-      @families = current_customer.families
+      @active_children = current_customer.children.where(is_active: true)
+      @active_families = current_customer.families.where(is_active: true)
       flash.now[:notice] = "大変申し訳ございません。新規予約ができませんでした。再度予約画面から操作をお願いいたします。"
       render :new
     end
@@ -117,6 +117,13 @@ class Customer::ReservationsController < ApplicationController
       flash[:notice] = "修正が完了しました。"
       redirect_to reservation_path(@reservation)
     else
+      @active_children = current_customer.children.where(is_active: true)
+      @active_families = current_customer.families.where(is_active: true)
+      @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
+      @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
+      if @reservation.emergency_contact_2.present?
+        @emergency_contact_2 = Family.find(@reservation.emergency_contact_2)
+      end
       flash.now[:notice] = "修正の保存に失敗しました。"
       render :edit
     end

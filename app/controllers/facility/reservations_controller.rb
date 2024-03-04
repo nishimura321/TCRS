@@ -34,6 +34,13 @@ class Facility::ReservationsController < ApplicationController
       flash[:notice] = "修正が完了しました。"
       redirect_to facility_reservation_path(@reservation)
     else
+      @children = Child.where(customer_id: @reservation.customer_id, is_active: true)
+      @families = Family.where(customer_id: @reservation.customer_id, is_active: true)
+      @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
+      @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
+      if @reservation.emergency_contact_2.present?
+        @emergency_contact_2 = Family.find(@reservation.emergency_contact_2)
+      end
       flash.now[:notice] = "修正の保存に失敗しました。"
       render :edit
     end
