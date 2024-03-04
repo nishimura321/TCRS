@@ -1,6 +1,6 @@
 class Customer::ReservationsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_reservation, only: [:show, :edit, :update]
+  before_action :ensure_reservation, only: [:show, :edit, :update, :cancel]
 
   def new
     start_date = Date.current
@@ -8,8 +8,8 @@ class Customer::ReservationsController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
     @reservation = Reservation.new
-    @children = current_customer.children
-    @families = current_customer.families
+    @active_children = current_customer.children.where(is_active: true)
+    @active_families = current_customer.families.where(is_active: true)
   end
 
   def confirm
@@ -98,8 +98,8 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def edit
-    @children = current_customer.children
-    @families = current_customer.families
+    @active_children = current_customer.children.where(is_active: true)
+    @active_families = current_customer.families.where(is_active: true)
     @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
     @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
     if @reservation.emergency_contact_2.present?
@@ -123,9 +123,8 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def cancel
-    reservation = Reservation.find(params[:id])
-    reservation.update(is_valid_reservation: false)
-    if params[:reservation][:wants_meal_service] == "true"
+    @reservation.update(is_valid_reservation: false)
+    if @reservation.wants_meal_service
       @reservation.update(is_allergy_checked: false)
     end
     flash[:notice] = "キャンセルが完了しました。"

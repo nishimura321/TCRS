@@ -109,6 +109,7 @@ class Reservation < ApplicationRecord
     end
   end
 
+ #カレンダーの×の日が選択できないようにするバリデーション
   validate :check_reservation_count
   def check_reservation_count
     if self.day.nil?

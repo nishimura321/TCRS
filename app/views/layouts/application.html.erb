@@ -41,10 +41,13 @@
 
       <% elsif facility_signed_in? %>
         <li class="nav-item mr-4">
+          <%= link_to "TOP", facility_top_path, class: "btn btn-outline-secondary" %>
+        </li>
+        <li class="nav-item mr-4">
           <%= link_to "予約を検索", facility_reservations_path, class: "btn btn-outline-secondary" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "予約カレンダー", facility_reservation_path(current_facility), class: "btn btn-outline-secondary" %>
+          <%= link_to "予約カレンダー", facility_reservations_situation_path, class: "btn btn-outline-secondary" %>
         </li>
         <li class="nav-item mr-4">
           <%= link_to "マイページ", facility_facility_path(current_facility), class: "btn btn-outline-secondary" %>
@@ -101,7 +104,7 @@
   <div class="container mt-5">
     <div class="row">
       <footer class="mx-auto">
-        <p>利用規約　　個人情報取扱について　　<%= link_to "利用について", about_path %>　　よくある質問　　お問い合せ</p>
+        <span>利用規約　　個人情報取扱について　　<%= link_to "利用について", about_path %>　　よくある質問　　お問い合せ</span>
       </footer>
     </div>
   </div>

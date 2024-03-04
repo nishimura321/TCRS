@@ -41,7 +41,7 @@
       <%= form_with model: @reservation, url: reservation_path, method: :patch do |f| %>
       <div class="form-group">
         <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><br>
-        <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name, @reservation.child_id), include_blank: "-- 選択してください --", class: "form-control" %>
+        <%= f.select :child_id, options_from_collection_for_select(@active_children, :id, :child_name, @reservation.child_id), include_blank: "-- 選択してください --", class: "form-control" %>
       </div><br>
       <div class="form-group">
         <%= f.label :"給食の有無", class: "font-weight-bold" %><br>
@@ -56,15 +56,15 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"主な送迎者", class: "font-weight-bold" %><br>
-        <%= f.select :main_pick_up_person, options_from_collection_for_select(@families, :id, :family_name, @reservation.main_pick_up_person), include_blank: "-- 選択してください --", class: "form-control" %>
+        <%= f.select :main_pick_up_person, options_from_collection_for_select(@active_families, :id, :family_name, @reservation.main_pick_up_person), include_blank: "-- 選択してください --", class: "form-control" %>
       </div><br>
       <div class="form-group">
         <%= f.label :"緊急連絡先１", class: "font-weight-bold" %><br>
-        <%= f.select :emergency_contact_1, options_from_collection_for_select(@families, :id, :family_name, @reservation.emergency_contact_1), include_blank: "-- 選択してください --", class: "form-control" %>
+        <%= f.select :emergency_contact_1, options_from_collection_for_select(@active_families, :id, :family_name, @reservation.emergency_contact_1), include_blank: "-- 選択してください --", class: "form-control" %>
       </div><br>
       <div class="form-group">
         <%= f.label :"緊急連絡先２", class: "font-weight-bold" %><br>
-        <%= f.select :emergency_contact_2, options_from_collection_for_select(@families, :id, :family_name, @reservation.emergency_contact_2), include_blank: "-- 選択してください --", class: "form-control" %>
+        <%= f.select :emergency_contact_2, options_from_collection_for_select(@active_families, :id, :family_name, @reservation.emergency_contact_2), include_blank: "-- 選択してください --", class: "form-control" %>
       </div>
     </div>
   </div><br><br>

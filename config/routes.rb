@@ -54,8 +54,8 @@ Rails.application.routes.draw do
   #施設用
   namespace :facility do
     get '/' => 'homes#top', as: 'top'
-    resources :reservations, only: [:index, :show, :edit, :update]
     get 'reservations/situation' => 'reservations#situation'
+    resources :reservations, only: [:index, :show, :edit, :update]
     patch 'reservations/cancel/:id' => 'reservations#cancel', as: 'reservations_cancel'
     resources :reservation_conditions, only: [:new, :create, :index, :edit, :update, :destroy]
     resources :facilities, only: [:show, :edit, :update]

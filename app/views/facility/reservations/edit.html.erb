@@ -37,7 +37,7 @@
 
   <div class="row">
     <div class="mx-auto">
-      <%= form_with model: @reservation, url: reservation_path, method: :patch do |f| %>
+      <%= form_with model: @reservation, url: facility_reservation_path, method: :patch do |f| %>
       <div class="form-group">
         <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><br>
         <%= f.select :child_id, options_from_collection_for_select(@children, :id, :child_name, @reservation.child_id), include_blank: "-- 選択してください --", class: "form-control" %>
@@ -71,7 +71,7 @@
   <div class="row mb-5">
     <div class="mx-auto">
       <%= f.submit "変更を保存", class: "font-weight-bold btn btn-warning px-4 mr-5" %>
-      <%= link_to "予約をキャンセル", reservations_cancel_path(@reservation.id), method: :patch, "data-confirm" => "本当に予約をキャンセルしますか？", class: "font-weight-bold btn btn-danger px-4" %>
+      <%= link_to "予約をキャンセル", facility_reservations_cancel_path(@reservation.id), method: :patch, "data-confirm" => "本当に予約をキャンセルしますか？", class: "font-weight-bold btn btn-danger px-4" %>
       <% end %>
       <br><br>
     </div>

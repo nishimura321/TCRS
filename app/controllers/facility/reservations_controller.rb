@@ -1,6 +1,6 @@
 class Facility::ReservationsController < ApplicationController
   before_action :authenticate_facility!
-  before_action :ensure_reservation, only: [:show, :edit, :update]
+  before_action :ensure_reservation, only: [:show, :edit, :update, :cancel]
 
   def index
     @reservations = current_facility.reservations.page(params[:page])
@@ -15,8 +15,8 @@ class Facility::ReservationsController < ApplicationController
   end
 
   def edit
-    @children = Child.where(customer_id: @reservation.customer_id)
-    @families = Family.where(customer_id: @reservation.customer_id)
+    @children = Child.where(customer_id: @reservation.customer_id, is_active: true)
+    @families = Family.where(customer_id: @reservation.customer_id, is_active: true)
     @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
     @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
     if @reservation.emergency_contact_2.present?
@@ -32,17 +32,27 @@ class Facility::ReservationsController < ApplicationController
         @reservation.update(is_allergy_checked: true)
       end
       flash[:notice] = "修正が完了しました。"
-      redirect_to reservation_path(@reservation)
+      redirect_to facility_reservation_path(@reservation)
     else
       flash.now[:notice] = "修正の保存に失敗しました。"
       render :edit
     end
   end
 
-  def destroy
+  def cancel
+    @reservation.update(is_valid_reservation: false)
+    if @reservation.wants_meal_service
+      @reservation.update(is_allergy_checked: false)
+    end
+    flash[:notice] = "キャンセルが完了しました。"
+    redirect_to facility_reservations_path
   end
 
   def situation
+    start_date = Date.current
+    end_date = start_date.next_month.end_of_month
+    @facility = current_facility
+    @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
   end
 
   private
