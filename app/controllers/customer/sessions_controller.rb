@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Customer::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :customer_state, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -41,7 +41,7 @@ class Customer::SessionsController < Devise::SessionsController
   end
 
 private
-  # アクティブであるかを判断するメソッド
+  # 会員がアクティブであるかを判断するメソッド
   def customer_state
     # 【処理内容1】 入力されたemailからアカウントを1件取得
     customer = Customer.find_by(email: params[:customer][:email])
@@ -55,7 +55,7 @@ private
       redirect_to after_sign_in_path_for(customer)
     # 【処理内容5】 アクティブでない会員に対する処理
     else
-      flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+      flash[:notice] = "退会済みです。再度登録をしてご利用ください。"
       redirect_to new_customer_registration_path
     end
   end

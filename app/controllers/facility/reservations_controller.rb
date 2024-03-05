@@ -56,10 +56,8 @@ class Facility::ReservationsController < ApplicationController
   end
 
   def situation
-    start_date = Date.current
-    end_date = start_date.next_month.end_of_month
     @facility = current_facility
-    @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
+    @reservations = Reservation.where(facility_id: @facility.id, is_valid_reservation: true).order(day: :desc)
   end
 
   private

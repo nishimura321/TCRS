@@ -8,9 +8,9 @@ class Facility::CustomersController < ApplicationController
   end
 
   def update
-    if @reservation.update(reservation_params)
+    if @customer.update(customer_params)
       flash[:notice] = "メモの保存が完了しました。"
-      redirect_to facility_customer_path(@reservation.id)
+      redirect_to facility_customer_path(@customer.id)
     else
       @active_children = @customer.children.where(is_active: true)
       @active_families = @customer.families.where(is_active: true)
@@ -18,7 +18,7 @@ class Facility::CustomersController < ApplicationController
       render :show
     end
   end
-  
+
   def withdrawal
     @customer.update(is_active: false)
     flash[:notice] = "退会処理を実行しました。"
@@ -33,5 +33,5 @@ class Facility::CustomersController < ApplicationController
   def ensure_customer
     @customer = Customer.find(params[:id])
   end
-  
+
 end

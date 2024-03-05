@@ -3,10 +3,8 @@ class Customer::ReservationsController < ApplicationController
   before_action :ensure_reservation, only: [:show, :edit, :update, :cancel]
 
   def new
-    start_date = Date.current
-    end_date = start_date.next_month.end_of_month
     @facility = Facility.find(params[:facility_id])
-    @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
+    @reservations = Reservation.where(facility_id: @facility.id, is_valid_reservation: true).order(day: :desc)
     @reservation = Reservation.new
     @active_children = current_customer.children.where(is_active: true)
     @active_families = current_customer.families.where(is_active: true)

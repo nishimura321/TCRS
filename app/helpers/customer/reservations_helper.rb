@@ -18,21 +18,14 @@ module Customer::ReservationsHelper
              "16:30"]
   end
 
-  #予約データから指定された施設・日付・時間の予約が2件以上あるかどうかをチェックするメソッド
-  def check_reservation(reservations, day, time, facility_id)
-  count = Reservations.valid_reservations.where(day: day, facility_id: facility_id)
-                                        .where("start_time <= ? AND end_time >= ?", time, time)
-                                        .count
-
-  count >= 2
-end
-  def check_reservation(reservations, day, time, facility_id)
+  #取得した予約データから指定された日付・時間の予約が2件以上あるかどうかをチェックするメソッド
+  def check_reservation(reservations, day, time)
     count = 0
     result = false
     reservations.each do |reservation|
       start_time = reservation[:start_time].strftime("%H:%M")
       end_time = reservation[:end_time].strftime("%H:%M")
-      if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time) && reservation[:facility_id] == facility_id && reservation[:is_valid_reservation]
+      if reservation[:day] == day.strftime("%Y-%m-%d") && time.between?(start_time, end_time)
         count += 1
       end
     end

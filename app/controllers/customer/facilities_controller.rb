@@ -7,9 +7,7 @@ class Customer::FacilitiesController < ApplicationController
 
   def show
     @facility = Facility.find(params[:id])
-    start_date = Date.current
-    end_date = start_date.end_of_month.next_month
-    @reservations = @facility.reservations.all.where("day >= ? AND day <= ?", start_date, end_date).order(day: :desc)
+    @reservations = Reservation.where(facility_id: @facility.id, is_valid_reservation: true).order(day: :desc)
   end
 
   private
