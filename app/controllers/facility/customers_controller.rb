@@ -3,16 +3,14 @@ class Facility::CustomersController < ApplicationController
   before_action :ensure_customer, only: [:show, :edit, :update, :withdrawal]
 
   def show
-    @customer = Customer.new
     @active_children = @customer.children.where(is_active: true)
     @active_families = @customer.families.where(is_active: true)
   end
 
-  def create
-    @customer = Customer.new(customer_params)
-    if @reservation.save
+  def update
+    if @reservation.update(reservation_params)
       flash[:notice] = "メモの保存が完了しました。"
-      redirect_to reservations_thanks_path(id: @reservation.id)
+      redirect_to facility_customer_path(@reservation.id)
     else
       @active_children = @customer.children.where(is_active: true)
       @active_families = @customer.families.where(is_active: true)
@@ -29,7 +27,7 @@ class Facility::CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_active)
+    params.require(:customer).permit(:administrator_notes)
   end
 
   def ensure_customer

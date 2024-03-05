@@ -301,7 +301,7 @@
 
   <div class="row mt-5">
     <div class="col-xl-11 col-lg-11 mx-auto">
-      <%= form_with model: @customer, url: facility_customers_path, method: :post do |f| %>
+      <%= form_with model: @customer, url: facility_customers_path(@customer.id), method: :patch do |f| %>
       <div class="form-group">
         <%= f.label :"管理者メモ", class: "font-weight-bold" %><br>
         <%= f.text_area :administrator_notes, class: "form-control", id: "exampleFormControlTextarea1", rows: "3" %>

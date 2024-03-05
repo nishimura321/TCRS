@@ -33,18 +33,18 @@ Rails.application.routes.draw do
     get 'customers/mypage' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
-    get 'customers/confirm_withdrawal/:id' => 'customers#confirm_withdrawal'
-    patch 'customers/withdrawal' => 'customers#withdrawal'
+    get 'customers/:id/confirm_withdrawal' => 'customers#confirm_withdrawal', as: 'customers_confirm_withdrawal'
+    patch 'customers/:id/withdrawal' => 'customers#withdrawal', as: 'customers_withdrawal'
     resources :children, only: [:new, :create, :edit, :update]
-    patch 'children/disable_child/:id' => 'children#disable_child', as: 'disable_child'
+    patch 'children/:id/disable_child' => 'children#disable_child', as: 'disable_child'
     resources :families, only: [:new, :create, :edit, :update]
-    patch 'families/disable_family/:id' => 'families#disable_family', as: 'disable_family'
+    patch 'families/:id/disable_family' => 'families#disable_family', as: 'disable_family'
     get 'reservations/thanks' => 'reservations#thanks'
     get 'reservations/confirm_allergy' => 'reservations#confirm_allergy_view'
     patch 'reservations/confirm_allergy' => 'reservations#confirm_allergy'
     resources :reservations, only: [:new, :create, :index, :show, :edit, :update]
     post 'reservations/confirm' => 'reservations#confirm'
-    patch 'reservations/cancel/:id' => 'reservations#cancel', as: 'reservations_cancel'
+    patch 'reservations/:id/cancel' => 'reservations#cancel', as: 'reservations_cancel'
     resources :relationships, only: [:create, :index, :destroy]
     resources :facilities, only: [:index, :show]
     get '/search' => 'searches#search'
@@ -56,11 +56,11 @@ Rails.application.routes.draw do
     get '/' => 'homes#top', as: 'top'
     get 'reservations/situation' => 'reservations#situation'
     resources :reservations, only: [:index, :show, :edit, :update]
-    patch 'reservations/cancel/:id' => 'reservations#cancel', as: 'reservations_cancel'
+    patch 'reservations/:id/cancel' => 'reservations#cancel', as: 'reservations_cancel'
     resources :reservation_conditions, only: [:new, :create, :index, :edit, :update, :destroy]
     resources :facilities, only: [:show, :edit, :update]
-    resources :customers, only: [:show, :create]
-    patch 'customers/withdrawal/:id' => 'customers#withdrawal'
+    patch 'customers/:id/withdrawal' => 'customers#withdrawal', as: 'customers_withdrawal'
+    resources :customers, only: [:show, :update]
     get '/search' => 'searches#search'
     resources :menus, only: [:new, :create, :index, :edit, :update, :destroy]
   end
@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:index, :show]
     resources :customers, only: [:index, :show]
     resources :facilities, only: [:new, :create, :index, :show, :edit, :update]
-    patch 'facilities/withdrawal/:id' => 'facilities#withdrawal', as: 'facility_withdrawal'
+    patch 'facilities/:id/withdrawal' => 'facilities#withdrawal', as: 'facility_withdrawal'
     get 'facilities/situation' => 'facilities#situation'
     get '/search' => 'searches#search'
   end
