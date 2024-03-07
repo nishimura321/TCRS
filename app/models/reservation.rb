@@ -108,16 +108,28 @@ class Reservation < ApplicationRecord
   end
 
  #カレンダーの×の日が選択できないようにするバリデーション
+  validate :validate_reservation_availability
   def validate_reservation_availability
     if self.day.nil?
       errors.add(:base, "予約希望日時を正しく選択してください。")
       return
     end
-  
+
     reservation_count = facility.reservations.validation_checked.where(day: day, start_time: start_time..end_time, is_valid_reservation: true).count
-    if reservation_count >= 2
-      errors.add(:base, 'この日時はすでに予約がいっぱいです。')
+    if reservation_count < 2
+    else
+      reservations = facility.reservations.validation_checked.where(day: day).where.not(id: self.id)
+      reservations.each do |reservation|
+        if (reservation.start_time..reservation.end_time).cover?(self.start_time) && self.start_time != reservation.end_time
+          errors.add(:base, 'この日時はすでに予約がいっぱいです。')
+          return
+        end
+        if (reservation.start_time..reservation.end_time).cover?(self.end_time) && self.end_time != reservation.start_time
+          errors.add(:base, 'この日時はすでに予約がいっぱいです。')
+          return
+        end
+      end
     end
   end
-  
+
 end

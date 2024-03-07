@@ -103,10 +103,10 @@ class Customer::ReservationsController < ApplicationController
 
   def update
     if @reservation.update(reservation_params)
-      if params[:reservation][:wants_meal_service] == "false"
-        @reservation.update(is_allergy_checked: false)
-      elsif params[:reservation][:wants_meal_service] == "true"
+      if params[:reservation][:wants_meal_service] == "true"
         @reservation.update(is_allergy_checked: true)
+      else
+        @reservation.update(is_allergy_checked: false)
       end
       flash[:notice] = "修正が完了しました。"
       redirect_to reservation_path(@reservation)

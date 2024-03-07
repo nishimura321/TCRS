@@ -37,7 +37,7 @@ class Customer::SessionsController < Devise::SessionsController
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
-    redirect_to customers_mypage_path(current_customer), notice: 'guestuserでログインしました。'
+    redirect_to customers_mypage_path(current_customer), notice: 'guest_userでログインしました。'
   end
 
 private

@@ -42,8 +42,8 @@ class Customer::CustomersController < ApplicationController
 
   def ensure_guest_user
     @customer = Customer.find(current_customer.id)
-    if @customer.last_name == "guest" && @customer.first_name == "user"
-      redirect_to customers_mypage_path(current_customer) , notice: 'ゲストユーザーはアカウント情報編集画面へ遷移できません。'
+    if @customer.last_name == "guest_" && @customer.first_name == "user"
+      redirect_to customers_mypage_path(current_customer) , notice: 'guest_userはアカウント情報編集画面へ遷移できません。'
     end
   end
 

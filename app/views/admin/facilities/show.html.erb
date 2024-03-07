@@ -1,78 +1,83 @@
 <div class="container mt-5">
   <div class="row">
     <div class="mx-auto">
-      <h3 class="mb-3">施設詳細</h3>
-      <table class="table">
+      <h2 class="font-weight-bold mb-5">施設詳細</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-11 col-lg-11 mx-auto">
+      <table class="table border border-black">
         <tbody>
           <tr>
-            <th>施設ID</th>
-            <td><%= @facility.id %></td>
+            <th class="table-secondary align-middle">施設ID</th>
+            <td class="align-middle"><%= @facility.id %></td>
           </tr>
           <tr>
-            <th>施設名</th>
-            <td><%= @facility.name %></td>
+            <th class="table-secondary align-middle">施設名</th>
+            <td class="align-middle"><%= @facility.name %></td>
           </tr>
           <tr>
-            <th>フリガナ</th>
-            <td><%= @facility.name_kana %></td>
+            <th class="table-secondary align-middle">フリガナ</th>
+            <td class="align-middle"><%= @facility.name_kana %></td>
           </tr>
           <tr>
-            <th>住所</th>
-            <td>〒<%= @facility.postal_code %><br>
+            <th class="table-secondary align-middle">住所</th>
+            <td class="align-middle">〒<%= @facility.postal_code %><br>
                 <%= @facility.address %>
             </td>
           </tr>
           <tr>
-            <th>電話番号</th>
-            <td><%= @facility.telephone_number %></td>
+            <th class="table-secondary align-middle">電話番号</th>
+            <td class="align-middle"><%= @facility.telephone_number %></td>
           </tr>
           <tr>
-            <th>メールアドレス</th>
-            <td><%= @facility.email %></td>
+            <th class="table-secondary align-middle">メールアドレス</th>
+            <td class="align-middle"><%= @facility.email %></td>
           </tr>
           <tr>
-            <th>HP</th>
-            <td><%= @facility.website %></td>
+            <th class="table-secondary align-middle">HP</th>
+            <td class="align-middle"><%= @facility.website %></td>
           </tr>
           <tr>
-            <th>営業日</th>
-            <td><%= @facility.business_day %></td>
+            <th class="table-secondary align-middle">営業日</th>
+            <td class="align-middle"><%= @facility.business_day %></td>
           </tr>
           <tr>
-            <th>営業時間</th>
-            <td><%= @facility.business_hours %></td>
+            <th class="table-secondary align-middle">営業時間</th>
+            <td class="align-middle"><%= @facility.business_hours %></td>
           </tr>
           <tr>
-            <th>問い合わせ時間</th>
-            <td><%= @facility.inquiry_hours %></td>
+            <th class="table-secondary align-middle">問い合わせ時間</th>
+            <td class="align-middle"><%= @facility.inquiry_hours %></td>
           </tr>
           <tr>
-            <th>休園日</th>
-            <td><%= @facility.closed_day %></td>
+            <th class="table-secondary align-middle">休園日</th>
+            <td class="align-middle"><%= @facility.closed_day %></td>
           </tr>
           <tr>
-            <th>保育時間</th>
-            <td><%= @facility.childcare_hours %></td>
+            <th class="table-secondary align-middle">保育時間</th>
+            <td class="align-middle"><%= @facility.childcare_hours %></td>
           </tr>
           <tr>
-            <th>受け入れ年齢</th>
-            <td><%= @facility.target_age %></td>
+            <th class="table-secondary align-middle">受け入れ年齢</th>
+            <td class="align-middle"><%= @facility.target_age %></td>
           </tr>
           <tr>
-            <th>給食の有無</th>
-            <td><%= @facility.school_meal %></td>
+            <th class="table-secondary align-middle">給食の有無</th>
+            <td class="align-middle"><%= @facility.school_meal %></td>
           </tr>
           <tr>
-            <th>利用料金</th>
-            <td><%= @facility.fee %></td>
+            <th class="table-secondary align-middle">利用料金</th>
+            <td class="align-middle"><%= @facility.fee %></td>
           </tr>
           <tr>
-            <th>施設からのメッセージ</th>
-            <td><%= @facility.message %></td>
+            <th class="table-secondary align-middle">施設からのメッセージ</th>
+            <td class="align-middle"><%= @facility.message %></td>
           </tr>
           <tr>
-            <th>施設ステータス</th>
-            <td><% if @facility.is_active %>
+            <th class="table-secondary align-middle">施設ステータス</th>
+            <td class="align-middle"><% if @facility.is_active %>
                 <p class="text-success"><strong>有効</strong></p>
                 <% else %>
                 <p class="text-secondary"><strong>閉園</strong></p>

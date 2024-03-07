@@ -18,20 +18,20 @@ class Customer < ApplicationRecord
 
   #ゲストログイン用メソッド
   def self.guest
-    customer = Customer.find_or_create_by!(last_name: 'guest' ,first_name: 'user' ,email: 'guest@example.com') do |customer|
+    customer = Customer.find_or_create_by!(last_name: 'guest_' ,first_name: 'user' ,email: 'guest_user@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
-      customer.last_name = "guest"
+      customer.last_name = "guest_"
       customer.first_name = "user"
       customer.last_name_kana = "ゲスト"
       customer.first_name_kana = "ユーザー"
-      customer.email = 'guest@example.com'
+      customer.email = 'guest_user@example.com'
       customer.postal_code = "4200000"
       customer.address = "静岡県静岡市ゲスト町0-00"
       customer.telephone_number = "09000000000"
     end
 
-    child = customer.children.find_or_create_by!(last_name: 'guest' ,first_name: 'child') do |child|
-      child.last_name = 'guest'
+    child = customer.children.find_or_create_by!(last_name: 'guest_' ,first_name: 'child') do |child|
+      child.last_name = 'guest_'
       child.first_name = 'child'
       child.last_name_kana = 'ゲスト'
       child.first_name_kana = 'チャイルド'
@@ -46,28 +46,30 @@ class Customer < ApplicationRecord
       child.milk_situation_after_baby_food = 2
       child.baby_food_progress = 4
       child.appetite = 1
-      child.favorite_food = 'オムライス'
+      child.favorite_food = 'ハンバーグ、カレー、肉団子、さつまいも'
       child.hated_food = '生野菜'
-      child.how_to_eat = 2
+      child.how_to_eat = 1
       child.meal_time = 30
-      child.how_to_lay_it_down = 0
+      child.how_to_lay_it_down = 1
       child.falling_asleep = 2
       child.waking_up = 2
       child.sleeping_position = 1
       child.is_deep_sleep = true
-      child.diaper_usage = 3
+      child.habits_when_sleeping = '指しゃぶりをしながら寝る'
+      child.diaper_usage = 2
       child.is_sensitive_to_rash = false
-      child.urination = 0
+      child.urination = 3
       child.defecation = 1
       child.number_of_defecation = '一日1回'
       child.favorite_game = '砂場遊び、ブランコ、水遊び、お医者さんごっこ'
-      child.favorite_toy = '絵本、ブロック'
+      child.favorite_toy = '絵本、ブロック、お医者さんのおもちゃ'
       child.hospital_name = 'ゲスト小児科'
       child.hospital_telephone_number = '0540000000'
+      child.memo = '人見知りがあります。'
     end
 
-    family = customer.families.find_or_create_by!(last_name: 'guest' ,first_name: 'user') do |family|
-      family.last_name = 'guest'
+    family = customer.families.find_or_create_by!(last_name: 'guest_' ,first_name: 'user') do |family|
+      family.last_name = 'guest_'
       family.first_name = 'user'
       family.last_name_kana = 'ゲスト'
       family.first_name_kana = 'ユーザー'

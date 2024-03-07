@@ -40,8 +40,8 @@
 
   <div class="row">
     <div class="mx-auto">
-        <% if @customer.last_name != "guest" && @customer.first_name != "user" %>
-        <%= link_to "アカウント情報を修正する", customers_information_edit_path, class: "font-weight-bold btn btn-warning px-4" %>
+        <% if @customer.last_name != "guest_" && @customer.first_name != "user" %>
+          <%= link_to "アカウント情報を修正する", customers_information_edit_path, class: "font-weight-bold btn btn-warning px-4" %>
         <% end %>
         <br><br><br><br>
     </div>
@@ -50,7 +50,9 @@
   <div class="row">
     <div class="col-xl-11 col-lg-11 mx-auto">
       <p class="font-weight-bold">お子さま詳細</p>
-      <%= link_to "お子さまを追加する", new_child_path, class: "font-weight-bold btn btn-warning px-4" %>
+      <% if @customer.last_name != "guest_" && @customer.first_name != "user" %>
+        <%= link_to "お子さまを追加する", new_child_path, class: "font-weight-bold btn btn-warning px-4" %>
+      <% end %>
     </div>
   </div><br>
 
@@ -235,8 +237,8 @@
 
     <div class="row">
       <div class="col-xl-11 col-lg-11 mx-auto">
-        <% if @customer.last_name != "guest" && @customer.first_name != "user" %>
-        <%= link_to "お子さま情報を修正する", edit_child_path(child), class: "font-weight-bold btn btn-warning px-4" %>
+        <% if @customer.last_name != "guest_" && @customer.first_name != "user" %>
+          <%= link_to "お子さま情報を修正する", edit_child_path(child), class: "font-weight-bold btn btn-warning px-4" %>
         <% end %>
         <br><br><br>
         <% end %>
@@ -247,7 +249,9 @@
   <div class="row">
     <div class="col-xl-11 col-lg-11 mx-auto">
         <p class="font-weight-bold" id="family">お子さまの家族</p>
-        <%= link_to "家族を追加する", new_family_path, class: "font-weight-bold btn btn-warning px-4" %>
+        <% if @customer.last_name != "guest_" && @customer.first_name != "user" %>
+          <%= link_to "家族を追加する", new_family_path, class: "font-weight-bold btn btn-warning px-4" %>
+        <% end%>
     </div>
   </div><br>
 
@@ -301,8 +305,8 @@
 
   <div class="row">
     <div class="col-xl-11 col-lg-11 mx-auto">
-      <% if @customer.last_name != "guest" && @customer.first_name != "user" %>
-      <%= link_to "お子さまの家族情報を修正する", edit_family_path(family), class: "font-weight-bold btn btn-warning px-4" %>
+      <% if @customer.last_name != "guest_" && @customer.first_name != "user" %>
+        <%= link_to "お子さまの家族情報を修正する", edit_family_path(family), class: "font-weight-bold btn btn-warning px-4" %>
       <% end %>
       <br><br><br>
       <% end %>
