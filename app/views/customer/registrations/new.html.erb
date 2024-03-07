@@ -5,8 +5,14 @@
     </div>
   </div>
 
+  <div class="row mb-5">
+    <div class="col-12 text-center">
+      <img src="/assets/account_registration.png" width="80%">
+    </div>
+  </div>
+
   <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-xl-8 col-lg-8 mx-auto">
     <%= form_with model: @customer, url: customer_registration_path do |f| %>
       <%= render "customer/shared/error_messages", resource: resource %>
       <p class="red">*印の項目は必須項目です。</p>

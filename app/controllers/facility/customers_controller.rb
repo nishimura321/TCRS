@@ -19,12 +19,6 @@ class Facility::CustomersController < ApplicationController
     end
   end
 
-  def withdrawal
-    @customer.update(is_active: false)
-    flash[:notice] = "退会処理を実行しました。"
-    redirect_to facility_customer_path
-  end
-
   private
   def customer_params
     params.require(:customer).permit(:administrator_notes)

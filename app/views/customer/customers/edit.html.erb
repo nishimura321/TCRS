@@ -7,7 +7,7 @@
 
   <div class="row">
     <% if @customer.errors.any? %>
-    <div class="col-10 mx-auto alert alert-danger" role="alert">
+    <div class="col-xl-10 col-lg-10 mx-auto alert alert-danger" role="alert">
       <%= @customer.errors.count %>件のエラーが発生しました
       <ul>
         <% @customer.errors.full_messages.each do |message| %>
@@ -19,7 +19,7 @@
   </div>
 
   <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-xl-8 col-lg-8 mx-auto">
       <p class="red">*印の項目は必須項目です。</p>
       <%= form_with model: @customer, url: customers_information_path(@customer), method: :patch do |f| %>
       <div class="field">
@@ -60,7 +60,7 @@
         <div class="actions">
           <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
           <%= f.submit "編集を保存する", class: "btn btn-warning px-4 font-weight-bold mr-5" %>
-          <%= link_to "退会する", customers_confirm_withdrawal_path(@customer.id), method: :patch, "data-confirm" => "本当に退会処理を行いますか？", class: "btn btn-danger px-4 font-weight-bold" %>
+          <%= link_to "退会処理画面へ", customers_confirm_withdrawal_path, class: "btn btn-danger px-4 font-weight-bold" %>
         </div>
       <% end %>
       <br><br><br>

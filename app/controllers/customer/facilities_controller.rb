@@ -7,7 +7,7 @@ class Customer::FacilitiesController < ApplicationController
 
   def show
     @facility = Facility.find(params[:id])
-    @reservations = Reservation.where(facility_id: @facility.id, is_valid_reservation: true).order(day: :desc)
+    @reservations = @facility.reservations.validation_checked.order(day: :desc)
   end
 
   private

@@ -7,7 +7,7 @@
 
   <div class="row">
     <% if @child.errors.any? %>
-    <div class="col-10 mx-auto alert alert-danger" role="alert">
+    <div class="col-xl-10 col-lg-10 mx-auto alert alert-danger" role="alert">
       <%= @child.errors.count %>件のエラーが発生しました
       <ul>
         <% @child.errors.full_messages.each do |message| %>
@@ -18,8 +18,16 @@
     <% end %>
   </div>
 
+  <% if session[:registration_child_count] == 0 && (@customer.last_name != "guest" || @customer.first_name != "user") %>
+  <div class="row mb-5">
+    <div class="col-12 text-center">
+      <img src="/assets/child_information_registration.png" width="80%">
+    </div>
+  </div>
+  <% end %>
+
   <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-xl-8 col-lg-8 mx-auto">
     <%= form_with model: @child, url: children_path, method: :post do |f| %>
       <p class="red">*印の項目は必須項目です。</p>
       <p class="font-weight-bold">【お子さま情報】</p>

@@ -1,27 +1,37 @@
 <div class="container mt-5">
   <div class="row">
     <div class="mx-auto">
-      <h3 class="mb-3">施設一覧</h3>
-      <%= link_to "新規施設登録", new_admin_facility_path, class: "btn btn-warning px-4" %><br><br>
-      <table class="table">
+      <h2 class="font-weight-bold mb-5">施設一覧</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-11 col-lg-11 text-right">
+      <%= link_to "新規施設登録", new_admin_facility_path, class: "font-weight-bold btn btn-warning px-4" %><br><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-10 col-lg-10 mx-auto">
+      <table class="table border border-black">
         <thead>
-          <tr>
-            <th>施設ID</th>
-            <th>施設名</th>
-            <th>メールアドレス</th>
-            <th>電話番号</th>
-            <th>施設ステータス</th>
+          <tr class="table-secondary">
+            <th class="align-middle" style="width: 10%;">施設ID</th>
+            <th class="align-middle" style="width: 25%;">施設名</th>
+            <th class="align-middle" style="width: 25%;">メールアドレス</th>
+            <th class="align-middle" style="width: 25%;">電話番号</th>
+            <th class="align-middle" style="width: 15%;">ステータス</th>
           </tr>
         </thead>
         <% @facilities.each do |facility| %>
         <tbody>
           <tr>
-            <td><%= facility.id %></td>
-            <td><%= link_to facility.name, admin_facility_path(facility.id) %></td>
-            <td><%= facility.email %></td>
-            <td><%= facility.telephone_number %></td>
-            <td><% if facility.is_active %>
-                <p class="text-success font-weight-bold">有効</p>
+            <td class="align-middle" style="width: 10%;"><%= facility.id %></td>
+            <td class="align-middle" style="width: 25%;"><%= link_to facility.name, admin_facility_path(facility.id) %></td>
+            <td class="align-middle" style="width: 25%;"><%= facility.email %></td>
+            <td class="align-middle" style="width: 25%;"><%= facility.telephone_number %></td>
+            <td class="align-middle" style="width: 15%;"><% if facility.is_active %>
+                <p>有効</p>
                 <% else %>
                 <p class="text-secondary font-weight-bold">閉園</p>
                 <% end %>
@@ -30,8 +40,17 @@
         </tbody>
         <% end %>
       </table>
-      <br>
+    </div>
+  </div>
+
+  <div class="rowmt-5 mb-5">
+    <div class="mx-auto">
       <%= paginate @facilities %>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
     </div>
   </div>

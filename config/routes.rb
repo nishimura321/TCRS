@@ -33,8 +33,8 @@ Rails.application.routes.draw do
     get 'customers/mypage' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
-    get 'customers/:id/confirm_withdrawal' => 'customers#confirm_withdrawal', as: 'customers_confirm_withdrawal'
-    patch 'customers/:id/withdrawal' => 'customers#withdrawal', as: 'customers_withdrawal'
+    get 'customers/confirm_withdrawal' => 'customers#confirm_withdrawal', as: 'customers_confirm_withdrawal'
+    patch 'customers/withdrawal' => 'customers#withdrawal', as: 'customers_withdrawal'
     resources :children, only: [:new, :create, :edit, :update]
     patch 'children/:id/disable_child' => 'children#disable_child', as: 'disable_child'
     resources :families, only: [:new, :create, :edit, :update]
@@ -59,7 +59,6 @@ Rails.application.routes.draw do
     patch 'reservations/:id/cancel' => 'reservations#cancel', as: 'reservations_cancel'
     resources :reservation_conditions, only: [:new, :create, :index, :edit, :update, :destroy]
     resources :facilities, only: [:show, :edit, :update]
-    patch 'customers/:id/withdrawal' => 'customers#withdrawal', as: 'customers_withdrawal'
     resources :customers, only: [:show, :update]
     get '/search' => 'searches#search'
     resources :menus, only: [:new, :create, :index, :edit, :update, :destroy]

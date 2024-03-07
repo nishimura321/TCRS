@@ -16,7 +16,6 @@
         <span>⚪︎：予約可　×：予約不可　ー：休園</span>
       </div>
     </div>
-    <% reservations = Reservation.where(facility_id: @facility.id, is_valid_reservation: true) %>
   </div>
 
   <table class="table table-striped">
@@ -53,14 +52,10 @@
             </td>
             <% else %>
             <td>
-              <%# start_time = Time.zone.parse("#{day} #{time}:00") %>
-              <%# end_time = start_time.since(30.minutes) %>
-              <%# reservation_count = reservations.where(start_time: (start_time...end_time), is_valid_reservation: true).size %>
-              <%# if reservation_count >= 2 %>
-              <% if check_reservation(reservations, day, time) %>
-                <%= '×' %>
+              <% if @reservations.full_reserved?(day, time) %>
+                ×
               <% else %>
-                <%= '○' %>
+                ◯
               <% end %>
             </td>
             <% end %>

@@ -57,7 +57,7 @@ class Facility::ReservationsController < ApplicationController
 
   def situation
     @facility = current_facility
-    @reservations = Reservation.where(facility_id: @facility.id, is_valid_reservation: true).order(day: :desc)
+    @reservations = @facility.reservations.validation_checked.order(day: :desc)
   end
 
   private

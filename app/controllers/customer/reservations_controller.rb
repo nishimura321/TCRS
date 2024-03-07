@@ -4,7 +4,7 @@ class Customer::ReservationsController < ApplicationController
 
   def new
     @facility = Facility.find(params[:facility_id])
-    @reservations = Reservation.where(facility_id: @facility.id, is_valid_reservation: true).order(day: :desc)
+    @reservations = @facility.reservations.validation_checked.order(day: :desc)
     @reservation = Reservation.new
     @active_children = current_customer.children.where(is_active: true)
     @active_families = current_customer.families.where(is_active: true)
@@ -21,10 +21,8 @@ class Customer::ReservationsController < ApplicationController
     end
     #バリデーションの実行処理
     if @reservation.invalid?
-      start_date = Date.current
-      end_date = start_date.next_month.end_of_month
       @facility = Facility.find(@reservation.facility_id)
-      @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
+      @reservations = @facility.reservations.validation_checked.order(day: :desc)
       @active_children = current_customer.children.where(is_active: true)
       @active_families = current_customer.families.where(is_active: true)
       flash[:notice] = "入力内容の確認を行い正しい値を入力して下さい。"
@@ -56,10 +54,8 @@ class Customer::ReservationsController < ApplicationController
       flash[:notice] = "ご予約が完了しました。"
       redirect_to reservations_thanks_path(id: @reservation.id)
     else
-      start_date = Date.current
-      end_date = start_date.next_month.end_of_month
       @facility = Facility.find(@reservation.facility_id)
-      @reservations = Reservation.where("day >= ? AND day <= ? AND facility_id = ?", start_date, end_date, @facility).order(day: :desc)
+      @reservations = @facility.reservations.validation_checked.order(day: :desc)
       @active_children = current_customer.children.where(is_active: true)
       @active_families = current_customer.families.where(is_active: true)
       flash.now[:notice] = "大変申し訳ございません。新規予約ができませんでした。再度予約画面から操作をお願いいたします。"

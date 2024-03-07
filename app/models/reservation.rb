@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+  scope :validation_checked, -> { where(is_valid_reservation: true) }
   include HolidayConcern
 
   belongs_to :customer
@@ -16,6 +17,18 @@ class Reservation < ApplicationRecord
   validates :purpose_of_use, presence: true
   validates :main_pick_up_person, presence: true
   validates :emergency_contact_1, presence: true
+
+  #予約データから指定された日付・時間の予約が2件以上あるかチェックするメソッド
+  def self.full_reserved?(day, time)
+    target_start_time = Time.zone.parse("#{day} #{time}:00")
+    target_end_time = target_start_time.since(30.minutes)
+    reservation_count = self.where(start_time: (..target_start_time), end_time: (target_end_time..)).size
+    if reservation_count >= 2
+      true
+    else
+      false
+    end
+  end
 
   #過去の日付を選択しないようにするバリデーション
   validate :date_before_start
@@ -58,7 +71,7 @@ class Reservation < ApplicationRecord
   validate :validate_date
   def validate_date
     if day.nil? || day.year.blank? || day.month.blank? || day.day.blank?
-      errors.add(:day, "年、月、日の入力が必要です")
+      errors.add(:day, "年、月、日の入力が必要です。")
     end
   end
 
@@ -67,7 +80,7 @@ class Reservation < ApplicationRecord
   def validate_time
     if start_time.nil? || start_time.hour.blank? || start_time.min.blank? ||
        end_time.nil? || end_time.hour.blank? || end_time.min.blank?
-      errors.add(:start_time, "開始時間と終了時間の入力が必要です")
+      errors.add(:start_time, "開始時間と終了時間の入力が必要です。")
     end
   end
 
@@ -81,7 +94,7 @@ class Reservation < ApplicationRecord
   validate :time_range
   def time_range
     if self.day.nil? || self.start_time.nil? || self.end_time.nil?
-      errors.add(:base, "予約希望日時を正しく選択してください")
+      errors.add(:base, "予約希望日時を正しく選択してください。")
       return
     end
 
@@ -95,25 +108,16 @@ class Reservation < ApplicationRecord
   end
 
  #カレンダーの×の日が選択できないようにするバリデーション
-  validate :check_reservation_count
-  def check_reservation_count
+  def validate_reservation_availability
     if self.day.nil?
-      errors.add(:base, "予約希望日時を正しく選択してください")
+      errors.add(:base, "予約希望日時を正しく選択してください。")
       return
     end
-
-    count = 0
-    Reservation.all.each do |reservation|
-      start_time = reservation[:start_time].strftime("%H:%M")
-      end_time = reservation[:end_time].strftime("%H:%M")
-      if reservation[:day] == day.strftime("%Y-%m-%d") && start_time <= self.start_time.strftime("%H:%M") && self.start_time.strftime("%H:%M") <= end_time && reservation[:facility_id] == facility_id && reservation[:is_valid_reservation]
-        count += 1
-      end
-    end
-
-    if count >= 2
-      errors.add(:day, "この日付は予約がいっぱいです。")
+  
+    reservation_count = facility.reservations.validation_checked.where(day: day, start_time: start_time..end_time, is_valid_reservation: true).count
+    if reservation_count >= 2
+      errors.add(:base, 'この日時はすでに予約がいっぱいです。')
     end
   end
-
+  
 end

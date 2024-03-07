@@ -40,6 +40,30 @@ class Customer < ApplicationRecord
       child.has_febrile_seizure = false
       child.has_dislocation = false
       child.has_allergy = false
+      child.normal_body_temperature = 36.5
+      child.fever = 37.5
+      child.breastfeeding_status = 4
+      child.milk_situation_after_baby_food = 2
+      child.baby_food_progress = 4
+      child.appetite = 1
+      child.favorite_food = 'オムライス'
+      child.hated_food = '生野菜'
+      child.how_to_eat = 2
+      child.meal_time = 30
+      child.how_to_lay_it_down = 0
+      child.falling_asleep = 2
+      child.waking_up = 2
+      child.sleeping_position = 1
+      child.is_deep_sleep = true
+      child.diaper_usage = 3
+      child.is_sensitive_to_rash = false
+      child.urination = 0
+      child.defecation = 1
+      child.number_of_defecation = '一日1回'
+      child.favorite_game = '砂場遊び、ブランコ、水遊び、お医者さんごっこ'
+      child.favorite_toy = '絵本、ブロック'
+      child.hospital_name = 'ゲスト小児科'
+      child.hospital_telephone_number = '0540000000'
     end
 
     family = customer.families.find_or_create_by!(last_name: 'guest' ,first_name: 'user') do |family|

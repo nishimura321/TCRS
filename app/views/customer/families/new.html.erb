@@ -7,7 +7,7 @@
 
   <div class="row">
     <% if @family.errors.any? %>
-    <div class="col-10 mx-auto alert alert-danger" role="alert">
+    <div class="col-xl-10 col-lg-10 mx-auto alert alert-danger" role="alert">
       <%= @family.errors.count %>件のエラーが発生しました
       <ul>
         <% @family.errors.full_messages.each do |message| %>
@@ -18,14 +18,23 @@
     <% end %>
   </div>
 
+  <% if session[:registration_family_count] == 0 && (@customer.last_name != "guest" || @customer.first_name != "user") %>
+  <div class="row mb-5">
+    <div class="col-12 text-center">
+      <img src="/assets/family_information_registration.png" width="80%">
+    </div>
+  </div>
+  <% end %>
+
   <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-xl-8 col-lg-8 mx-auto">
     <%= form_with model: @family, url: families_path, method: :post do |f| %>
       <p class="red">*印の項目は必須項目です。</p>
       <p>予約時の主な送迎者や緊急連絡先を選択する際に必要な情報となります。<br>
-        あらかじめ登録を行うことで予約がスムーズに行えます。<br>
+        まずは、アカウント登録者の情報から登録してみましょう。<br>
+        家族情報の追加はマイページから行えます。<br>
       </p>
-      <p class="font-weight-bold">【お子さまの家族】</p>
+      <p class="font-weight-bold mt-5">【お子さまの家族】</p>
       <div class="form-group">
         <%= f.label :"家族氏名", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.label :"(姓)", class: "font-weight-bold" %>
