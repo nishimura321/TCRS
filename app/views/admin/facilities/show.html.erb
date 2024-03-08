@@ -5,8 +5,15 @@
     </div>
   </div>
 
+  <div class="row mb-3">
+    <div class="col-xl-11 col-lg-11 text-right ml-5">
+      <%= link_to "予約カレンダー", admin_facility_situation_path(@facility.id), class: "font-weight-bold btn btn-warning px-4" %>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-xl-11 col-lg-11 mx-auto">
+      <div class="table-responsive">
       <table class="table border border-black">
         <tbody>
           <tr>
@@ -56,7 +63,7 @@
             <td class="align-middle"><%= @facility.closed_day %></td>
           </tr>
           <tr>
-            <th class="table-secondary align-middle">保育時間</th>
+            <th class="table-secondary align-middle">一時預かり保育時間</th>
             <td class="align-middle"><%= @facility.childcare_hours %></td>
           </tr>
           <tr>
@@ -77,17 +84,26 @@
           </tr>
           <tr>
             <th class="table-secondary align-middle">施設ステータス</th>
-            <td class="align-middle"><% if @facility.is_active %>
-                <p class="text-success"><strong>有効</strong></p>
-                <% else %>
-                <p class="text-secondary"><strong>閉園</strong></p>
-                <% end %>
+            <td class="align-middle">
+              <% if @facility.is_active %>
+                <span class="font-weight-bold">有効</span>
+              <% else %>
+                <span class="text-secondary font-weight-bold">閉園</span>
+              <% end %>
             </td>
           </tr>
         </tbody>
-      </table><br><br>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-5">
+    <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
-      <%= link_to "修正", edit_admin_facility_path(@facility.id), class: "btn btn-warning px-4" %><br><br>
+      <% if @facility.is_active %>
+        <%= link_to "修正", edit_admin_facility_path(@facility.id), class: "font-weight-bold btn btn-warning px-4" %><br><br>
+      <% end %>
     </div>
   </div>
 </div>

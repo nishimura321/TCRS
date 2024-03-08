@@ -1,6 +1,6 @@
 class Admin::FacilitiesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_facility, only: [:show, :edit, :update, :withdrawal]
+  before_action :ensure_facility, only: [:show, :edit, :update, :situation]
 
   def new
     @facility = Facility.new
@@ -38,12 +38,14 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def withdrawal
+    facility = Facility.find(params[:id])
     facility.update(is_active: false)
     flash[:notice] = "閉園処理を行いました。"
     redirect_to admin_facilities_path
   end
 
   def situation
+    @reservations = @facility.reservations.validation_checked.order(day: :desc)
   end
 
   private

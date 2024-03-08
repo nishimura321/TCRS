@@ -24,4 +24,16 @@ class Facility < ApplicationRecord
   validates :fee, presence: true
   validates :message, presence: true
 
+#予約データから指定された日付・時間の予約が2件以上あるかチェックするメソッド
+  def self.full_reserved?(day, time)
+    target_start_time = Time.zone.parse("#{day} #{time}:00")
+    target_end_time = target_start_time.since(30.minutes)
+    reservation_count = Reservation.where(start_time: (..target_start_time), end_time: (target_end_time..)).size
+    if reservation_count >= 2
+      true
+    else
+      false
+    end
+  end
+
 end

@@ -6,6 +6,19 @@
   </div>
 
   <div class="row">
+    <% if @reservation.errors.any? %>
+    <div class="col-xl-8 col-lg-8 mx-auto alert alert-danger" role="alert">
+      <%= @reservation.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row">
     <div class="col-7 mx-auto">
       <p class="font-weight-bold">【予約情報】</p>
     </div>

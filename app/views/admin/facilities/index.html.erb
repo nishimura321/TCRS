@@ -6,40 +6,42 @@
   </div>
 
   <div class="row">
-    <div class="col-xl-11 col-lg-11 text-right">
+    <div class="col-xl-11 col-lg-11 text-right ml-5">
       <%= link_to "新規施設登録", new_admin_facility_path, class: "font-weight-bold btn btn-warning px-4" %><br><br>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-xl-10 col-lg-10 mx-auto">
+    <div class="col-xl-11 col-lg-11 mx-auto">
+      <div class="table-responsive">
       <table class="table border border-black">
         <thead>
-          <tr class="table-secondary">
+          <tr class="table-secondary text-center">
             <th class="align-middle" style="width: 10%;">施設ID</th>
             <th class="align-middle" style="width: 25%;">施設名</th>
-            <th class="align-middle" style="width: 25%;">メールアドレス</th>
-            <th class="align-middle" style="width: 25%;">電話番号</th>
-            <th class="align-middle" style="width: 15%;">ステータス</th>
+            <th class="align-middle" style="width: 30%;">住所</th>
+            <th class="align-middle" style="width: 22%;">電話番号</th>
+            <th class="align-middle" style="width: 13%;">ステータス</th>
           </tr>
         </thead>
         <% @facilities.each do |facility| %>
         <tbody>
           <tr>
-            <td class="align-middle" style="width: 10%;"><%= facility.id %></td>
+            <td class="align-middle text-center" style="width: 10%;"><%= facility.id %></td>
             <td class="align-middle" style="width: 25%;"><%= link_to facility.name, admin_facility_path(facility.id) %></td>
-            <td class="align-middle" style="width: 25%;"><%= facility.email %></td>
-            <td class="align-middle" style="width: 25%;"><%= facility.telephone_number %></td>
-            <td class="align-middle" style="width: 15%;"><% if facility.is_active %>
-                <p>有効</p>
+            <td class="align-middle" style="width: 30%;"><%= facility.address %></td>
+            <td class="align-middle text-center" style="width: 22%;"><%= facility.telephone_number %></td>
+            <td class="align-middle text-center" style="width: 13%;"><% if facility.is_active %>
+                <span>有効</span>
                 <% else %>
-                <p class="text-secondary font-weight-bold">閉園</p>
+                <span class="text-secondary font-weight-bold">閉園</span>
                 <% end %>
             </td>
           </tr>
         </tbody>
         <% end %>
       </table>
+      </div>
     </div>
   </div>
 

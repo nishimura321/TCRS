@@ -6,36 +6,39 @@
   </div>
 
   <div class="row">
-    <div class="col-10 mx-auto">
-      <table class ="table border border-black">
-        <thead>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 10%;">予約ID</th>
-            <th class="table-secondary align-middle", style="width: 23%;">予約日</th>
-            <th class="table-secondary align-middle", style="width: 20%;">予約者氏名</th>
-            <th class="table-secondary align-middle", style="width: 20%;">施設名</th>
-            <th class="table-secondary align-middle", style="width: 13%;">ステータス</th>
-            <th class="table-secondary align-middle", style="width: 14%;"></th>
-          </tr>
-        </thead>
-        <% @reservations.each do |reservation| %>
-        <tbody>
-          <tr>
-            <td class="align-middle", style="width: 10%;"><%= reservation.id %></td>
-            <td class="align-middle", style="width: 23%;"><%= reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(reservation.day) %></td>
-            <td class="align-middle", style="width: 20%;"><%= reservation.customer.last_name %><%= reservation.customer.first_name %></td>
-            <td class="align-middle", style="width: 20%;"><%= reservation.facility.name %></td>
-            <td class="align-middle", style="width: 13%;"><% if reservation.is_valid_reservation %>
-                <span>予約確定</span>
+    <div class="col-xl-10 col-lg-10 mx-auto">
+      <div class="table-responsive">
+        <table class ="table border border-black">
+          <thead>
+            <tr class="text-center">
+              <th class="table-secondary align-middle", style="width: 10%;">予約ID</th>
+              <th class="table-secondary align-middle", style="width: 23%;">予約日</th>
+              <th class="table-secondary align-middle", style="width: 20%;">予約者氏名</th>
+              <th class="table-secondary align-middle", style="width: 20%;">施設名</th>
+              <th class="table-secondary align-middle", style="width: 13%;">ステータス</th>
+              <th class="table-secondary align-middle", style="width: 14%;"></th>
+            </tr>
+          </thead>
+          <% @reservations.each do |reservation| %>
+          <tbody>
+            <tr>
+              <td class="align-middle text-center", style="width: 10%;"><%= reservation.id %></td>
+              <td class="align-middle", style="width: 23%;"><%= reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(reservation.day) %></td>
+              <td class="align-middle", style="width: 20%;"><%= reservation.customer.last_name %><%= reservation.customer.first_name %></td>
+              <td class="align-middle", style="width: 20%;"><%= reservation.facility.name %></td>
+              <td class="align-middl text-center", style="width: 13%;">
+                <% if reservation.is_valid_reservation %>
+                  <span class="text-center">予約確定</span>
                 <% else %>
-                <span class="text-secondary font-weight-bold">キャンセル</span>
+                  <span class="text-secondary font-weight-bold text-center">キャンセル</span>
                 <% end %>
-            </td>
-            <td class="align-middle", style="width: 14%;"><%= link_to "詳細", admin_reservation_path(reservation.id), class: "btn btn-warning px-3" %></td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
+              </td>
+              <td class="align-middle text-center", style="width: 14%;"><%= link_to "詳細", admin_reservation_path(reservation.id), class: "btn btn-warning px-3" %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 
