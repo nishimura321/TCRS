@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="col-12 text-center">
     <h2 class="font-weight-bold"><%= @facility.name %>予約</h2>
@@ -27,7 +27,7 @@
 
   <div class="row">
     <% if @reservation.errors.any? %>
-    <div class="col-xl-8 col-lg-8 mx-auto alert alert-danger" role="alert">
+    <div class="col-xl-8 col-lg-8 mx-auto alert alert-info" role="alert">
       <%= @reservation.errors.count %>件のエラーが発生しました
       <ul>
         <% @reservation.errors.full_messages.each do |message| %>
@@ -78,11 +78,11 @@
       </div>
     </div>
   </div><br><br>
-  <div class="row">
+  <div class="row mb-5">
     <div class="mx-auto">
       <%= f.hidden_field :facility_id, :value => @facility.id %>
       <%= f.hidden_field :customer_id, :value => current_customer.id %>
-      <%= f.submit "入力内容の確認", class: "font-weight-bold btn btn-warning px-4" %>
+      <%= f.submit "入力内容の確認", class: "font-weight-bold btn btn-custom px-4" %>
       <% end %>
       <br><br>
     </div>

@@ -111,7 +111,7 @@ class Reservation < ApplicationRecord
  #カレンダーの×の日が選択できないようにするバリデーション
   validate :validate_reservation_availability, on: :create
   def validate_reservation_availability
-    if self.day.nil?
+    if self.day.nil? || self.start_time.nil? || self.end_time.nil?
       errors.add(:base, "予約希望日時を正しく選択してください。")
       return
     end

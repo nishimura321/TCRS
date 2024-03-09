@@ -68,7 +68,7 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def index
-    @reservations = current_customer.reservations.page(params[:page])
+    @reservations = current_customer.reservations.order(id: "DESC").page(params[:page])
   end
 
   def show
@@ -86,7 +86,7 @@ class Customer::ReservationsController < ApplicationController
 
   def confirm_allergy
     @reservation = Reservation.find(params[:id])
-    @reservation.update!(is_allergy_checked: false)
+    @reservation.update(is_allergy_checked: false)
     flash[:notice] = "献立のアレルギー確認が完了しました。"
     redirect_to reservation_path(@reservation)
   end

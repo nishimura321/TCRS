@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
     <h2 class="font-weight-bold mb-5">施設一覧</h2>
@@ -6,73 +6,74 @@
   </div>
 
   <div class="row">
-    <div class="col-10 mx-auto">
-    <% @facilities.each do |facility| %>
-    <% if facility.is_active %>
-    <%= link_to "詳細を見る", facility_path(facility.id), class: "btn btn-warning px-4 mb-3" %>
-    <table class="table border border-black">
-        <tbody>
-          <tr>
-            <th class="table-secondary align-middle">施設名</th>
-            <td class="align-middle"><%= facility.name %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">フリガナ</th>
-            <td class="align-middle"><%= facility.name_kana %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">住所</th>
-            <td class="align-middle">〒<%= facility.postal_code %><br>
-                <%= facility.address %>
-            </td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">電話番号</th>
-            <td class="align-middle"><%= facility.telephone_number %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">営業日</th>
-            <td class="align-middle"><%= facility.business_day %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">営業時間</th>
-            <td class="align-middle"><%= facility.business_hours %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">問い合わせ時間</th>
-            <td class="align-middle"><%= facility.inquiry_hours %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">一時預かり保育時間</th>
-            <td class="align-middle"><%= facility.childcare_hours %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">受け入れ年齢</th>
-            <td class="align-middle"><%= facility.target_age %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">給食の有無</th>
-            <td class="align-middle"><%= facility.school_meal %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle">利用料金</th>
-            <td class="align-middle"><%= facility.fee %></td>
-          </tr>
-        </tbody>
-      </table>
-      <br><br><br>
+    <div class="col-xl-10 col-lg-10 mx-auto">
+      <% @facilities.each do |facility| %>
+      <% if facility.is_active %>
+      <%= link_to "詳細を見る", facility_path(facility.id), class: "btn btn-custom px-4 mb-3 font-weight-bold" %>
+      <div class="table-responsive">
+        <table class="table border border-black table-light">
+          <tbody>
+            <tr>
+              <th class="table-secondary align-middle">施設名</th>
+              <td class="align-middle"><%= facility.name %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">フリガナ</th>
+              <td class="align-middle"><%= facility.name_kana %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">住所</th>
+              <td class="align-middle">〒<%= facility.postal_code %><br>
+                  <%= facility.address %>
+              </td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">電話番号</th>
+              <td class="align-middle"><%= facility.telephone_number %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">営業日</th>
+              <td class="align-middle"><%= facility.business_day %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">営業時間</th>
+              <td class="align-middle"><%= facility.business_hours %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">問い合わせ時間</th>
+              <td class="align-middle"><%= facility.inquiry_hours %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">一時預かり保育時間</th>
+              <td class="align-middle"><%= facility.childcare_hours %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">受け入れ年齢</th>
+              <td class="align-middle"><%= facility.target_age %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">給食の有無</th>
+              <td class="align-middle"><%= facility.school_meal %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle">利用料金</th>
+              <td class="align-middle"><%= facility.fee %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div><br><br>
       <% end %>
       <% end %>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-5 mb-5">
     <div class="mx-auto">
       <%= paginate @facilities %>
-    </div><br><br><br>
+    </div>
   </div>
-  <div class="row">
+  <div class="row mb-5">
     <div class="mx-auto">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@ class Admin::ReservationsController < ApplicationController
   before_action :ensure_reservation, only: [:show, :edit, :update]
 
   def index
-    @reservations = Reservation.order(id: :desc).page(params[:page])
+    @reservations = Reservation.order(day: "DESC").page(params[:page])
   end
 
   def show

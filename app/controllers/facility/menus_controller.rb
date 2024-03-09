@@ -19,7 +19,7 @@ class Facility::MenusController < ApplicationController
   end
 
   def index
-    @menus = current_facility.menus.page(params[:page]).per(25)
+    @menus = current_facility.menus.order(:date).page(params[:page]).per(25)
   end
 
   def edit

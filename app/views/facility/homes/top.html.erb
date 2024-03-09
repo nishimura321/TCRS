@@ -6,44 +6,48 @@
   </div>
 
   <div class="row mt-5">
-    <div class="col-xl-11 col-lg-11">
-      <div class="table-responsive">
-        <table class="table border border-black">
-          <thead>
-            <tr class="text-center">
-              <th class="table-secondary align-middle">日時</th>
-              <th class="table-secondary align-middle">お子さま氏名</th>
-              <th class="table-secondary align-middle">年齢</th>
-              <th class="table-secondary align-middle">ステータス</th>
-              <th class="table-secondary align-middle"></th>
-            </tr>
-          </thead>
-          <% @reservations.each do |reservation| %>
-            <tbody>
-              <tr>
-                <td class="align-middle"><%= reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(reservation.day) %>　<%= reservation.start_time.strftime('%H:%M') %>　〜　<%= reservation.end_time.strftime('%H:%M') %></td>
-                <td class="align-middle"><%= reservation.child.last_name %><%= reservation.child.first_name %></td>
-                <td class="align-middle text-center"><%= reservation.child.birthday.strftime("%Y年%m月%d日") %>（<%= age_in_years(child.birthday) %>歳<%= age_in_months(child.birthday) %>ヶ月）</td>
-                <td class="align-middle text-center">
-                  <% if reservation.is_valid_reservation %>
-                    <span>有効</span>
-                  <% else %>
-                    <span class="text-secondary font-weight-bold">キャンセル</span>
-                  <% end %>
-                </td>
-                <td class="align-middle"><%= link_to "詳細", admin_facility_path(reservation.id), class: "font-weight-bold btn btn-warning px-4" %></td>
+    <div class="col-xl-12 col-lg-12">
+      <% if @reservations.any? %>
+        <div class="table-responsive">
+          <table class="table border border-black">
+            <thead>
+              <tr class="text-center">
+                <th class="table-secondary align-middle">日時</th>
+                <th class="table-secondary align-middle">お子さま氏名</th>
+                <th class="table-secondary align-middle">年齢</th>
+                <th class="table-secondary align-middle">ステータス</th>
+                <th class="table-secondary align-middle"></th>
               </tr>
-            </tbody>
-          <% end %>
-        </table>
-      </div>
+            </thead>
+            <% @reservations.each do |reservation| %>
+              <tbody>
+                <tr>
+                  <td class="align-middle"><%= reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(reservation.day) %>　<%= reservation.start_time.strftime('%H:%M') %>　〜　<%= reservation.end_time.strftime('%H:%M') %></td>
+                  <td class="align-middle"><%= reservation.child.last_name %><%= reservation.child.first_name %></td>
+                  <td class="align-middle text-center"><%= reservation.child.birthday.strftime("%Y年%m月%d日") %>（<%= age_in_years(reservation.child.birthday) %>歳<%= age_in_months(reservation.child.birthday) %>ヶ月）</td>
+                  <td class="align-middle text-center">
+                    <% if reservation.is_valid_reservation %>
+                      <span>有効</span>
+                    <% else %>
+                      <span class="text-secondary font-weight-bold">キャンセル</span>
+                    <% end %>
+                  </td>
+                  <td class="align-middle text-center"><%= link_to "詳細", admin_facility_path(reservation.id), class: "font-weight-bold btn btn-warning px-4" %></td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
+        </div>
+      <% else %>
+        <h4 class="mt-5 mb-5 text-center">本日の予約はありません。</p>
+      <% end %>
     </div>
-  </div>
+  </div><br><br><br>
 
 
-  <div class="row mt-3 mb-5">
+  <div class="row mt-5 mb-5">
     <div class="mx-auto mb-5">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
     </div>
   </div>
 </div>

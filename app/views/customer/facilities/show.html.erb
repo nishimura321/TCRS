@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
     <h2 class="font-weight-bold mb-5"><%= @facility.name %>詳細</h2>
@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="mt-3 mx-auto">
-      <h2 class="font-weight-bold">予約状況</h2><br>
+      <h3 class="font-weight-bold">予約状況</h2><br>
     </div>
   </div>
   <div class="row">
@@ -19,8 +19,9 @@
   </div>
 
   <div class="row">
-    <div class="col-11 mx-auto">
-      <table class="table border border-black">
+    <div class="col-xl-11 col-lg-11 mx-auto">
+    <div class="table-responsive">
+      <table class="table border border-black table-light">
         <tbody>
           <tr>
             <th class="table-secondary align-middle">施設名</th>
@@ -76,7 +77,7 @@
             <th class="table-secondary align-middle">給食の有無</th>
             <td class="align-middle">
               <%= @facility.school_meal %>
-              <%= link_to "献立を見る", menus_path(facility_id: @facility.id), class: "btn btn-warning px-4 ml-5" %>
+              <%= link_to "献立を見る", menus_path(facility_id: @facility.id), class: "btn btn-custom px-4 ml-5 font-weight-bold" %>
             </td>
           </tr>
           <tr>
@@ -90,12 +91,13 @@
         </tbody>
       </table><br><br>
     </div>
+    </div>
   </div>
 
   <div class="row">
     <div class="mt-3 mx-auto">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
-      <%= link_to "予約へ進む", new_reservation_path(facility_id: @facility.id), class: "btn btn-warning px-4" %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %>
+      <%= link_to "予約へ進む", new_reservation_path(facility_id: @facility.id), class: "btn btn-custom px-4 font-weight-bold" %>
     </div>
   </div>
 </div><br><br><br>

@@ -6,45 +6,52 @@
   </div>
 
   <div class="row mt-5">
-    <div class="col-12">
-    <%= link_to "献立登録", new_facility_menu_path, class: "btn btn-warning px-4 mr-5" %>
+    <div class="col-xl-12 col-lg-12 text-right">
+    <%= link_to "献立登録", new_facility_menu_path, class: "btn btn-warning px-4 font-weight-bold" %>
     </div>
   </div>
 
   <div class="row mt-3">
-    <div class="col-12 mx-auto">
-      <table class="table border border-black">
-        <thead>
-          <tr class="table-secondary">
-            <th class="align-middle", style="width: 19%;">日付</th>
-            <th class="align-middle", style="width: 22%;">給食</th>
-            <th class="align-middle", style="width: 20%;">おやつ</th>
-            <th class="align-middle", style="width: 29%;">食材</th>
-            <th class="align-middle", style="width: 10%;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @menus.each do |menu| %>
-          <tr>
-            <td class="align-middle", style="width: 19%;"><%= menu.date.strftime('%Y年%m月%d日 ') %><%= japanese_day(menu.date) %></td>
-            <td class="align-middle", style="width: 22%;"><%= menu.school_lunch %></td>
-            <td class="align-middle", style="width: 20%;"><%= menu.snack %></td>
-            <td class="align-middle", style="width: 29%;"><%= menu.ingredient %></td>
-            <td class="align-middle", style="width: 10%;">
-              <%= link_to "編集", edit_facility_menu_path(menu.id), class: "btn btn-warning px-3" %><br>
-              <%= link_to "削除", facility_menu_path(menu.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-warning px-3 mt-2" %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="col-xl-12 col-lg-12 mx-auto">
+      <div class="table-responsive">
+        <table class="table border border-black">
+          <thead>
+            <tr class="table-secondary text-center">
+              <th class="align-middle", style="width: 19%;">日付</th>
+              <th class="align-middle", style="width: 22%;">給食</th>
+              <th class="align-middle", style="width: 20%;">おやつ</th>
+              <th class="align-middle", style="width: 29%;">食材</th>
+              <th class="align-middle", style="width: 10%;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @menus.each do |menu| %>
+            <tr>
+              <td class="align-middle", style="width: 19%;"><%= menu.date.strftime('%Y年%m月%d日 ') %><%= japanese_day(menu.date) %></td>
+              <td class="align-middle", style="width: 22%;"><%= menu.school_lunch %></td>
+              <td class="align-middle", style="width: 20%;"><%= menu.snack %></td>
+              <td class="align-middle", style="width: 29%;"><%= menu.ingredient %></td>
+              <td class="align-middle text-center", style="width: 10%;">
+                <%= link_to "編集", edit_facility_menu_path(menu.id), class: "btn btn-warning px-3" %><br>
+                <%= link_to "削除", facility_menu_path(menu.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger px-3 mt-2" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
   <div class="row mt-5">
     <div class="mx-auto">
-      <%= paginate @menus %><br><br>
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
+      <%= paginate @menus %>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
     </div>
   </div>
 </div>

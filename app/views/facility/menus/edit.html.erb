@@ -7,7 +7,7 @@
 
     <div class="row">
     <% if @menu.errors.any? %>
-    <div class="col-10 mx-auto alert alert-danger" role="alert">
+    <div class="col-xl-10 col-lg-10 mx-auto alert alert-danger" role="alert">
       <%= @menu.errors.count %>件のエラーが発生しました
       <ul>
         <% @menu.errors.full_messages.each do |message| %>
@@ -19,7 +19,7 @@
   </div>
 
   <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-xl-8 col-lg-8 mx-auto">
         <%= form_with model: @menu, url: facility_menu_path(@menu.id), method: :patch do |f| %>
       <div class="form-group">
         <%= f.label :"日付", class: "font-weight-bold" %><br>
@@ -27,7 +27,7 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"給食", class: "font-weight-bold" %><br>
-        <%= f.text_area :school_lunch, class: "form-control", value: f.object.school_lunch %>
+        <%= f.text_area :school_lunch, class: "form-control", id: "exampleFormControlTextarea1", rows: "4", value: f.object.school_lunch %>
       </div><br>
       <div class="form-group">
         <%= f.label :"おやつ", class: "font-weight-bold" %><br>
@@ -35,7 +35,7 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"食材", class: "font-weight-bold" %><br>
-        <%= f.text_area :ingredient, class: "form-control", value: f.object.ingredient %>
+        <%= f.text_area :ingredient, class: "form-control", id: "exampleFormControlTextarea1", rows: "4", value: f.object.ingredient %>
       </div><br>
     </div>
   </div>

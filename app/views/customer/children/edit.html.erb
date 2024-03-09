@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
     <h2 class="font-weight-bold mb-5">お子さま情報編集</h2>
@@ -7,7 +7,7 @@
 
   <div class="row">
     <% if @child.errors.any? %>
-    <div class="col-10 mx-auto alert alert-danger" role="alert">
+    <div class="col-10 mx-auto alert alert-info" role="alert">
       <%= @child.errors.count %>件のエラーが発生しました
       <ul>
         <% @child.errors.full_messages.each do |message| %>
@@ -19,7 +19,7 @@
   </div>
 
   <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-xl-8 col-lg-8 mx-auto">
     <%= form_with model: @child, url: child_path(@child), method: :patch do |f| %>
       <p class="red">*印の項目は必須項目です。</p>
       <p class="font-weight-bold">【お子さま情報】</p>
@@ -67,7 +67,7 @@
       </div><br>
       <div class="field">
         <%= f.label :"熱性痙攣が起きた時の詳細をご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :febrile_seizure_details, class: "form-control" %><br>
+        <%= f.text_area :febrile_seizure_details, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"脱臼を起こしたことはありますか？", class: "font-weight-bold" %><span class="red">*</span><br>
@@ -78,7 +78,7 @@
       </div><br>
       <div class="field">
         <%= f.label :"脱臼の詳細についてご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :dislocation_details, class: "form-control" %><br>
+        <%= f.text_area :dislocation_details, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"アレルギーはありますか？", class: "font-weight-bold" %><span class="red">*</span><br>
@@ -89,7 +89,7 @@
       </div><br>
       <div class="field">
         <%= f.label :"アレルギーの詳細をご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :allergy_details, class: "form-control" %><br>
+        <%= f.text_area :allergy_details, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"授乳状況について選択してください。", class: "font-weight-bold" %><br>
@@ -121,11 +121,11 @@
       </div><br>
       <div class="field">
         <%= f.label :"お子さまの好きな食べ物をご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :favorite_food, class: "form-control" %><br>
+        <%= f.text_area :favorite_food, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"お子さまの嫌いな食べ物をご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :hated_food, class: "form-control" %><br>
+        <%= f.text_area :hated_food, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"食べ方を選択してください。", class: "font-weight-bold" %><br>
@@ -187,11 +187,11 @@
       </div><br>
       <div class="field">
         <%= f.label :"好きな遊びは何ですか？", class: "font-weight-bold" %><br>
-        <%= f.text_area :favorite_game, class: "form-control" %><br>
+        <%= f.text_area :favorite_game, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"好きな玩具はありますか？", class: "font-weight-bold" %><br>
-        <%= f.text_area :favorite_toy, class: "form-control" %><br>
+        <%= f.text_area :favorite_toy, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="field">
         <%= f.label :"かかりつけ医療機関の名前は？", class: "font-weight-bold" %><br>
@@ -203,15 +203,15 @@
       </div><br>
       <div class="field">
         <%= f.label :"その他連絡事項があればご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :memo, class: "form-control" %><br>
+        <%= f.text_area :memo, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
     </div>
   </div>
 
   <div class="row">
     <div class="mx-auto">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
-      <%= f.submit "修正", class: "btn btn-warning px-4 mr-5" %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %>
+      <%= f.submit "修正", class: "btn btn-custom px-4 mr-5" %>
       <%= link_to "無効にする", disable_child_path(@child), method: :patch, "data-confirm" => "本当に無効にしますか？", class: "btn btn-danger px-4" %>
     <% end %><br><br>
     </div>

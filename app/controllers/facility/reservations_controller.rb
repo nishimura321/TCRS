@@ -3,7 +3,7 @@ class Facility::ReservationsController < ApplicationController
   before_action :ensure_reservation, only: [:show, :edit, :update, :cancel]
 
   def index
-    @reservations = current_facility.reservations.page(params[:page])
+    @reservations = current_facility.reservations.order(day: "DESC").page(params[:page])
   end
 
   def show

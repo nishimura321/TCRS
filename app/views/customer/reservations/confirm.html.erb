@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
    <div class="mx-auto">
      <h2 class="font-weight-bold mb-5">予約情報確認</h2>
@@ -12,9 +12,10 @@
   </div>
 
   <div class="row">
-   <div class="col-8 mx-auto">
+   <div class="col-xl-8 col-lg-8 mx-auto">
       <p class="font-weight-bold">【予約内容】</p>
-       <table class ="table border border-black">
+      <div class="table-responsive">
+       <table class ="table border border-black table-light">
           <tbody>
             <tr>
               <th class="table-secondary align-middle", style="width: 30%;">利用希望日時</th>
@@ -48,133 +49,145 @@
             </tr>
           </tbody>
         </table>
+      </div>
       <p class="font-weight-bold mt-5">【アカウント情報】</p>
-      <table class ="table border border-black">
-        <tbody>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">保護者氏名</th>
-            <td class="align-middle", style="width: 70%;"><%= @reservation.customer.last_name %><%= @reservation.customer.first_name %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">フリガナ</th>
-            <td class="align-middle", style="width: 70%;"><%= @reservation.customer.last_name_kana %><%= @reservation.customer.first_name_kana %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">住所</th>
-            <td class="align-middle", style="width: 70%;">
-              〒<%= @reservation.customer.postal_code %><br>
-              <%= @reservation.customer.address %>
-            </td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">電話番号</th>
-            <td class="align-middle", style="width: 70%;"><%= @reservation.customer.telephone_number %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">メールアドレス</th>
-            <td class="align-middle", style="width: 70%;"><%= @reservation.customer.email %></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class ="table border border-black table-light">
+          <tbody>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">保護者氏名</th>
+              <td class="align-middle", style="width: 70%;"><%= @reservation.customer.last_name %><%= @reservation.customer.first_name %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">フリガナ</th>
+              <td class="align-middle", style="width: 70%;"><%= @reservation.customer.last_name_kana %><%= @reservation.customer.first_name_kana %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">住所</th>
+              <td class="align-middle", style="width: 70%;">
+                〒<%= @reservation.customer.postal_code %><br>
+                <%= @reservation.customer.address %>
+              </td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">電話番号</th>
+              <td class="align-middle", style="width: 70%;"><%= @reservation.customer.telephone_number %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">メールアドレス</th>
+              <td class="align-middle", style="width: 70%;"><%= @reservation.customer.email %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <p class="font-weight-bold mt-5">【お子さま情報】</p>
-      <table class ="table border border-black">
-        <tbody>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">お子さま氏名</th>
-            <td class="align-middle", style="width: 70%;"><%= @reservation.child.last_name %><%= @reservation.child.first_name %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">フリガナ</th>
-            <td class="align-middle", style="width: 70%;"><%= @reservation.child.last_name_kana %><%= @reservation.child.first_name_kana %></td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">生年月日</th>
-            <td class="align-middle", style="width: 70%;">
-              <%= @reservation.child.birthday.strftime("%Y年%m月%d日") %>
-            </td>
-          </tr>
-          <tr>
-            <th class="table-secondary align-middle", style="width: 30%;">性別</th>
-            <td class="align-middle", style="width: 70%;">
-              <% if @reservation.child.male %>
-              男
-              <% else %>
-              女
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class ="table border border-black table-light">
+          <tbody>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">お子さま氏名</th>
+              <td class="align-middle", style="width: 70%;"><%= @reservation.child.last_name %><%= @reservation.child.first_name %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">フリガナ</th>
+              <td class="align-middle", style="width: 70%;"><%= @reservation.child.last_name_kana %><%= @reservation.child.first_name_kana %></td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">生年月日</th>
+              <td class="align-middle", style="width: 70%;">
+                <%= @reservation.child.birthday.strftime("%Y年%m月%d日") %>
+              </td>
+            </tr>
+            <tr>
+              <th class="table-secondary align-middle", style="width: 30%;">性別</th>
+              <td class="align-middle", style="width: 70%;">
+                <% if @reservation.child.male %>
+                男
+                <% else %>
+                女
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <p class="font-weight-bold mt-5">【主な送迎者】</p>
-      <table class ="table border border-black">
-        <tbody>
-          <tr class="table-secondary">
-            <th class="align-middle">氏名</th>
-            <th class="align-middle">続柄</th>
-            <th class="align-middle">連絡先</th>
-          </tr>
-          <tr>
-            <td class="align-middle"><%= @main_pick_up_person.family_name %></td>
-            <td class="align-middle"><% if @main_pick_up_person.mother? %>
-                <%= I18n.t("enums.family.relationship.mother") %>
-                <% elsif @main_pick_up_person.father? %>
-                <%= I18n.t("enums.family.relationship.father") %>
-                <% elsif @main_pick_up_person.grandmother? %>
-                <%= I18n.t("enums.family.relationship.grandmother") %>
-                <% elsif @main_pick_up_person.grandfather? %>
-                <%= I18n.t("enums.family.relationship.grandfather") %>
-                <% elsif @main_pick_up_person.other? %>
-                <%= I18n.t("enums.family.relationship.other") %>
-                <% end %>
-            </td>
-            <td class="align-middle"><%= @main_pick_up_person.telephone_number %></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class ="table border border-black table-light">
+          <tbody>
+            <tr class="table-secondary text-center">
+              <th class="align-middle">氏名</th>
+              <th class="align-middle">続柄</th>
+              <th class="align-middle">連絡先</th>
+            </tr>
+            <tr class="text-center">
+              <td class="align-middle"><%= @main_pick_up_person.family_name %></td>
+              <td class="align-middle"><% if @main_pick_up_person.mother? %>
+                  <%= I18n.t("enums.family.relationship.mother") %>
+                  <% elsif @main_pick_up_person.father? %>
+                  <%= I18n.t("enums.family.relationship.father") %>
+                  <% elsif @main_pick_up_person.grandmother? %>
+                  <%= I18n.t("enums.family.relationship.grandmother") %>
+                  <% elsif @main_pick_up_person.grandfather? %>
+                  <%= I18n.t("enums.family.relationship.grandfather") %>
+                  <% elsif @main_pick_up_person.other? %>
+                  <%= I18n.t("enums.family.relationship.other") %>
+                  <% end %>
+              </td>
+              <td class="align-middle"><%= @main_pick_up_person.telephone_number %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <p class="font-weight-bold mt-5">【緊急連絡先】</p>
-      <table class ="table border border-black">
-        <tbody>
-          <tr class="table-secondary">
-            <th class="align-middle">氏名</th>
-            <th class="align-middle">続柄</th>
-            <th class="align-middle">連絡先</th>
-          </tr>
-          <tr>
-            <td class="align-middle"><%= @emergency_contact_1.family_name %></td>
-            <td class="align-middle"><% if @emergency_contact_1.mother? %>
-                <%= I18n.t("enums.family.relationship.mother") %>
-                <% elsif @emergency_contact_1.father? %>
-                <%= I18n.t("enums.family.relationship.father") %>
-                <% elsif @emergency_contact_1.grandmother? %>
-                <%= I18n.t("enums.family.relationship.grandmother") %>
-                <% elsif @emergency_contact_1.grandfather? %>
-                <%= I18n.t("enums.family.relationship.grandfather") %>
-                <% elsif @emergency_contact_1.other? %>
-                <%= I18n.t("enums.family.relationship.other") %>
-                <% end %>
-            </td>
-            <td class="align-middle"><%= @emergency_contact_1.telephone_number %></td>
-          </tr>
-          <% if @emergency_contact_2.present? %>
-          <tr>
-            <td class="align-middle"><%= @emergency_contact_2.family_name %></td>
-            <td class="align-middle"><% if @emergency_contact_2.mother? %>
-                <%= I18n.t("enums.family.relationship.mother") %>
-                <% elsif @emergency_contact_2.father? %>
-                <%= I18n.t("enums.family.relationship.father") %>
-                <% elsif @emergency_contact_2.grandmother? %>
-                <%= I18n.t("enums.family.relationship.grandmother") %>
-                <% elsif @emergency_contact_2.grandfather? %>
-                <%= I18n.t("enums.family.relationship.grandfather") %>
-                <% elsif @emergency_contact_2.other? %>
-                <%= I18n.t("enums.family.relationship.other") %>
-                <% end %>
-            </td>
-            <td class="align-middle"><%= @emergency_contact_2.telephone_number %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class ="table border border-black table-light">
+          <tbody>
+            <tr class="table-secondary text-center">
+              <th class="align-middle">氏名</th>
+              <th class="align-middle">続柄</th>
+              <th class="align-middle">連絡先</th>
+            </tr>
+            <tr class="text-center">
+              <td class="align-middle"><%= @emergency_contact_1.family_name %></td>
+              <td class="align-middle"><% if @emergency_contact_1.mother? %>
+                  <%= I18n.t("enums.family.relationship.mother") %>
+                  <% elsif @emergency_contact_1.father? %>
+                  <%= I18n.t("enums.family.relationship.father") %>
+                  <% elsif @emergency_contact_1.grandmother? %>
+                  <%= I18n.t("enums.family.relationship.grandmother") %>
+                  <% elsif @emergency_contact_1.grandfather? %>
+                  <%= I18n.t("enums.family.relationship.grandfather") %>
+                  <% elsif @emergency_contact_1.other? %>
+                  <%= I18n.t("enums.family.relationship.other") %>
+                  <% end %>
+              </td>
+              <td class="align-middle"><%= @emergency_contact_1.telephone_number %></td>
+            </tr>
+            <% if @emergency_contact_2.present? %>
+            <tr class="text-center">
+              <td class="align-middle"><%= @emergency_contact_2.family_name %></td>
+              <td class="align-middle"><% if @emergency_contact_2.mother? %>
+                  <%= I18n.t("enums.family.relationship.mother") %>
+                  <% elsif @emergency_contact_2.father? %>
+                  <%= I18n.t("enums.family.relationship.father") %>
+                  <% elsif @emergency_contact_2.grandmother? %>
+                  <%= I18n.t("enums.family.relationship.grandmother") %>
+                  <% elsif @emergency_contact_2.grandfather? %>
+                  <%= I18n.t("enums.family.relationship.grandfather") %>
+                  <% elsif @emergency_contact_2.other? %>
+                  <%= I18n.t("enums.family.relationship.other") %>
+                  <% end %>
+              </td>
+              <td class="align-middle"><%= @emergency_contact_2.telephone_number %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div><br><br>
 
@@ -193,7 +206,7 @@
       <%= f.hidden_field :emergency_contact_2, :value => @reservation.emergency_contact_2 %>
       <%= f.hidden_field :wants_meal_service, :value => @reservation.wants_meal_service %>
       <%= f.hidden_field :purpose_of_use, :value => @reservation.purpose_of_use %>
-      <%= f.submit "予約を確定する", class: "font-weight-bold btn btn-warning px-4" %>
+      <%= f.submit "予約を確定する", class: "font-weight-bold btn btn-custom px-4" %>
       <% end %>
     </div>
   </div>

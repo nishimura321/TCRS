@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <div class="navbar-brand">
-        <%= link_to "TCRS", root_path %>
+        <%= link_to image_tag("logo_TCRS.png", alt: "TCRS", style: "width: 25%; height: auto;"), root_path %>
       </div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,64 +24,64 @@
     </button>
 
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav wide-navbar">
       <% if admin_signed_in? %>
         <li class="nav-item mr-4">
-          <%= link_to "予約を検索", admin_reservations_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "予約を検索", admin_reservations_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "施設一覧", admin_facilities_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "施設一覧", admin_facilities_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "会員一覧", admin_customers_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %>
         </li>
 
       <% elsif facility_signed_in? %>
         <li class="nav-item mr-4">
-          <%= link_to "TOP", facility_top_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "TOP", facility_top_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "予約を検索", facility_reservations_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "予約を検索", facility_reservations_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "予約カレンダー", facility_reservations_situation_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "予約カレンダー", facility_reservations_situation_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "マイページ", facility_facility_path(current_facility), class: "btn btn-outline-secondary" %>
+          <%= link_to "マイページ", facility_facility_path(current_facility), class: "nav-link text-dark" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログアウト", destroy_facility_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+          <%= link_to "ログアウト", destroy_facility_session_path, method: :delete, class: "nav-link text-dark" %>
         </li>
 
       <% elsif customer_signed_in? %>
         <li class="nav-item mr-4">
-          <%= link_to "施設を探す", facilities_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "施設を探す", facilities_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "予約を確認する", reservations_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "予約を確認する", reservations_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "マイページ", customers_mypage_path(current_customer), class: "btn btn-outline-secondary" %>
+          <%= link_to "マイページ", customers_mypage_path(current_customer), class: "nav-link text-dark" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark" %>
         </li>
 
       <% else %>
         <li class="nav-item mr-4">
-          <%= link_to "利用について", about_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "利用について", about_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "施設を探す", facilities_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "施設を探す", facilities_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item mr-4">
-          <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "アカウント作成", new_customer_registration_path, class: "nav-link text-dark" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "ログイン", new_customer_session_path, class: "nav-link text-dark" %>
         </li>
       <% end %>
       </ul>
@@ -92,21 +92,35 @@
 
   <div class="container mt-5">
     <div class="row">
-      <div class="col-12 mx-auto">
+      <div class="col-xl-12 col-lg-12 mx-auto">
       <% flash.each do |message_type, message| %>
-        <div class="flash-message alert alert-danger <%= message_type %>"><%= message %></div>
+        <div class="flash-message alert alert-info <%= message_type %>"><%= message %></div>
       <% end %>
       </div>
     </div>
   </div>
   <%= yield %>
 
-  <div class="container mt-5">
-    <div class="row">
-      <footer class="mx-auto">
-        <span>利用規約　　個人情報取扱について　　<%= link_to "利用について", about_path %>　　よくある質問　　お問い合せ</span>
-      </footer>
+  <footer class="py-5">
+    <div class="container mt-5">
+      <div class="row mx-auto">
+        <div class="col-2">
+          <span>利用規約</span>
+        </div>
+        <div class="col-3">
+          <span>個人情報取扱について</span>
+        </div>
+        <div class="col-2">
+          <%= link_to "利用について", about_path %>
+        </div>
+        <div class="col-3">
+          <span>よくあるご質問</span>
+        </div>
+        <div class="col-2">
+          <span>お問い合せ</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </footer>
   </body>
 </html>

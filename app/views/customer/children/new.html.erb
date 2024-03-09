@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
     <h2 class="font-weight-bold mb-5">お子さま情報登録</h2>
@@ -7,7 +7,7 @@
 
   <div class="row">
     <% if @child.errors.any? %>
-    <div class="col-xl-10 col-lg-10 mx-auto alert alert-danger" role="alert">
+    <div class="col-xl-10 col-lg-10 mx-auto alert alert-info" role="alert">
       <%= @child.errors.count %>件のエラーが発生しました
       <ul>
         <% @child.errors.full_messages.each do |message| %>
@@ -75,7 +75,7 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"熱性痙攣が起きた時の詳細をご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :febrile_seizure_details, placeholder: "初めて起こした年齢、その時の熱が何℃かなど", class: "form-control" %><br>
+        <%= f.text_area :febrile_seizure_details, placeholder: "初めて起こした年齢、その時の熱が何℃かなど", class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"脱臼を起こしたことはありますか？", class: "font-weight-bold" %><span class="red">*</span><br>
@@ -86,7 +86,7 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"脱臼の詳細についてご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :dislocation_details, placeholder: "どこを何回いつ頃か", class: "form-control" %><br>
+        <%= f.text_area :dislocation_details, placeholder: "どこを何回いつ頃か", class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"アレルギーはありますか？", class: "font-weight-bold" %><span class="red">*</span><br>
@@ -97,7 +97,7 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"アレルギーの詳細をご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :allergy_details, placeholder: "どこ、何に、症状など", class: "form-control" %><br>
+        <%= f.text_area :allergy_details, placeholder: "どこ、何に、症状など", class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"授乳状況について選択してください。", class: "font-weight-bold" %><br>
@@ -129,11 +129,11 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"お子さまの好きな食べ物をご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :favorite_food, class: "form-control" %><br>
+        <%= f.text_area :favorite_food, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"お子さまの嫌いな食べ物をご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :hated_food, class: "form-control" %><br>
+        <%= f.text_area :hated_food, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"食べ方を選択してください。", class: "font-weight-bold" %><br>
@@ -195,11 +195,11 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"好きな遊びは何ですか？", class: "font-weight-bold" %><br>
-        <%= f.text_area :favorite_game, class: "form-control" %><br>
+        <%= f.text_area :favorite_game, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"好きな玩具はありますか？", class: "font-weight-bold" %><br>
-        <%= f.text_area :favorite_toy, class: "form-control" %><br>
+        <%= f.text_area :favorite_toy, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"かかりつけ医療機関の名前は？", class: "font-weight-bold" %><br>
@@ -211,19 +211,19 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"その他連絡事項があればご記入ください。", class: "font-weight-bold" %><br>
-        <%= f.text_area :memo, class: "form-control" %><br>
+        <%= f.text_area :memo, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %><br>
       </div><br>
     </div>
   </div>
 
   <div class="row">
     <div class="mx-auto">
-      <%= f.submit "お子さま登録", class: "font-weight-bold btn btn-warning px-4" %>
+      <%= f.submit "お子さま登録", class: "font-weight-bold btn btn-custom px-4" %>
     <% end %><br><br>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-5 mb-5">
     <div class="mx-auto">
     <p class="red">※2人目以降のお子さまを登録されたい場合はマイページから行なってください。</p><br><br>
     </div>

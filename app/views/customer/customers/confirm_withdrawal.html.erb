@@ -1,21 +1,30 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
-    <div class="mx-auto text-center">
-      <br><br><br><br>
-      <h5 class="font-weight-bold">本当に退会しますか？</h5>
-        <br>
-        <p class="red font-weight-bold">退会するボタンを押す前に利用前の予約がないかご確認お願いします。<br>
-        利用前の予約がある場合は必ず予約のキャンセルを行なって下さい。</p><br>
-        <p>
-          退会すると、アカウント登録情報やお子さま・家族情報、<br>
-          これまでの予約履歴、登録施設が閲覧できなくなります。<br>
-          退会する場合は、「退会する」をクリックしてください。
-        </p>
-        <br>
-        <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-4" %>
-        <%= link_to "退会しない", customers_mypage_path, class: "btn btn-primary pl-4 pr-4" %>
-        <%= link_to "退会する", customers_withdrawal_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger pl-4 pr-4 ml-4"  %>
-        <br><br><br><br><br><br><br>
+    <div class="mx-auto">
+      <h2 class="font-weight-bold">本当に退会しますか？</h5>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-xl-7 col-lg-7 mx-auto text-center">
+      <p class="red font-weight-bold">
+        退会するボタンを押す前に利用前の予約がないかご確認お願いします。<br>
+        利用前の予約がある場合は必ず予約のキャンセルを行なって下さい。<br><br>
+      </p>
+      <p>
+        退会すると、アカウント登録情報やお子さま・家族情報、<br>
+        これまでの予約履歴、登録施設が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。<br><br>
+      </p>
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-5">
+    <div class="mx-auto">
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-4" %>
+      <%= link_to "退会しない", customers_mypage_path, class: "btn btn-custom pl-4 pr-4" %>
+      <%= link_to "退会する", customers_withdrawal_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger pl-4 pr-4 ml-4" %>
+      <br><br><br>
     </div>
   </div>
 </div>
