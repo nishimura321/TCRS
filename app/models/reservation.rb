@@ -90,7 +90,7 @@ class Reservation < ApplicationRecord
     errors.add(:end_time, "予約終了時間は開始時間より早い時間は登録できません。") unless self.start_time < self.end_time
   end
 
-  #予約時間を8:30から16:30の間に指定するバリデーション
+#予約時間を8:30から16:30の間に指定するバリデーション
   validate :time_range
   def time_range
     if self.day.nil? || self.start_time.nil? || self.end_time.nil?
@@ -100,15 +100,16 @@ class Reservation < ApplicationRecord
 
     start_time = self.start_time
     end_time = self.end_time
-    min_time = Time.new(self.day.year, self.day.month, self.day.day, 8, 30)
-    max_time = Time.new(self.day.year, self.day.month, self.day.day, 16, 30)
+    min_time = Time.zone.parse("#{self.day.year}/#{self.day.month}/#{self.day.day} 8:30")
+    max_time = Time.zone.parse("#{self.day.year}/#{self.day.month}/#{self.day.day} 16:30")
+
     if start_time < min_time || end_time > max_time
       errors.add(:start_time, "予約時間は8:30から16:30の間で選択してください。")
     end
   end
 
  #カレンダーの×の日が選択できないようにするバリデーション
-  validate :validate_reservation_availability
+  validate :validate_reservation_availability, on: :create
   def validate_reservation_availability
     if self.day.nil?
       errors.add(:base, "予約希望日時を正しく選択してください。")
@@ -116,8 +117,7 @@ class Reservation < ApplicationRecord
     end
 
     reservation_count = facility.reservations.validation_checked.where(day: day, start_time: start_time..end_time, is_valid_reservation: true).count
-    if reservation_count < 2
-    else
+    if reservation_count >= 2
       reservations = facility.reservations.validation_checked.where(day: day).where.not(id: self.id)
       reservations.each do |reservation|
         if (reservation.start_time..reservation.end_time).cover?(self.start_time) && self.start_time != reservation.end_time
