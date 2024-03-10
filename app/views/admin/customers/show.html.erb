@@ -34,6 +34,16 @@
           <th class="align-middle table-secondary" style="width: 30%;">メールアドレス</th>
           <td class="align-middle" style="width: 70%;"><%= @customer.email %></td>
         </tr>
+        <tr>
+          <th class="align-middle table-secondary" style="width: 30%;">会員ステータス</th>
+          <td class="align-middle" style="width: 70%;">
+            <% if @customer.is_active %>
+              <span>有効</span>
+            <% else %>
+              <span class="text-secondary font-weight-bold">退会</span>
+            <% end %>
+          </td>
+        </tr>
       </body>
     </table><br>
     </div>

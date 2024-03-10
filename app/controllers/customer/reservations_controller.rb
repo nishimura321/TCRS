@@ -68,7 +68,7 @@ class Customer::ReservationsController < ApplicationController
   end
 
   def index
-    @reservations = current_customer.reservations.order(id: "DESC").page(params[:page])
+    @reservations = current_customer.reservations.order(day: "DESC").page(params[:page])
   end
 
   def show

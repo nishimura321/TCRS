@@ -7,7 +7,7 @@
 
   <div class="row">
     <% if @facility.errors.any? %>
-    <div class="col-xl-8 col-lg-8 mx-auto alert alert-danger" role="alert">
+    <div class="col-xl-8 col-lg-8 mx-auto alert alert-info" role="alert">
       <%= @facility.errors.count %>件のエラーが発生しました
       <ul>
         <% @facility.errors.full_messages.each do |message| %>

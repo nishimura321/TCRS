@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
       <h3 class="mb-5 font-weight-bold">マイページ</h3>
@@ -7,14 +7,14 @@
 
   <div class="row mb-3">
     <div class="col-xl-11 col-lg-11 ml-5 text-right">
-      <%= link_to "修正", edit_facility_facility_path(@facility), class: "btn btn-warning px-4 font-weight-bold" %>
+      <%= link_to "修正", edit_facility_facility_path(@facility), class: "btn btn-custom px-4 font-weight-bold" %>
     </div>
   </div>
 
   <div class="row mb-5">
     <div class="col-xl-11 col-lg-11 mx-auto">
       <div class="table-responsive">
-        <table class="table border border-black">
+        <table class="table border border-black table-light">
           <tbody>
             <tr>
               <th class="table-secondary">施設名</th>
@@ -84,11 +84,11 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mb-5">
     <div class="mx-auto">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
-      <%= link_to "予約状況を確認", facility_reservations_situation_path(@facility.id), class: "btn btn-warning px-4 mr-5 font-weight-bold" %>
-      <%= link_to "献立一覧", facility_menus_path, class: "btn btn-warning px-4 font-weight-bold" %><br><br>
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %>
+      <%= link_to "予約状況を確認", facility_reservations_situation_path(@facility.id), class: "btn btn-custom px-4 mr-5 font-weight-bold" %>
+      <%= link_to "献立一覧", facility_menus_path, class: "btn btn-custom px-4 font-weight-bold" %><br><br>
     </div>
   </div>
 </div>

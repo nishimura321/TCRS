@@ -7,7 +7,9 @@
 
   <div class="row mb-3">
     <div class="col-xl-11 col-lg-11 text-right ml-5">
-      <%= link_to "予約カレンダー", admin_facility_situation_path(@facility.id), class: "font-weight-bold btn btn-custom px-4" %>
+      <% if @facility.is_active %>
+        <%= link_to "予約カレンダー", admin_facility_situation_path(@facility.id), class: "font-weight-bold btn btn-custom px-4" %>
+      <% end %>
     </div>
   </div>
 

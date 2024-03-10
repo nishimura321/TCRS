@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
       <h3 class="mb-3 font-weight-bold mb-5">アカウント詳細</h3>
@@ -9,7 +9,7 @@
     <div class="col-xl-11 col-lg-11 mx-auto">
     <p class="font-weight-bold">アカウント詳細</p>
       <div class="table-responsive">
-        <table class="table border border-black">
+        <table class="table border border-black table-light">
           <tbody>
             <tr>
               <th class="align-middle table-secondary" style="width: 30%;">ID</th>
@@ -64,7 +64,7 @@
     <div class="col-xl-11 col-lg-11 mx-auto">
       <% @active_children.each do |child| %>
         <div class="table-responsive">
-          <table class="table border border-black">
+          <table class="table border border-black table-light">
             <tbody>
               <tr>
                 <th class="align-middle table-secondary" style="width: 30%;">お子さま氏名</th>
@@ -94,7 +94,7 @@
 
       <p class="font-weight-bold">育成状況</p>
         <div class="table-responsive">
-          <table class="table border border-black">
+          <table class="table border border-black table-light">
             <tbody>
               <tr>
                 <th class="table-secondary align-middle" style="width: 20%;">平熱(℃)</th>
@@ -253,7 +253,7 @@
     <div class="col-xl-11 col-lg-11 mx-auto">
       <% @active_families.each do |family| %>
         <div class="table-responsive">
-          <table class="table border border-black">
+          <table class="table border border-black table-light">
           <tbody>
             <tr>
               <th class="align-middle table-secondary" style="width: 30%;">氏名</th>
@@ -311,14 +311,14 @@
   </div>
   <div class="row mb-5 mt-3">
     <div class="mx-auto">
-      <%= f.submit "メモを保存", class: "font-weight-bold btn btn-warning px-4" %>
+      <%= f.submit "メモを保存", class: "font-weight-bold btn btn-custom px-4" %>
       <% end %>
     </div>
   </div>
 
   <div class="row mt-5">
     <div class="mx-auto">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4" %>
     </div><br><br><br><br>
   </div>
 </div>
