@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
       <h3 class="mb-5 font-weight-bold">施設情報編集</h3>
@@ -90,8 +90,8 @@
 
   <div class="row">
     <div class="mx-auto mt-5 mb-5">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4 mr-5" %>
-      <%= f.submit "修正する", class: "font-weight-bold btn btn-warning px-4 mr-5" %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %>
+      <%= f.submit "修正する", class: "font-weight-bold btn btn-custom px-4 mr-5" %>
       <%= link_to "閉園処理を行う", admin_facility_withdrawal_path(@facility), method: :patch, "data-confirm" => "本当に閉園処理を行いますか？", class: "font-weight-bold btn btn-danger px-4" %>
     <% end %>
     </div>

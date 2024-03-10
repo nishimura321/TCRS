@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
     <h2 class="font-weight-bold mb-5">会員一覧</h2>
@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-xl-10 col-lg-10 mx-auto">
       <div class="table-responsive">
-      <table class ="table border border-black">
+      <table class ="table border border-black table-light">
         <thead>
           <tr class="text-center">
             <th class="table-secondary align-middle", style="width: 10%;">会員ID</th>
@@ -19,8 +19,8 @@
             <th class="table-secondary align-middle", style="width: 14%;"></th>
           </tr>
         </thead>
-        <% @customers.each do |customer| %>
         <tbody>
+          <% @customers.each do |customer| %>
           <tr>
             <td class="align-middle text-center", style="width: 10%;"><%= customer.id %></td>
             <td class="align-middle", style="width: 23%;"><%= customer.last_name %><%= customer.first_name %></td>
@@ -34,8 +34,8 @@
             </td>
             <td class="align-middle text-center", style="width: 14%;"><%= link_to "詳細", admin_customer_path(customer.id), class: "btn btn-warning px-3" %></td>
           </tr>
+          <% end %>
         </tbody>
-        <% end %>
       </table>
       </div>
     </div>
@@ -49,7 +49,7 @@
 
   <div class="row mt-5 mb-5">
     <div class="mx-auto">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4" %>
     </div>
   </div>
 </div>

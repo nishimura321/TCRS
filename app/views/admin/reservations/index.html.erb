@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="col-12 text-center">
     <h2 class="font-weight-bold mb-5">予約一覧</h2>
@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-xl-10 col-lg-10 mx-auto">
       <div class="table-responsive">
-        <table class ="table border border-black">
+        <table class ="table border border-black table-light">
           <thead>
             <tr class="text-center">
               <th class="table-secondary align-middle", style="width: 10%;">予約ID</th>
@@ -19,8 +19,8 @@
               <th class="table-secondary align-middle", style="width: 14%;"></th>
             </tr>
           </thead>
-          <% @reservations.each do |reservation| %>
           <tbody>
+            <% @reservations.each do |reservation| %>
             <tr>
               <td class="align-middle text-center", style="width: 10%;"><%= reservation.id %></td>
               <td class="align-middle", style="width: 23%;"><%= reservation.day.strftime('%Y年%m月%d日 ') %><%= japanese_day(reservation.day) %></td>
@@ -33,10 +33,10 @@
                   <span class="text-secondary font-weight-bold text-center">キャンセル</span>
                 <% end %>
               </td>
-              <td class="align-middle text-center", style="width: 14%;"><%= link_to "詳細", admin_reservation_path(reservation.id), class: "btn btn-warning px-3" %></td>
+              <td class="align-middle text-center", style="width: 14%;"><%= link_to "詳細", admin_reservation_path(reservation.id), class: "btn btn-custom px-3" %></td>
             </tr>
+            <% end %>
           </tbody>
-          <% end %>
         </table>
       </div>
     </div>
@@ -48,9 +48,9 @@
     </div>
   </div>
 
-  <div class="row mt-5">
+  <div class="row mt-5 mb-5">
     <div class="mx-auto">
-      <%= link_to "戻る", :back, class: "btn btn-outline-warning px-4" %>
+      <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4" %>
     </div>
   </div>
 </div>

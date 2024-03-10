@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="mx-auto">
       <h3 class="font-weight-bold mb-5">管理者ログイン</h3>
@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-xl-8 col-lg-8 mx-auto">
       <%= form_with model: @admin, url: admin_session_path do |f| %>
       <div class="field">
         <%= f.label :email, "メールアドレス", class: "font-weight-bold" %><br />
@@ -22,13 +22,13 @@
   <div class="row">
     <div class="mx-auto">
       <div class="actions">
-        <%= f.submit "ログイン", class: "font-weight-bold btn btn-warning px-4" %>
+        <%= f.submit "ログイン", class: "font-weight-bold btn btn-custom px-4" %>
       </div>
       <% end %>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mb-5">
     <div class="mx-auto">
       <%= render "admin/shared/links" %>
     </div>
