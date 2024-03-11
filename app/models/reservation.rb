@@ -75,15 +75,6 @@ class Reservation < ApplicationRecord
     end
   end
 
-  #予約希望時間の入力を確認するバリデーション(28,29行目だけでは不足するため追加)
-  validate :validate_time
-  def validate_time
-    if start_time.nil? || start_time.hour.blank? || start_time.min.blank? ||
-       end_time.nil? || end_time.hour.blank? || end_time.min.blank?
-      errors.add(:start_time, "開始時間と終了時間の入力が必要です。")
-    end
-  end
-
   #予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :start_end_check
   def start_end_check

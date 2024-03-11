@@ -113,12 +113,16 @@ class Customer::ReservationsController < ApplicationController
     else
       @active_children = current_customer.children.where(is_active: true)
       @active_families = current_customer.families.where(is_active: true)
-      @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
-      @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
+      if @reservation.main_pick_up_person.present?
+        @main_pick_up_person = Family.find(@reservation.main_pick_up_person)
+      end
+      if @reservation.emergency_contact_1.present?
+        @emergency_contact_1 = Family.find(@reservation.emergency_contact_1)
+      end
       if @reservation.emergency_contact_2.present?
         @emergency_contact_2 = Family.find(@reservation.emergency_contact_2)
       end
-      flash.now[:notice] = "修正の保存に失敗しました。"
+      flash.now[:notice] = "修正が失敗しました。"
       render :edit
     end
   end

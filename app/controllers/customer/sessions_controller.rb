@@ -51,6 +51,7 @@ private
     return unless customer.valid_password?(params[:customer][:password])
     # 【処理内容4】 アクティブな会員に対する処理
     if customer.is_active
+      flash[:notice] = "ログインしました。"
       sign_in(customer)
       redirect_to after_sign_in_path_for(customer)
     # 【処理内容5】 アクティブでない会員に対する処理

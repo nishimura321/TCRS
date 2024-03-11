@@ -86,14 +86,24 @@
 
   <div class="row mb-5">
     <div class="mx-auto">
-      <%= f.submit "変更を保存", class: "font-weight-bold btn btn-custom px-4 mr-5" %>
+      <p class="red">
+        ※献立アレルギーの確認が済んでいた場合でも、給食の提供希望「あり」を選択し<br>
+        予約情報の修正を行なった場合、再度確認ボタンが表示されます。<br>
+        再度、献立アレルギーの確認を行いますようお願いいたします。
+      </p>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="mx-auto">
+      <%= f.submit "修正", class: "font-weight-bold btn btn-custom px-4 mr-5" %>
       <%= link_to "予約をキャンセル", reservations_cancel_path(@reservation.id), method: :patch, "data-confirm" => "本当に予約をキャンセルしますか？", class: "font-weight-bold btn btn-danger px-4" %>
       <% end %>
       <br><br>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-xl-8 col-lg-8 mx-auto">
       <p class="font-weight-bold">【アカウント情報】</p>
       <div class="table-responsive">
@@ -142,6 +152,7 @@
       <div class="table-responsive">
         <table class ="table border border-black table-light">
           <tbody>
+            <% if @reservation.child.present? %>
             <tr>
               <th class="table-secondary align-middle", style="width: 30%;">お子さま氏名</th>
               <td class="align-middle", style="width: 70%;"><%= @reservation.child.last_name %><%= @reservation.child.first_name %></td>
@@ -175,6 +186,7 @@
                 <%= @reservation.child.allergy_details %>
               </td>
             </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -184,7 +196,7 @@
   <div class="row mt-3 mb-5">
     <div class="mx-auto">
       <% if @reservation.customer.last_name != "guest_" && @reservation.customer.first_name != "user" %>
-        <%= link_to "お子さま情報の登録内容を変更", edit_child_path(current_customer), class: "font-weight-bold btn btn-custom px-4" %>
+        <%= link_to "お子さま情報の登録内容を変更", customers_mypage_path(current_customer, anchor: "children"), class: "font-weight-bold btn btn-custom px-4" %>
       <% end %>
     </div>
   </div>
@@ -202,6 +214,7 @@
             </tr>
           </thead>
           <tbody>
+            <% if @main_pick_up_person.present? %>
             <tr>
               <td class="align-middle"><%= @main_pick_up_person.family_name %></td>
               <td class="align-middle">
@@ -219,6 +232,7 @@
               </td>
               <td class="align-middle"><%= @main_pick_up_person.telephone_number %></td>
             </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -234,6 +248,7 @@
             </tr>
           </thead>
           <tbody>
+            <% if @emergency_contact_1.present? %>
             <tr>
               <td class="align-middle"><%= @emergency_contact_1.family_name %></td>
               <td class="align-middle">
@@ -251,6 +266,7 @@
               </td>
               <td class="align-middle"><%= @emergency_contact_1.telephone_number %></td>
             </tr>
+            <% end %>
             <% if @emergency_contact_2.present? %>
             <tr>
               <td class="align-middle"><%= @emergency_contact_2.family_name %></td>
@@ -279,12 +295,12 @@
   <div class="row mt-3 mb-5">
     <div class="mx-auto">
       <% if @reservation.customer.last_name != "guest_" && @reservation.customer.first_name != "user" %>
-        <%= link_to "家族情報の登録内容を変更", customers_mypage_path(current_customer, anchor: "family"), class: "font-weight-bold btn btn-custom px-4" %>
+        <%= link_to "家族情報の登録内容を変更", customers_mypage_path(current_customer, anchor: "families"), class: "font-weight-bold btn btn-custom px-4" %>
       <% end %>
     </div>
   </div>
 
-  <div class="row mt-5">
+  <div class="row mt-5 mb-5">
     <div class="mx-auto">
       <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4" %>
       <br><br>

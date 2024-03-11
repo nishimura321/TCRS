@@ -25,6 +25,10 @@ class Customer::CustomersController < ApplicationController
   end
 
   def withdrawal
+    reservations = @customer.reservations.where(is_valid_reservation: true)
+    reservations.each do |reservation|
+      reservation.update(is_valid_reservation: false)
+    end
     @customer.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行しました。"
