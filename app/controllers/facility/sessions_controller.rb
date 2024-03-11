@@ -44,6 +44,7 @@ class Facility::SessionsController < Devise::SessionsController
     return unless facility.valid_password?(params[:facility][:password])
     # 【処理内容4】 アクティブな施設に対する処理
     if facility.is_active
+      flash[:notice] = "ログインしました。"
       sign_in(facility)
       redirect_to after_sign_in_path_for(facility)
     # 【処理内容5】 アクティブでない施設に対する処理

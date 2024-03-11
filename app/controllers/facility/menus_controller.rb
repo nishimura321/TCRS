@@ -38,6 +38,7 @@ class Facility::MenusController < ApplicationController
   def destroy
     menu = Menu.find(params[:id])
     menu.destroy
+    flash[:notice] = "献立の削除が完了しました。"
     redirect_to facility_menus_path
   end
 

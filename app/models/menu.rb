@@ -12,7 +12,7 @@ class Menu < ApplicationRecord
   validate :check_date, on: :create
   def check_date
     if Menu.exists?(date: self.date)
-      errors.add(:date, "入力された献立日はすでに登録されています")
+      errors.add(:date, "入力された献立日はすでに登録されています。")
     end
   end
 
