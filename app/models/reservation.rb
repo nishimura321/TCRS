@@ -41,8 +41,8 @@ class Reservation < ApplicationRecord
   #当日が選択できないようにするバリデーション
   validate :date_current_today
   def date_current_today
-    if day.present?
-      errors.add(:day, "当日は選択できません。予約画面から正しい日付を選択してください。") if day < (Date.current + 1)
+    if day.present? && day == Date.current
+      errors.add(:day, "当日は選択できません。予約画面から正しい日付を選択してください。")
     end
   end
 

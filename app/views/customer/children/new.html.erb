@@ -47,7 +47,7 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"生年月日", class: "font-weight-bold" %><span class="red">*</span><br>
-        <%= f.date_select :birthday, start_year: 2015, end_year: Date.today.year, class: "form-control" %><br><br>
+        <%= f.date_select :birthday, {start_year: 2015, end_year: Date.today.year, prompt: { year: '年', month: '月', day: '日' }} %><br><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"性別", class: "font-weight-bold" %><span class="red">*</span><br>

@@ -32,7 +32,7 @@ class Customer::ChildrenController < ApplicationController
       flash[:notice] = "修正が完了しました。"
       redirect_to customers_mypage_path(current_customer)
     else
-      flash.now[:notice] = "修正の保存に失敗しました。"
+      flash.now[:notice] = "修正に失敗しました。"
       render :edit
     end
   end
