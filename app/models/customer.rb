@@ -25,9 +25,9 @@ class Customer < ApplicationRecord
       customer.last_name_kana = "ゲスト"
       customer.first_name_kana = "ユーザー"
       customer.email = 'guest_user@example.com'
-      customer.postal_code = "4200000"
-      customer.address = "静岡県静岡市ゲスト町0-00"
-      customer.telephone_number = "09000000000"
+      customer.postal_code = "0000000"
+      customer.address = "日本県日本市ゲスト町0-00"
+      customer.telephone_number = "00000000000"
     end
 
     child = customer.children.find_or_create_by!(last_name: 'guest_' ,first_name: 'child') do |child|
@@ -64,7 +64,7 @@ class Customer < ApplicationRecord
       child.favorite_game = '砂場遊び、ブランコ、水遊び、お医者さんごっこ'
       child.favorite_toy = '絵本、ブロック、お医者さんのおもちゃ'
       child.hospital_name = 'ゲスト小児科'
-      child.hospital_telephone_number = '0540000000'
+      child.hospital_telephone_number = '0000000000'
       child.memo = '人見知りがあります。'
     end
 
@@ -76,7 +76,7 @@ class Customer < ApplicationRecord
       family.male = false
       family.relationship = 0
       family.birthday = Date.new(1990, 1, 1)
-      family.telephone_number = '09000000000'
+      family.telephone_number = '00000000000'
     end
 
     #{ customer: customer, family: family, child: child }

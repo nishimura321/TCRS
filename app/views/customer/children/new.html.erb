@@ -21,7 +21,7 @@
   <% if session[:registration_child_count] == 0 && (@customer.last_name != "guest_" || @customer.first_name != "user") %>
   <div class="row mb-5">
     <div class="col-12 text-center">
-      <img src="/assets/child_information_registration.png" width="80%">
+      <%= image_tag "child_information_registration.png", width: "80%" %>
     </div>
   </div>
   <% end %>
