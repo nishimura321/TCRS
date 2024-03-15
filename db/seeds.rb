@@ -212,3 +212,44 @@ Facility.find_or_create_by!(name: "こぐまこども園") do |facility|
   facility.fee = "1日利用料1,750円＋給食おやつ代250円＝2,000円"
   facility.message = "人としての土台づくりとなる大切な時期に、子どもたちがさまざまな人・物・自然と出会い、その中で豊かな体験をすることを通して、生きていく力を育んでいけるように努めてまいります。"
 end
+
+#施設ごとの献立作成
+facilities = (1..10).map { |id| Facility.find(id) }
+dates = (Date.new(2024, 3, 1)..Date.new(2024, 7, 31)).select { |date| (1..5).include?(date.wday) }
+
+dates.each do |date|
+  next if HolidayJapan.check(date)
+
+  facilities.each do |facility|
+
+    Menu.find_or_create_by!(date: date) do |menu|
+      menu.date = date
+
+      # 日によって変わる内容を条件分岐で指定
+      case date.wday
+      when 1 # 月曜日
+        menu.school_lunch = "ごはん、じゃがいもの味噌汁、豚の生姜焼き、ほうれん草のしらす和え、バナナ"
+        menu.snack = "牛乳 、ツナコーン蒸しパン"
+        menu.ingredient = "米、じゃがいも、しめじ、玉ねぎ、出汁、味噌、豚肉、片栗粉、ピーマン、にんじん、生姜、三温糖、醤油　ほうれん草、しらす、バナナ、ツナ缶、コーン、小麦粉、強力粉、牛乳"
+      when 2 # 火曜日
+        menu.school_lunch = "ごはん、春雨スープ、ホイコーロー、もやしのナムル、バナナ"
+        menu.snack = "牛乳、きなこトースト"
+        menu.ingredient = "米、コーン、玉ねぎ、春雨、豚肉、ピーマン、キャベツ、にんじん、にんにく、しょうが、甜麺醤、味噌、三温糖、ごま油、もやし、小松菜、わかめ、バナナ、牛乳、パン、きなこ、三温糖"
+      when 3 # 水曜日
+        menu.school_lunch = "食パン、千切りスープ、鶏のオニオン焼き、アスパラとじゃがいものソテー、みかん"
+        menu.snack = "麦茶、じゃこごはん"
+        menu.ingredient = "食パン、キャベツ、鶏肉、玉ねぎ、三温糖、醤油、豚肉、バター、じゃがいも、アスパラ、ピーマン、にんじん、みかん、麦茶、米、じゃこ"
+      when 4 # 木曜日
+        menu.school_lunch = "カレーライス、チンゲン菜のスープ、クルトンサラダ、りんごコンポート"
+        menu.snack = "牛乳、りんごケーキ"
+        menu.ingredient = "米、豚肉、油、玉ねぎ、にんじん、じゃがいも、小麦粉、ルウ、チンゲン菜、えのき、出汁、キャベツ、パプリカ、きゅうり、クルトン、オリーブ油、牛乳、三温糖、りんご　小麦粉、りんご、三温糖"
+      when 5 # 金曜日
+        menu.school_lunch = "ミートソーススパゲティ、大根のスープ、きつねサラダ、バナナ"
+        menu.snack = "麦茶、チヂミ"
+        menu.ingredient = "スパゲティ、玉ねぎ、にんじん、ピーマン、マッシュルーム、トマト缶、豚肉、鶏肉、大根、出汁、キャベツ、コーン、きゅうり、ひじき、油揚げ、胡麻油、バナナ、ニラ、にんじん、玉ねぎ、小麦粉"
+      end
+
+      menu.facilities << facility
+    end
+  end
+end
