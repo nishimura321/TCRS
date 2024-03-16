@@ -300,9 +300,9 @@
     </div>
   </div>
 
+  <%= form_with model: @customer, url: facility_customer_path(@customer.id), method: :patch do |f| %>
   <div class="row mt-5">
     <div class="col-xl-11 col-lg-11 mx-auto">
-      <%= form_with model: @customer, url: facility_customer_path(@customer.id), method: :patch do |f| %>
       <div class="form-group">
         <%= f.label :"管理者メモ", class: "font-weight-bold h4" %><br>
         <%= f.text_area :administrator_notes, class: "form-control", id: "exampleFormControlTextarea1", rows: "4" %>
@@ -312,9 +312,9 @@
   <div class="row mb-5 mt-3">
     <div class="mx-auto">
       <%= f.submit "メモを保存", class: "font-weight-bold btn btn-custom px-4" %>
-      <% end %>
     </div>
   </div>
+  <% end %>
 
   <div class="row mt-5">
     <div class="mx-auto">
