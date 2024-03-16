@@ -18,10 +18,10 @@
     <% end %>
   </div>
 
+  <%= form_with model: @customer, url: customers_information_path(@customer), method: :patch do |f| %>
   <div class="row">
     <div class="col-xl-8 col-lg-8 mx-auto">
       <p class="red">*印の項目は必須項目です。</p>
-      <%= form_with model: @customer, url: customers_information_path(@customer), method: :patch do |f| %>
       <div class="field">
         <%= f.label :"保護者氏名", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.label :"(姓)", class: "font-weight-bold" %>
@@ -62,8 +62,8 @@
           <%= f.submit "修正", class: "btn btn-custom px-4 font-weight-bold mr-5" %>
           <%= link_to "退会処理画面へ", customers_confirm_withdrawal_path, class: "btn btn-danger px-4 font-weight-bold" %>
         </div>
-      <% end %>
       <br><br><br>
     </div>
   </div>
+  <% end %>
 </div>
