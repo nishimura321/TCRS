@@ -222,7 +222,7 @@ dates.each do |date|
 
   facilities.each do |facility|
 
-    Menu.find_or_create_by!(date: date) do |menu|
+    menu = Menu.find_or_create_by!(date: date) do |menu|
       menu.date = date
 
       # 日によって変わる内容を条件分岐で指定
@@ -248,8 +248,9 @@ dates.each do |date|
         menu.snack = "麦茶、チヂミ"
         menu.ingredient = "スパゲティ、玉ねぎ、にんじん、ピーマン、マッシュルーム、トマト缶、豚肉、鶏肉、大根、出汁、キャベツ、コーン、きゅうり、ひじき、油揚げ、胡麻油、バナナ、ニラ、にんじん、玉ねぎ、小麦粉"
       end
-
-      menu.facilities << facility
     end
+    menu.facilities << facility
+    menu.save
+
   end
 end
