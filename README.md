@@ -42,6 +42,6 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- 使用検討中です。
+- Hatchful  https://www.shopify.com/jp/tools/logo-maker#logos
 -
 -
