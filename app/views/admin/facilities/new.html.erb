@@ -18,9 +18,9 @@
     <% end %>
   </div>
 
+  <%= form_with model: @facility, url: '/admin/facilities', method: :post do |f| %>
   <div class="row">
     <div class="col-xl-8 col-lg-8 mx-auto">
-      <%= form_with model: @facility, url: '/admin/facilities', method: :post do |f| %>
         <p class="red">*印の項目は必須項目です。</p>
         <div class="field">
           <%= f.label :name, "施設名", class: "font-weight-bold" %><span class="red">*</span><br>
@@ -101,7 +101,7 @@
     <div class="mx-auto">
         <%= link_to "戻る", :back, class: "font-weight-bold btn btn-outline-secondary px-4 mr-5" %>
         <%= f.submit "新規登録", class: "font-weight-bold btn btn-custom px-4" %>
-      <% end %>
     </div>
   </div>
+  <% end %>
 </div>

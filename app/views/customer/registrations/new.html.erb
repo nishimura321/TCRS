@@ -11,9 +11,9 @@
     </div>
   </div>
 
+  <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <div class="row">
     <div class="col-xl-8 col-lg-8 mx-auto">
-    <%= form_with model: @customer, url: customer_registration_path do |f| %>
       <%= render "customer/shared/error_messages", resource: resource %>
       <p class="red">*印の項目は必須項目です。</p>
       <div class="field">
@@ -52,7 +52,7 @@
         <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %>
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-      </div>
+      </div><br><br>
       <div class="field">
       <%= f.label :"パスワード(確認用)", class: "font-weight-bold" %><span class="red">*</span>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
@@ -65,10 +65,9 @@
       <div class="actions">
         <%= f.submit "アカウント登録", class: "btn btn-custom px-4 font-weight-bold" %>
       </div>
-    <% end %>
     </div>
   </div>
-  <br>
+  <% end %><br>
 
   <div class="row">
     <div class="mx-auto">

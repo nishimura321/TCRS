@@ -26,9 +26,9 @@
   </div>
   <% end %>
 
+  <%= form_with model: @family, url: families_path, method: :post do |f| %>
   <div class="row">
     <div class="col-xl-8 col-lg-8 mx-auto">
-    <%= form_with model: @family, url: families_path, method: :post do |f| %>
       <p class="red">*印の項目は必須項目です。</p>
       <p>予約時の主な送迎者や緊急連絡先を選択する際に必要な情報となります。<br>
         まずは、アカウント登録者の情報から登録してみましょう。<br>
@@ -82,7 +82,7 @@
   <div class="row mb-5">
     <div class="mx-auto">
       <%= f.submit "家族を登録", class: "font-weight-bold btn btn-custom px-4" %>
-    <% end %><br><br>
     </div>
   </div>
+  <% end %><br><br>
 </div>

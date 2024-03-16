@@ -18,9 +18,9 @@
     <% end %>
   </div>
 
+  <%= form_with model: @facility, url: admin_facility_path(@facility), method: :patch do |f| %>
   <div class="row">
     <div class="col-xl-8 col-lg-8 mx-auto">
-    <%= form_with model: @facility, url: admin_facility_path(@facility), method: :patch do |f| %>
       <div class="form-group">
         <%= f.label :name, "施設名", class: "font-weight-bold" %><br>
         <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %><br>
@@ -93,7 +93,7 @@
       <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %>
       <%= f.submit "修正する", class: "font-weight-bold btn btn-custom px-4 mr-5" %>
       <%= link_to "閉園処理を行う", admin_facility_withdrawal_path(@facility), method: :patch, "data-confirm" => "本当に閉園処理を行いますか？", class: "font-weight-bold btn btn-danger px-4" %>
-    <% end %>
     </div>
   </div>
+  <% end %>
 </div>

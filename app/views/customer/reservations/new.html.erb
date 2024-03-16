@@ -38,9 +38,9 @@
     <% end %>
   </div>
 
+  <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
   <div class="row">
     <div class="mx-auto">
-      <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
       <div class="form-group">
         <%= f.label :"予約希望日", class: "font-weight-bold" %><br>
         <%= f.date_select :day, {start_year: Date.current.year, end_year: Date.current.year + 10, prompt: { year: '年', month: '月', day: '日' }} %>
@@ -83,8 +83,8 @@
       <%= f.hidden_field :facility_id, :value => @facility.id %>
       <%= f.hidden_field :customer_id, :value => current_customer.id %>
       <%= f.submit "入力内容の確認", class: "font-weight-bold btn btn-custom px-4" %>
-      <% end %>
       <br><br>
     </div>
   </div>
+  <% end %>
 </div>

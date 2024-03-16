@@ -18,9 +18,9 @@
     <% end %>
   </div>
 
+  <%= form_with model: @menu, url: facility_menus_path, method: :post do |f| %>
   <div class="row">
     <div class="col-xl-8 col-lg-8 mx-auto">
-    <%= form_with model: @menu, url: facility_menus_path, method: :post do |f| %>
       <div class="form-group">
         <%= f.label :"日付", class: "font-weight-bold" %><br>
         <%= f.date_select :date, {start_year: Date.current.year, end_year: Date.current.year + 10, prompt: { year: '年', month: '月', day: '日' }}, value: f.object.date %>
@@ -44,7 +44,7 @@
     <div class="mx-auto">
       <%= f.hidden_field :facility_id, :value => current_facility.id %>
       <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %><%= f.submit "献立を登録", class: "font-weight-bold btn btn-custom px-4" %>
-      <% end %><br><br>
     </div>
   </div>
+  <% end %><br><br>
 </div>

@@ -26,9 +26,9 @@
   </div>
   <% end %>
 
+  <%= form_with model: @child, url: children_path, method: :post do |f| %>
   <div class="row">
     <div class="col-xl-8 col-lg-8 mx-auto">
-    <%= form_with model: @child, url: children_path, method: :post do |f| %>
       <p class="red">*印の項目は必須項目です。</p>
       <p class="font-weight-bold">【お子さま情報】</p>
       <div class="form-group">
@@ -219,9 +219,9 @@
   <div class="row">
     <div class="mx-auto">
       <%= f.submit "お子さま登録", class: "font-weight-bold btn btn-custom px-4" %>
-    <% end %><br><br>
     </div>
   </div>
+  <% end %><br><br>
 
   <div class="row mt-5 mb-5">
     <div class="mx-auto">

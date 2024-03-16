@@ -18,9 +18,9 @@
     <% end %>
   </div>
 
+  <%= form_with model: @family, url: family_path(@family), method: :patch do |f| %>
   <div class="row">
     <div class="col-xl-8 col-lg-8 mx-auto">
-    <%= form_with model: @family, url: family_path(@family), method: :patch do |f| %>
       <p class="red">*印の項目は必須項目です。</p>
       </p>
       <p class="font-weight-bold">【お子さまの家族】</p>
@@ -73,7 +73,7 @@
       <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %>
       <%= f.submit "修正", class: "font-weight-bold btn btn-custom px-4 mr-5" %>
       <%= link_to "無効にする", disable_family_path(@family), method: :patch, "data-confirm" => "本当に無効にしますか？", class: "font-weight-bold btn btn-danger px-4" %>
-    <% end %><br><br>
     </div>
   </div>
+  <% end %><br><br>
 </div>
