@@ -214,7 +214,7 @@ Facility.find_or_create_by!(name: "こぐまこども園") do |facility|
 end
 
 #施設ごとの献立作成
-facilities = (1..10).map { |id| Facility.find(id) }
+facilities = (1..10).map { |id| Facility.find_by(id: id) }.compact
 dates = (Date.new(2024, 3, 1)..Date.new(2024, 7, 31)).select { |date| (1..5).include?(date.wday) }
 
 dates.each do |date|
