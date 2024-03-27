@@ -107,7 +107,19 @@ class Reservation < ApplicationRecord
       return
     end
 
-    reservation_count = facility.reservations.validation_checked.where(day: day, start_time: start_time..end_time, is_valid_reservation: true).count
+    reservation_count = facility.reservations.validation_checked.where(day: day)
+                                                                .where(start_time: start_time..end_time,)
+                                                                .or(
+                                                                  Reservation.where(end_time: start_time..end_time)
+                                                                )
+                                                                .or(
+                                                                  Reservation.where("reservations.start_time >= ?", start_time)
+                                                                )
+                                                                .or(
+                                                                  Reservation.where("reservations.end_time >= ?", end_time)
+                                                                )
+                                                                .count
+
     if reservation_count >= 2
       reservations = facility.reservations.validation_checked.where(day: day).where.not(id: self.id)
       reservations.each do |reservation|
@@ -119,6 +131,7 @@ class Reservation < ApplicationRecord
           errors.add(:base, 'この日時はすでに予約がいっぱいです。')
           return
         end
+
       end
     end
   end

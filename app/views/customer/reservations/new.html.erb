@@ -41,35 +41,36 @@
   <%= form_with model: @reservation, url: reservations_confirm_path, method: :post do |f| %>
   <div class="row">
     <div class="mx-auto">
+      <p class="red">*印の項目は必須項目です。</p>
       <div class="form-group">
-        <%= f.label :"予約希望日", class: "font-weight-bold" %><br>
+        <%= f.label :"予約希望日", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.date_select :day, {start_year: Date.current.year, end_year: Date.current.year + 10, prompt: { year: '年', month: '月', day: '日' }} %>
       </div><br>
       <div class="form-group">
-        <%= f.label :"予約希望時間", class: "font-weight-bold" %><br>
+        <%= f.label :"予約希望時間", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.time_select :start_time, { :include_blank => true, :minute_step => 30 } %>　〜　<%= f.time_select :end_time, { :include_blank => true, :minute_step => 30 } %>
       </div><br>
       <div class="form-group">
-        <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><br>
+        <%= f.label :child_id, "対象のお子さまを選択", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.select :child_id, options_from_collection_for_select(@active_children, :id, :child_name), include_blank: "-- 選択してください --", class: "form-control" %>
       </div><br>
       <div class="form-group">
-        <%= f.label :"給食の有無", class: "font-weight-bold" %><br>
+        <%= f.label :"給食の有無", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.radio_button :wants_meal_service, "true" %>
         <%= f.label :wants_meal_service_true, "あり", class: "mr-5" %>
         <%= f.radio_button :wants_meal_service, "false" %>
         <%= f.label :wants_meal_service_false, "なし" %>
       </div><br>
       <div class="form-group">
-        <%= f.label :"利用目的", class: "font-weight-bold" %><br>
+        <%= f.label :"利用目的", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.select :purpose_of_use, options_for_select(Reservation.purpose_of_uses.keys.map { |key| [I18n.t("enums.reservation.purpose_of_use.#{key}"), key] }, selected: @reservation.purpose_of_use), include_blank: "-- 選択してください --", class: "form-control" %><br>
       </div><br>
       <div class="form-group">
-        <%= f.label :"主な送迎者", class: "font-weight-bold" %><br>
+        <%= f.label :"主な送迎者", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.select :main_pick_up_person, options_from_collection_for_select(@active_families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
       </div><br>
       <div class="form-group">
-        <%= f.label :"緊急連絡先１", class: "font-weight-bold" %><br>
+        <%= f.label :"緊急連絡先１", class: "font-weight-bold" %><span class="red">*</span><br>
         <%= f.select :emergency_contact_1, options_from_collection_for_select(@active_families, :id, :family_name), include_blank: "-- 選択してください --", class: "form-control" %>
       </div><br>
       <div class="form-group">
