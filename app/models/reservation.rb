@@ -107,32 +107,19 @@ class Reservation < ApplicationRecord
       return
     end
 
-    reservation_count = facility.reservations.validation_checked.where(day: day)
-                                                                .where(start_time: start_time..end_time,)
-                                                                .or(
-                                                                  Reservation.where(end_time: start_time..end_time)
-                                                                )
-                                                                .or(
-                                                                  Reservation.where("reservations.start_time >= ?", start_time)
-                                                                )
-                                                                .or(
-                                                                  Reservation.where("reservations.end_time >= ?", end_time)
-                                                                )
-                                                                .count
+    reservation_count = 0
+    facility.reservations.validation_checked.where(day: day).each do |reservation|
+      range = (reservation.start_time...reservation.end_time)
+      if range.cover?(start_time) && start_time != reservation.end_time
+          reservation_count += 1
+      elsif range.cover?(end_time) && end_time != reservation.start_time
+        reservation_count += 1
+      end
+    end
 
     if reservation_count >= 2
-      reservations = facility.reservations.validation_checked.where(day: day).where.not(id: self.id)
-      reservations.each do |reservation|
-        if (reservation.start_time..reservation.end_time).cover?(self.start_time) && self.start_time != reservation.end_time
-          errors.add(:base, 'この日時はすでに予約がいっぱいです。')
-          return
-        end
-        if (reservation.start_time..reservation.end_time).cover?(self.end_time) && self.end_time != reservation.start_time
-          errors.add(:base, 'この日時はすでに予約がいっぱいです。')
-          return
-        end
-
-      end
+      errors.add(:base, 'この日時はすでに予約がいっぱいです。')
+      return
     end
   end
 
