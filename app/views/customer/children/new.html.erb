@@ -141,7 +141,7 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"食事をする時間は何分掛かりますか？", class: "font-weight-bold" %><br>
-        <%= f.number_field :meal_time, placeholder: "30", class: "form-control" %><br>
+        <%= f.number_field :meal_time, class: "form-control" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"寝かせ方は？", class: "font-weight-bold" %><br>
@@ -203,11 +203,11 @@
       </div><br>
       <div class="form-group">
         <%= f.label :"かかりつけ医療機関の名前は？", class: "font-weight-bold" %><br>
-        <%= f.text_field :hospital_name, placeholder: "令和小児科", class: "form-control" %><br>
+        <%= f.text_field :hospital_name, placeholder: "サンプル小児科", class: "form-control" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"かかりつけ医療機関の電話番号は？(ハイフンなし)", class: "font-weight-bold" %><br>
-        <%= f.text_field :hospital_telephone_number, placeholder: "0540000000", class: "form-control" %><br>
+        <%= f.text_field :hospital_telephone_number, placeholder: "0000000000", class: "form-control" %><br>
       </div><br>
       <div class="form-group">
         <%= f.label :"その他連絡事項があればご記入ください。", class: "font-weight-bold" %><br>
