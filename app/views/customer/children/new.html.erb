@@ -18,7 +18,7 @@
     <% end %>
   </div>
 
-  <% if session[:registration_child_count] == 0 && (@customer.last_name != "guest_" || @customer.first_name != "user") %>
+  <% if @customer.show_image && (@customer.last_name != "guest_" || @customer.first_name != "user") %>
   <div class="row mb-5">
     <div class="col-12 text-center">
       <%= image_tag asset_path("child_information_registration.png"), width: "80%" %>

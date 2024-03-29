@@ -3,13 +3,11 @@ class Customer::ChildrenController < ApplicationController
   before_action :ensure_child, only: [:show, :edit, :update, :destroy]
 
   def new
-    session[:registration_child_count] ||= 0
     @customer = Customer.find(current_customer.id)
     @child = Child.new(customer_id: current_customer.id)
   end
 
   def create
-    session[:registration_child_count] += 1
     @child = Child.new(child_params.merge(customer_id: current_customer.id))
     if @child.save
       flash[:notice] = "お子さまの登録が完了しました。"

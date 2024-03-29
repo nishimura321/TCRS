@@ -3,15 +3,16 @@ class Customer::FamiliesController < ApplicationController
   before_action :ensure_family, only: [:show, :edit, :update]
 
   def new
-    session[:registration_family_count] ||= 0
     @customer = Customer.find(current_customer.id)
     @family = Family.new(customer_id: current_customer.id)
   end
 
   def create
-    session[:registration_family_count] += 1
     @family = Family.new(family_params.merge(customer_id: current_customer.id))
     if @family.save
+      if current_customer.show_image
+        current_customer.update(show_image: false)
+      end
       flash[:notice] = "家族の登録が完了しました。"
         redirect_to customers_mypage_path(current_customer)
     else
