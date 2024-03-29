@@ -1,0 +1,13 @@
+<%= form_with url: search_path, local: true, method: :get do |f| %>
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="search_form">
+        <%= f.label :"日付：", class: "font-weight-bold mr-2" %>
+        <%= f.text_field :word, placeholder: "1月", class: "py-1 px-2 mr-3" %>
+        <%= f.hidden_field :range, value: 'Menu' %>
+        <%= f.hidden_field :search, value: 'perfect_match' %>
+        <%= f.submit "検索", class: "btn btn-custom px-4 font-weight-bold" %>
+      </div>
+    </div>
+  </div>
+<% end %>

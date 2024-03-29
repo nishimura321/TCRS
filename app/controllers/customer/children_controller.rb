@@ -8,6 +8,7 @@ class Customer::ChildrenController < ApplicationController
   end
 
   def create
+    @customer = Customer.find(current_customer.id)
     @child = Child.new(child_params.merge(customer_id: current_customer.id))
     if @child.save
       flash[:notice] = "お子さまの登録が完了しました。"

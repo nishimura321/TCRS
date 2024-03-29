@@ -8,6 +8,7 @@ class Customer::FamiliesController < ApplicationController
   end
 
   def create
+    @customer = Customer.find(current_customer.id)
     @family = Family.new(family_params.merge(customer_id: current_customer.id))
     if @family.save
       if current_customer.show_image
