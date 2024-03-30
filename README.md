@@ -34,6 +34,8 @@
 ・テーブル定義書  https://docs.google.com/spreadsheets/d/1tTEst9zKAuIAK-PX-BdFp59nKNd5-tXG2KXNMbY19v4/edit?usp=sharing  
 ・アプリケーション詳細設計書  https://docs.google.com/spreadsheets/d/1asoRgeS0yECLhBVvLtCLB974ZQ6sQ1CuIal3uQ9hSEk/edit?usp=sharing 
 ・テスト仕様書  https://docs.google.com/spreadsheets/d/1TxIQ_x6nEfkPCykWEYAAcTgUCPHG2ZeCWPrfgeRnLa0/edit#gid=0 
+・AWS構成図  https://drive.google.com/file/d/1WvcvlffGsMKt9CyDB-btNsY4eYBOI7rc/view?usp=sharing  
+・インフラ設計書  https://docs.google.com/spreadsheets/d/1tv4VM77NhEpxlVea4SPrdTjzBcdRbIht1I4pMItm98I/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
