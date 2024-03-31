@@ -46,5 +46,3 @@
 ​
 ## 使用素材
 - Hatchful  https://www.shopify.com/jp/tools/logo-maker#logos
--
--

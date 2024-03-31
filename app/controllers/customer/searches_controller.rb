@@ -2,13 +2,15 @@ class Customer::SearchesController < ApplicationController
   before_action :authenticate_customer!
 
   def search
-    @range = params[:range]
     @word = params[:word]
+    @model = params[:model]
+    @search = params[:search]
+    @facility = Facility.find(params[:facility])
 
-    if @range == "Menu"
-      @menus = Menu.looks(params[:search], params[:word])
-    else 
-      @facilities = Facility.looks(params[:search], paras[:word])
+    if @model == "Menu"
+      @records = Menu.search_for(@word, @search, @facility)
+    else
+      @records = Facility.search_for(@word, @search)
     end
   end
 

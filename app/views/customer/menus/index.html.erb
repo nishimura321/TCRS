@@ -5,34 +5,8 @@
     </div>
   </div>
 
-  <%#= render 'customer/searches/menu_search' %>
-
-  <div class="row mt-3">
-    <div class="col-12 mx-auto">
-      <div class="table-responsive">
-        <table class="table border border-black table-light">
-          <thead>
-            <tr class="table-secondary text-center">
-              <th class="align-middle", style="width: 21%;">日付</th>
-              <th class="align-middle", style="width: 25%;">給食</th>
-              <th class="align-middle", style="width: 22%;">おやつ</th>
-              <th class="align-middle", style="width: 32%;">食材</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @menus.each do |menu| %>
-            <tr>
-              <td class="align-middle", style="width: 21%;"><%= menu.date.strftime('%Y年%m月%d日 ') %><%= japanese_day(menu.date) %></td>
-              <td class="align-middle", style="width: 25%;"><%= menu.school_lunch %></td>
-              <td class="align-middle", style="width: 22%;"><%= menu.snack %></td>
-              <td class="align-middle", style="width: 32%;"><%= menu.ingredient %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <%= render 'customer/searches/menu_search' %>
+  <%= render 'index', menus: @menus, facility: @facility %>
 
   <div class="row mt-3 mb-5">
     <div class="mx-auto">

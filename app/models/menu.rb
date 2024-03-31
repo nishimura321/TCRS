@@ -9,9 +9,17 @@ class Menu < ApplicationRecord
   validates :ingredient, presence: true
 
   #検索方法
-  def self.looks(search, word)
-    search = "perfect_match"
-    @menu = Menu.where("date LIKE?", "#{word}")
+  def self.search_for(word, search, facility)
+    if search == 'perfect_match'
+      Menu.where(date: word)
+    elsif search == 'forward_match'
+      Menu.where('date LIKE ?', word + '%')
+    elsif search == 'backward_match'
+      Menu.where('date LIKE ?', '%' + word)
+    #以下は部分一致
+    else
+      Menu.where('date LIKE ?', '%' + word + '%')
+    end
   end
-  
+
 end
