@@ -6,12 +6,12 @@
       </div>
     </div>
     <div class="row my-5">
-  	  <h4 class="ml-3">"<%= @word %>" で検索...</h4>
+  	  <h5 class="ml-3">"<%= @word %>" で検索しました。</h5>
       <%= render 'customer/menus/index', menus: @records %>
     </div>
   <% elsif @model == 'Facility' %>
     <div class="row my-5">
-  	  <h4 class="ml-3">"<%= @word %>" で検索...</h4>
+  	  <h5 class="col-xl-10 col-lg-10 mx-auto">"<%= @word %>" で検索しました。</h5>
       <%= render 'customer/facilities/index', facilities: @records %>
     </div>
   <% end %>

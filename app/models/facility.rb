@@ -36,4 +36,18 @@ class Facility < ApplicationRecord
     end
   end
 
+  #検索方法
+  def self.search_for(word, search)
+    if search == 'perfect_match'
+      Facility.where(['name LIKE(?) OR postal_code LIKE(?) OR address LIKE(?) OR telephone_number LIKE(?) OR target_age LIKE(?) OR school_meal LIKE(?) OR fee LIKE(?)', word, word, word, word, word, word, word])
+    elsif search == 'forward_match'
+      Facility.where(['name LIKE(?) OR postal_code LIKE(?) OR address LIKE(?) OR telephone_number LIKE(?) OR target_age LIKE(?) OR school_meal LIKE(?) OR fee LIKE(?)', word + '%', word + '%', word + '%', word + '%', word + '%', word + '%', word + '%'])
+    elsif search == 'backward_match'
+      Facility.where(['name LIKE(?) OR postal_code LIKE(?) OR address LIKE(?) OR telephone_number LIKE(?) OR target_age LIKE(?) OR school_meal LIKE(?) OR fee LIKE(?)', '%' + word, '%' + word, '%' + word, '%' + word, '%' + word, '%' + word, '%' + word])
+    #以下は部分一致
+    else
+      Facility.where(['name LIKE(?) OR postal_code LIKE(?) OR address LIKE(?) OR telephone_number LIKE(?) OR target_age LIKE(?) OR school_meal LIKE(?) OR fee LIKE(?)', '%' + word + '%', '%' + word + '%', '%' + word + '%', '%' + word + '%', '%' + word + '%', '%' + word + '%', '%' + word + '%'])
+    end
+  end
+
 end

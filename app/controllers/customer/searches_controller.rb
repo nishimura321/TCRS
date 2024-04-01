@@ -5,9 +5,9 @@ class Customer::SearchesController < ApplicationController
     @word = params[:word]
     @model = params[:model]
     @search = params[:search]
-    @facility = Facility.find(params[:facility])
 
     if @model == "Menu"
+      @facility = Facility.find(params[:facility])
       @records = Menu.search_for(@word, @search, @facility)
     else
       @records = Facility.search_for(@word, @search)
