@@ -5,43 +5,15 @@
     </div>
   </div>
 
+  <%= render 'facility/searches/menu_search' %>
+
   <div class="row mt-5">
     <div class="col-xl-12 col-lg-12 text-right">
-    <%= link_to "献立登録", new_facility_menu_path, class: "btn btn-custom px-4 font-weight-bold" %>
+    <%= link_to "献立登録", new_facility_menu_path, class: "btn btn-custom px-4 font-weight-bold mr-3" %>
     </div>
   </div>
 
-  <div class="row mt-3">
-    <div class="col-xl-12 col-lg-12 mx-auto">
-      <div class="table-responsive">
-        <table class="table border border-black table-light">
-          <thead>
-            <tr class="table-secondary text-center">
-              <th class="align-middle", style="width: 19%;">日付</th>
-              <th class="align-middle", style="width: 22%;">給食</th>
-              <th class="align-middle", style="width: 20%;">おやつ</th>
-              <th class="align-middle", style="width: 29%;">食材</th>
-              <th class="align-middle", style="width: 10%;"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @menus.each do |menu| %>
-            <tr>
-              <td class="align-middle", style="width: 19%;"><%= menu.date.strftime('%Y年%m月%d日 ') %><%= japanese_day(menu.date) %></td>
-              <td class="align-middle", style="width: 22%;"><%= menu.school_lunch %></td>
-              <td class="align-middle", style="width: 20%;"><%= menu.snack %></td>
-              <td class="align-middle", style="width: 29%;"><%= menu.ingredient %></td>
-              <td class="align-middle text-center", style="width: 10%;">
-                <%= link_to "編集", edit_facility_menu_path(menu.id), class: "btn btn-custom px-3" %><br>
-                <%= link_to "削除", facility_menu_path(menu.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger px-3 mt-2" %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <%= render 'index', menus: @menus, current_facility: @facility %>
 
   <div class="row mt-5">
     <div class="mx-auto">

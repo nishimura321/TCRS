@@ -123,4 +123,18 @@ class Reservation < ApplicationRecord
     end
   end
 
+ #検索方法
+  def self.search_for(word, search, facility)
+    if search == 'perfect_match'
+      facility.reservations.where(['id LIKE(?) OR day LIKE(?)', word, word])
+    elsif search == 'forward_match'
+      facility.reservations.where(['id LIKE(?) OR day LIKE(?)', word + '%', word + '%'])
+    elsif search == 'backward_match'
+      facility.reservations.where(['id LIKE(?) OR day LIKE(?)', '%' + word, '%' + word])
+    #以下は部分一致
+    else
+      facility.reservations.where(['id LIKE(?) OR day LIKE(?)', '%' + word + '%', '%' + word + '%'])
+    end
+  end
+
 end

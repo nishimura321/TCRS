@@ -83,4 +83,18 @@ class Customer < ApplicationRecord
     customer
   end
 
+ #検索方法
+  def self.search_for(word, search, facility)
+    if search == 'perfect_match'
+      Customer.where(['id LIKE(?) OR last_name LIKE(?) OR first_name LIKE(?) OR concat(last_name, first_name) LIKE(?)', word, word, word, word])
+    elsif search == 'forward_match'
+      Customer.where(['id LIKE(?) OR last_name LIKE(?) OR first_name LIKE(?) OR concat(last_name, first_name) LIKE(?)', word + '%', word + '%', word + '%', word + '%'])
+    elsif search == 'backward_match'
+      Customer.where(['id LIKE(?) OR last_name LIKE(?) OR first_name LIKE(?) OR concat(last_name, first_name) LIKE(?)', '%' + word, '%' + word, '%' + word, '%' + word])
+    #以下は部分一致
+    else
+      Customer.where(['id LIKE(?) OR last_name LIKE(?) OR first_name LIKE(?) OR concat(last_name, first_name) LIKE(?)', '%' + word + '%', '%' + word + '%', '%' + word + '%', '%' + word + '%'])
+    end
+  end
+
 end

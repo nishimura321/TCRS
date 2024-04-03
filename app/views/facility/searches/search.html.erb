@@ -2,17 +2,17 @@
   <% if @model == 'Menu' %>
     <div class="row">
       <div class="mx-auto">
-        <h2 class="font-weight-bold mb-3"><%= @facility.name %>献立</h2>
+        <h2 class="font-weight-bold mb-3"><%= current_facility.name %>献立</h2>
       </div>
     </div>
     <div class="row my-5">
       <h5 class="ml-3">"<%= @word %>" で検索しました。</h5>
-      <%= render 'customer/menus/index', menus: @records %>
+      <%= render 'facility/menus/index', menus: @records %>
     </div>
-  <% elsif @model == 'Facility' %>
+  <% else @model == 'Reservation' %>
     <div class="row my-5">
       <h5 class="col-xl-10 col-lg-10 mx-auto">"<%= @word %>" で検索しました。</h5>
-      <%= render 'customer/facilities/index', facilities: @records %>
+      <%= render 'facility/reservations/index', reservations: @records %>
     </div>
   <% end %>
 </div>
