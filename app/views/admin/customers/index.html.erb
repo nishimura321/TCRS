@@ -5,42 +5,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xl-10 col-lg-10 mx-auto">
-      <div class="table-responsive">
-      <table class ="table border border-black table-light">
-        <thead>
-          <tr class="text-center">
-            <th class="table-secondary align-middle", style="width: 10%;">会員ID</th>
-            <th class="table-secondary align-middle", style="width: 23%;">会員氏名</th>
-            <th class="table-secondary align-middle", style="width: 20%;">メールアドレス</th>
-            <th class="table-secondary align-middle", style="width: 20%;">電話番号</th>
-            <th class="table-secondary align-middle", style="width: 13%;">ステータス</th>
-            <th class="table-secondary align-middle", style="width: 14%;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @customers.each do |customer| %>
-          <tr>
-            <td class="align-middle text-center", style="width: 10%;"><%= customer.id %></td>
-            <td class="align-middle", style="width: 23%;"><%= customer.last_name %><%= customer.first_name %></td>
-            <td class="align-middle", style="width: 20%;"><%= customer.email %></td>
-            <td class="align-middle text-center", style="width: 20%;"><%= customer.telephone_number %></td>
-            <td class="align-middle text-center", style="width: 13%;">
-              <% if customer.is_active %>
-                <span>有効</span>
-              <% else %>
-                <span class="text-secondary font-weight-bold">退会</span>
-              <% end %>
-            </td>
-            <td class="align-middle text-center", style="width: 14%;"><%= link_to "詳細", admin_customer_path(customer.id), class: "btn btn-custom px-3" %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      </div>
-    </div>
-  </div>
+  <%= render 'admin/searches/customer_search' %>
+  <%= render 'index', customers: @customers %>
 
   <div class="row mt-5">
     <div class="mx-auto">

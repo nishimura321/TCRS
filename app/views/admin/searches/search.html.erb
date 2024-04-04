@@ -1,0 +1,18 @@
+<div class="container mt-3">
+  <% if @model == 'Facility' %>
+    <div class="row my-5">
+      <h5 class="ml-5 mb-3">"<%= @word %>" で検索しました。</h5>
+      <%= render 'admin/facilities/index', facilities: @records %>
+    </div>
+  <% elsif @model == 'Customer' %>
+    <div class="row my-5">
+      <h5 class="col-xl-10 col-lg-10 mx-auto">"<%= @word %>" で検索しました。</h5>
+      <%= render 'admin/customers/index', customers: @records %>
+    </div>
+  <% else @model == 'Reservation' %>
+    <div class="row my-5">
+      <h5 class="col-xl-10 col-lg-10 mx-auto">"<%= @word %>" で検索しました。</h5>
+      <%= render 'admin/reservations/index', reservations: @records %>
+    </div>
+  <% end %>
+</div>

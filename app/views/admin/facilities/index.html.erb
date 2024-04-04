@@ -5,45 +5,15 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xl-11 col-lg-11 text-right ml-5">
-      <%= link_to "施設新規登録", new_admin_facility_path, class: "font-weight-bold btn btn-custom px-4" %><br><br>
+  <%= render 'admin/searches/facility_search' %>
+
+  <div class="row mb-3">
+    <div class="col-xl-11 col-lg-11 text-right ml-4">
+      <%= link_to "施設新規登録", new_admin_facility_path, class: "font-weight-bold btn btn-custom px-4" %>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xl-11 col-lg-11 mx-auto">
-      <div class="table-responsive">
-      <table class="table border border-black table-light">
-        <thead>
-          <tr class="table-secondary text-center">
-            <th class="align-middle" style="width: 10%;">施設ID</th>
-            <th class="align-middle" style="width: 25%;">施設名</th>
-            <th class="align-middle" style="width: 30%;">住所</th>
-            <th class="align-middle" style="width: 22%;">電話番号</th>
-            <th class="align-middle" style="width: 13%;">ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @facilities.each do |facility| %>
-          <tr>
-            <td class="align-middle text-center" style="width: 10%;"><%= facility.id %></td>
-            <td class="align-middle" style="width: 25%;"><%= link_to facility.name, admin_facility_path(facility.id) %></td>
-            <td class="align-middle" style="width: 30%;"><%= facility.address %></td>
-            <td class="align-middle text-center" style="width: 22%;"><%= facility.telephone_number %></td>
-            <td class="align-middle text-center" style="width: 13%;"><% if facility.is_active %>
-                <span>有効</span>
-                <% else %>
-                <span class="text-secondary font-weight-bold">閉園</span>
-                <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      </div>
-    </div>
-  </div>
+<%= render 'index', facilities: @facilities %>
 
   <div class="rowmt-5 mb-5">
     <div class="mx-auto">
