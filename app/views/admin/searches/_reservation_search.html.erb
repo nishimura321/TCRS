@@ -3,7 +3,7 @@
   <div class="row mt-5">
     <div class="col-xl-10 col-lg-10 mx-auto">
       <div class="search_form">
-        <%= f.text_field :word, placeholder: "ID、予約日など", class: "py-1 mr-3" %>
+        <%= f.text_field :word, placeholder: "予約ID、予約日など", class: "py-1 mr-3" %>
         <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
         <span class="mr-3"></span>
         <%= f.select :facility, options_from_collection_for_select(Facility.where(is_active: true), :id, :name) %>
