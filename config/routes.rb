@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   #管理者用
   namespace :admin do
     resources :reservations, only: [:index, :show]
-    resources :customers, only: [:index, :show]
+    resources :customers, only: [:index, :show, :edit]
     get 'facilities/:id/situation' => 'facilities#situation', as: 'facility_situation'
     resources :facilities, only: [:new, :create, :index, :show, :edit, :update]
     patch 'facilities/:id/withdrawal' => 'facilities#withdrawal', as: 'facility_withdrawal'

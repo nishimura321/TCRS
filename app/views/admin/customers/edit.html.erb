@@ -1,0 +1,69 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="mx-auto">
+      <h3 class="mb-5 font-weight-bold">アカウント情報編集</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <% if @customer.errors.any? %>
+    <div class="col-xl-10 col-lg-10 mx-auto alert alert-info" role="alert">
+      <%= @customer.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+
+  <%= form_with model: @customer, url: customers_information_path(@customer), method: :patch do |f| %>
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 mx-auto">
+      <p class="red">*印の項目は必須項目です。</p>
+      <div class="field">
+        <%= f.label :"保護者氏名", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.label :"(姓)", class: "font-weight-bold" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "name", class: "form-control" %><br>
+        <%= f.label :"(名)", class: "font-weight-bold" %>
+        <%= f.text_field :first_name, autocomplete: "name", class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"フリガナ", class: "font-weight-bold" %><span class="red">*</span><br>
+        <%= f.label :"(セイ)", class: "font-weight-bold" %>
+        <%= f.text_field :last_name_kana, autocomplete: "name", class: "form-control" %><br>
+        <%= f.label :"(メイ)", class: "font-weight-bold" %>
+        <%= f.text_field :first_name_kana, autocomplete: "name", class: "form-control" %><br>
+      </div><br>
+      <div class="field">
+        <%= f.label :"メールアドレス", class: "font-weight-bold" %><span class="red">*</span>
+        <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+      </div><br><br>
+      <div class="field">
+        <%= f.label :"郵便番号(ハイフンなし)", class: "font-weight-bold" %><span class="red">*</span>
+        <%= f.text_field :postal_code, autocomplete: "postal-code", class: "form-control" %>
+      </div><br><br>
+      <div class="field">
+        <%= f.label :"住所", class: "font-weight-bold" %><span class="red">*</span>
+        <%= f.text_field :address, autocomplete: "address-line1", class: "form-control" %>
+      </div><br><br>
+      <div class="field">
+        <%= f.label :"電話番号(ハイフンなし)", class: "font-weight-bold" %><span class="red">*</span>
+        <%= f.text_field :telephone_number, autocomplete: "tel", class: "form-control" %>
+      </div><br><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto">
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary px-4 mr-5" %>
+          <%= f.submit "修正", class: "btn btn-custom px-4 font-weight-bold mr-5" %>
+          <%= link_to "退会処理", customers_confirm_withdrawal_path, class: "btn btn-danger px-4 font-weight-bold" %>
+        </div>
+      <br><br><br>
+    </div>
+  </div>
+  <% end %>
+</div>
