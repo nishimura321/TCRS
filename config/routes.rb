@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   sessions: 'customer/sessions'
   }
 
-  #ゲストログイン用
+  # ゲストログイン用
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'customer/sessions#guest_sign_in'
   end
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  #顧客用
+  # 顧客用
   scope module: :customer do
     root to: "homes#top"
     get '/about' => 'homes#about'
@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     resources :menus, only: [:index]
   end
 
-  #施設用
+  # 施設用
   namespace :facility do
     get '/' => 'homes#top', as: 'top'
     get 'reservations/situation' => 'reservations#situation'
@@ -64,7 +64,7 @@ Rails.application.routes.draw do
     resources :menus, only: [:new, :create, :index, :edit, :update, :destroy]
   end
 
-  #管理者用
+  # 管理者用
   namespace :admin do
     resources :reservations, only: [:index, :show]
     resources :customers, only: [:index, :show, :edit]

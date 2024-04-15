@@ -11,6 +11,9 @@ class Admin::CustomersController < ApplicationController
     @active_families = @customer.families.where(is_active: true)
   end
 
+  def edit
+  end
+
   private
   def ensure_customer
     @customer = Customer.find(params[:id])

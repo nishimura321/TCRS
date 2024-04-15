@@ -1,4 +1,5 @@
 class Reservation < ApplicationRecord
+
   scope :validation_checked, -> { where(is_valid_reservation: true) }
   include HolidayConcern
 
@@ -18,7 +19,7 @@ class Reservation < ApplicationRecord
   validates :main_pick_up_person, presence: true
   validates :emergency_contact_1, presence: true
 
-  #予約データから指定された日付・時間の予約が2件以上あるかチェックするメソッド
+  # 予約データから指定された日付・時間の予約が2件以上あるかチェックするメソッド
   def self.full_reserved?(day, time)
     target_start_time = Time.zone.parse("#{day} #{time}:00")
     target_end_time = target_start_time.since(30.minutes)
@@ -30,7 +31,7 @@ class Reservation < ApplicationRecord
     end
   end
 
-  #過去の日付を選択しないようにするバリデーション
+  # 過去の日付を選択しないようにするバリデーション
   validate :date_before_start
   def date_before_start
     if day.present?
@@ -38,7 +39,7 @@ class Reservation < ApplicationRecord
     end
   end
 
-  #当日が選択できないようにするバリデーション
+  # 当日が選択できないようにするバリデーション
   validate :date_current_today
   def date_current_today
     if day.present? && day == Date.current
@@ -46,7 +47,7 @@ class Reservation < ApplicationRecord
     end
   end
 
-  #再来月以降の日付が選択できないようにするバリデーション
+  # 再来月以降の日付が選択できないようにするバリデーション
   validate :date_tow_month_end
   def date_tow_month_end
     if day.present?
@@ -55,19 +56,19 @@ class Reservation < ApplicationRecord
     end
   end
 
-  #土日は選択できないようにするバリデーション
+  # 土日は選択できないようにするバリデーション
   validate :no_weekend
   def no_weekend
     errors.add(:day, "土日は選択できません。") if day.present? && (day.saturday? || day.sunday?)
   end
 
-  #祝日は選択できないようにするバリデーション
+  # 祝日は選択できないようにするバリデーション
   validate :no_holiday
   def no_holiday
     errors.add(:day, "祝日は選択できません。") if day.present? && is_holiday?(day)
   end
 
-  #予約希望日の入力を確認するバリデーション(27行目だけでは不足するため追加)
+  # 予約希望日の入力を確認するバリデーション(27行目だけでは不足するため追加)
   validate :validate_date
   def validate_date
     if day.nil? || day.year.blank? || day.month.blank? || day.day.blank?
@@ -75,13 +76,13 @@ class Reservation < ApplicationRecord
     end
   end
 
-  #予約時間のstart_timeとend_timeの逆転防止のバリデーション
+  # 予約時間のstart_timeとend_timeの逆転防止のバリデーション
   validate :start_end_check
   def start_end_check
     errors.add(:end_time, "予約終了時間は開始時間より早い時間は登録できません。") unless self.start_time < self.end_time
   end
 
-#予約時間を8:30から16:30の間に指定するバリデーション
+  # 予約時間を8:30から16:30の間に指定するバリデーション
   validate :time_range
   def time_range
     if self.day.nil? || self.start_time.nil? || self.end_time.nil?
@@ -99,7 +100,7 @@ class Reservation < ApplicationRecord
     end
   end
 
- #カレンダーの×の日が選択できないようにするバリデーション
+  # カレンダーの×の日が選択できないようにするバリデーション
   validate :validate_reservation_availability, on: :create
   def validate_reservation_availability
     if self.day.nil? || self.start_time.nil? || self.end_time.nil?
@@ -123,7 +124,7 @@ class Reservation < ApplicationRecord
     end
   end
 
- #検索方法
+  # 検索方法
   def self.search_for(word, search, facility)
     if facility.present?
       if search == 'perfect_match'
@@ -132,7 +133,7 @@ class Reservation < ApplicationRecord
         facility.reservations.where(['id LIKE(?) OR day LIKE(?)', word + '%', word + '%'])
       elsif search == 'backward_match'
         facility.reservations.where(['id LIKE(?) OR day LIKE(?)', '%' + word, '%' + word])
-      #以下は部分一致
+      # 以下は部分一致
       else
         facility.reservations.where(['id LIKE(?) OR day LIKE(?)', '%' + word + '%', '%' + word + '%'])
       end
